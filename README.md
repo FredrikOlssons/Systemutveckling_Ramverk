@@ -38,5 +38,7 @@ Krav för godkänt:
 
 Krav för väl godkänt:
 1.Alla punkter för godkänt är uppfyllda
+
 2.Det finns en admin-sida där man kan ändra, lägga till eller ta bort produkter på sidan
+
 3.Samtliga produkter skall vara sparade i localstorage (om localstorage är tom då sidan läses in behöver samtliga fördefinierade produkter sparas där)
