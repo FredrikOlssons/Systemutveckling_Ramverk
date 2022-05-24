@@ -45,6 +45,7 @@ Krav för godkänt:
 
 9.Mockade produkter ska ligga i en egen fil och vara typade med ett TS interface
 
+
 Krav för väl godkänt:
 
 1.Alla punkter för godkänt är uppfyllda
