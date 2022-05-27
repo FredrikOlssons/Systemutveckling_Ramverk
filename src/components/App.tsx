@@ -1,13 +1,14 @@
-import { FC, useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+
+import { FC } from 'react'
+import Layout from './layout'
+
 
 const App: FC = () => {
 
   return (
-    <div>
-      
-    </div>
+    
+    <Layout/>
+    
 
   )
 }
