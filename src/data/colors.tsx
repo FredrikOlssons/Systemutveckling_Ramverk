@@ -7,9 +7,9 @@ export interface Colors {
 }
 
 export const Colors: Colors = {
-    primary: "#OD1321",
+    primary: "#0D1321",
     secondary: "#1D2D44",
     third: "#3E5C76",
     fourth: "#748CAB",
-    fifth: "#FOEBD8"
+    fifth: "#F0EBD8"
 }
