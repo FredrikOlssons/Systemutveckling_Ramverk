@@ -1,12 +1,12 @@
-import BedroomBattle from '/src/assets/BedroomBattle.jpg'
-import BoobBattle from '/src/assets/BoobBattle.jpg'
-import CockFighting from 'src/assets/CockFighting.jpg'
-import DickheadHoopla from 'src/assets/DickheadHoopla.jpg'
-import FiftyDays from 'src/assets/FiftyDays.jpg'
-import FloaterSpel from 'src/assets/FloaterSpel.jpg'
-import Monopoly from 'src/assets/Monopoly.jpg'
-import Puzzle from 'src/assets/Puzzle.jpg'
-import ToiletGolf from 'src/assets/ToiletGolf.jpg'
+import BedroomBattle from '../assets/BedroomBattle.jpg'
+import BoobBattle from '../assets/BoobBattle.jpg'
+import CockFighting from '../assets/CockFighting.jpg'
+import DickheadHoopla from '../assets/DickheadHoopla.jpg'
+import FiftyDays from '../assets/FiftyDays.jpg'
+import FloaterSpel from '../assets/FloaterSpel.jpg'
+import Monopoly from '../assets/Monopoly.jpg'
+import Puzzle from '../assets/Puzzle.jpg'
+import ToiletGolf from '../assets/ToiletGolf.jpg'
 
 
 
