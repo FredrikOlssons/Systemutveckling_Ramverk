@@ -4,12 +4,16 @@ export interface Colors {
     third: string
     fourth: string 
     fifth: string
+
 }
 
+
+
+
 export const Colors: Colors = {
-    primary: "#0D1321",
-    secondary: "#1D2D44",
-    third: "#3E5C76",
-    fourth: "#748CAB",
+    primary: "#d68438",
+    secondary: "#f1b24b",
+    third: "#36846b",
+    fourth: "#4bb39a",
     fifth: "#F0EBD8"
 }
