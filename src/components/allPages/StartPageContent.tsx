@@ -1,6 +1,7 @@
 import { FC, CSSProperties } from "react";
-import RenderProduct from "./functions/renderProduct";
-import { product } from "../data/products";
+import RenderProduct from "../functions/renderProduct";
+import { product } from "../../data/products";
+import Hero from '../Hero';
 
 
 
@@ -10,7 +11,9 @@ import { product } from "../data/products";
 const Content: FC = (props) => {
     return ( 
         <>
+        <Hero/>
         <div style={productHeader}>
+            
         <h1>Välkommen till Company Name</h1>
         <h2>Mängder av annorlunda och roliga prylar och presenter som du inte visste fanns! </h2>
 

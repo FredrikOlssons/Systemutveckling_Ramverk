@@ -5,6 +5,7 @@ import { bodyContent } from "../style/common";
 import { fontSize, margin } from "@mui/system";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Colors } from '../data/colors';
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,12 +13,16 @@ const Header: FC = () => {
     return (
         <>
         <div style={{...headerStyle, ...bodyContent}}>
-            <h1 style={{...companyLogo}}>COMPANY NAME</h1>
+             <Link to={"/"} style={{...companyLogo}}> COMPANY NAME</Link>
             <div style={{...cartDiv}}> 
+                <Link to={"/"}>
                 < SupervisorAccountIcon style={adminIcon}/>
-              
-           
+                </Link>
+                
+                <Link to={"/"}>
                 < AddShoppingCartIcon style={cartIcon}/>
+                
+                </Link>
                 </div>
         </div>
         </>
@@ -42,7 +47,10 @@ const headerStyle: CSSProperties = {
 const companyLogo: CSSProperties = {
     fontFamily: 'arial',
     cursor: 'pointer',
-    marginLeft: '1vw'
+    marginLeft: '1vw',
+    color: "white",
+    textDecoration: 'none',
+    fontSize: '2em',
 
 
 
@@ -53,7 +61,9 @@ const cartDiv: CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-end',
     justifyItems: 'flex-end',
-    marginTop: '70px'
+    marginTop: '70px',
+  
+
     
     
 }
@@ -61,14 +71,18 @@ const cartDiv: CSSProperties = {
 const cartIcon: CSSProperties = {
     marginTop: '30px',
     fontSize: '45px',
-    marginRight: '1vw'
+    marginRight: '1vw',
+    textDecoration: 'none',
+    color: 'white',
 }
 
 
 const adminIcon: CSSProperties = {
     marginTop: '30px',
     fontSize: '45px',
-    marginRight: '1vw'
+    marginRight: '1vw',
+    textDecoration: 'none',
+    color: 'white',
 }
 
 

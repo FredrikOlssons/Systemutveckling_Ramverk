@@ -6,7 +6,7 @@ interface Props {}
 const startPage: FC<Props> = (props) => {
     return (
         <div>
-
+           
         </div>
     )
 }
