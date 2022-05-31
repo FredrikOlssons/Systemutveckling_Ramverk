@@ -14,7 +14,7 @@ const Header: FC = () => {
         <div style={{...headerStyle, ...bodyContent}}>
             <h1 style={{...companyLogo}}>COMPANY NAME</h1>
             <div style={{...cartDiv}}> 
-                < SupervisorAccountIcon style={admiIcon}/>
+                < SupervisorAccountIcon style={adminIcon}/>
               
            
                 < AddShoppingCartIcon style={cartIcon}/>
@@ -29,10 +29,10 @@ const Header: FC = () => {
 const headerStyle: CSSProperties = {
     display: 'flex',
     width: '100%', 
-    color: "black",
-    background: Colors.third,
+    color: "white",
+    background: Colors.fourth,
     position: 'relative',
-    height: '90px',
+    height: '150px',
     borderBottom: '1px solid black', 
     alignItems: 'stretch',
     fontSize: '1rem',
@@ -45,6 +45,7 @@ const companyLogo: CSSProperties = {
     marginLeft: '1vw'
 
 
+
 }
 
 const cartDiv: CSSProperties = {
@@ -52,20 +53,21 @@ const cartDiv: CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-end',
     justifyItems: 'flex-end',
+    marginTop: '70px'
     
     
 }
 
 const cartIcon: CSSProperties = {
     marginTop: '30px',
-    fontSize: '35px',
+    fontSize: '45px',
     marginRight: '1vw'
 }
 
 
-const admiIcon: CSSProperties = {
+const adminIcon: CSSProperties = {
     marginTop: '30px',
-    fontSize: '40px',
+    fontSize: '45px',
     marginRight: '1vw'
 }
 
