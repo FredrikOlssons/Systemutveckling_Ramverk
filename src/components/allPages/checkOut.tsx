@@ -3,7 +3,7 @@ import { FC } from "react";
 
 interface Props {}
 
-const checkOut: FC<Props> = (props) => {
+const CheckOut: FC<Props> = (props) => {
     return (
         <div>
 
@@ -17,4 +17,4 @@ const checkOut: FC<Props> = (props) => {
 
 
 
-export default checkOut 
+export default CheckOut 
