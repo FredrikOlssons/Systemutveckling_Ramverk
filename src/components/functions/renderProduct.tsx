@@ -23,9 +23,14 @@ const renderProduct: FC<Props> = (props) => {
                 <h3>{props.product.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" color="primary">Köp</Button>
+                <Button variant="contained" onClick={addToCart} color="primary">Köp</Button>
         </div>
     ); 
+}
+
+
+const addToCart = () => {
+    console.log('added product')
 }
 
 
