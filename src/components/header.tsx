@@ -19,7 +19,7 @@ const Header: FC = () => {
                 < SupervisorAccountIcon style={adminIcon}/>
                 </Link>
                 
-                <Link to={"/"}>
+                <Link to={"/checkOut"}>
                 < AddShoppingCartIcon style={cartIcon}/>
                 
                 </Link>

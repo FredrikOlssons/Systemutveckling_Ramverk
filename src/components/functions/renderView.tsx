@@ -15,7 +15,7 @@ const RenderView: FC<Props> = (props) => {
         <Routes> 
             <Route path="/" element={ <Content /> } />
             <Route path="/:productId" element={ <SinglePage /> } />
-            <Route path="/" element={ <Checkout /> } />
+            <Route path="/checkOut" element={ <Checkout /> } />
 
         </Routes>
     )
