@@ -1,13 +1,15 @@
 
 import { FC } from 'react'
 import Layout from './layout'
+import { BrowserRouter } from 'react-router-dom'
 
 
 const App: FC = () => {
 
   return (
-    
-    <Layout/>
+    <BrowserRouter>
+      <Layout/>
+    </BrowserRouter>
     
 
   )
