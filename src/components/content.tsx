@@ -12,7 +12,7 @@ const Content: FC = (props) => {
         <>
         <div style={productHeader}>
         <h1>Välkommen till Company Name</h1>
-        <h3>Slogan</h3>
+        <h2>Mängder av annorlunda och roliga prylar och presenter som du inte visste fanns! </h2>
 
         </div>
         <div style={productContainer}>
@@ -36,7 +36,8 @@ const productContainer: CSSProperties = {
 }
 
 const productHeader: CSSProperties = {
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: "15px"
 }
 
 
