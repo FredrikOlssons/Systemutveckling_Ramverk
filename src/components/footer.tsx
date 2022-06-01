@@ -53,19 +53,19 @@ const footerStyle: CSSProperties = {
     background: Colors.secondary,
     color: 'silver',
     height: '200px',
-    border: '1px solid black',
   
 }
 
 const line: CSSProperties = {
     width:"60vw", 
     margin: "auto",
-    borderTop: '1px solid black',
+    borderTop: '0.5px solid black',
     marginTop: '30px',
     paddingTop: '10px',
     borderColor: 'silver',
     textAlign: 'center',
-    fontSize: '8px'
+    fontSize: '8px',
+    color: "white"
     
     
 }
@@ -76,6 +76,8 @@ const socialMedia: CSSProperties = {
     gap: '2%',
     marginBottom: '2%',
     height: '70%',
+    color: "white",
+    fontSize: "15px"
 }
 
 const footerLayout: CSSProperties = {
