@@ -1,16 +1,16 @@
 
 import { FC, CSSProperties } from "react";
-import { product, Products } from "../../data/products";
+import { product, Products } from "../data/products";
 import Button from '@material-ui/core/Button'; 
 import { Link } from 'react-router-dom';
-import addToCart from "./addToCart";
+import addToCart from "./functions/addToCart";
 
 
 interface Props {
     product: Products
 }
 
-const renderProduct: FC<Props> = (props) => {
+const RenderProduct: FC<Props> = (props) => {
 
     return(
         <div style={productContainer}>
@@ -71,4 +71,4 @@ const productContainer: CSSProperties = {
 
 
 
-export default renderProduct
+export default RenderProduct
