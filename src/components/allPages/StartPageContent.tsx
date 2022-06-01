@@ -1,5 +1,5 @@
 import { FC, CSSProperties } from "react";
-import RenderProduct from "../functions/renderProduct";
+import RenderProduct from "../productCard";
 import { product } from "../../data/products";
 import Hero from '../Hero';
 
