@@ -1,8 +1,9 @@
 
 import { FC, CSSProperties } from "react";
-import { Products } from "../../data/products";
+import { product, Products } from "../../data/products";
 import Button from '@material-ui/core/Button'; 
 import { Link } from 'react-router-dom';
+import addToCart from "./addToCart";
 
 
 interface Props {
@@ -23,15 +24,11 @@ const renderProduct: FC<Props> = (props) => {
                 <h3>{props.product.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" onClick={addToCart} color="primary">Köp</Button>
+                <Button variant="contained" onClick={() => addToCart(product)} color="primary">Köp</Button>
         </div>
     ); 
 }
 
-
-const addToCart = () => {
-    console.log('added product')
-}
 
 
 const title: CSSProperties = {

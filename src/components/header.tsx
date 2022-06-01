@@ -15,7 +15,7 @@ const Header: FC = () => {
         <div style={{...headerStyle, ...bodyContent}}>
              <Link to={"/"} style={{...companyLogo}}> COMPANY NAME</Link>
             <div style={{...cartDiv}}> 
-                <Link to={"/"}>
+                <Link to={"/admin"}>
                 < SupervisorAccountIcon style={adminIcon}/>
                 </Link>
                 
@@ -37,8 +37,7 @@ const headerStyle: CSSProperties = {
     color: "white",
     background: Colors.fourth,
     position: 'relative',
-    height: '150px',
-    borderBottom: '1px solid black', 
+    height: '100px',
     alignItems: 'stretch',
     fontSize: '1rem',
   
@@ -47,11 +46,12 @@ const headerStyle: CSSProperties = {
 const companyLogo: CSSProperties = {
     fontFamily: 'arial',
     cursor: 'pointer',
-    marginLeft: '1vw',
+    marginLeft: '2.5vw',
     color: "white",
     textDecoration: 'none',
     fontSize: '2em',
-
+    display: "flex",
+    alignItems: "center"
 
 
 }
@@ -61,7 +61,7 @@ const cartDiv: CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-end',
     justifyItems: 'flex-end',
-    marginTop: '70px',
+    gap: "15px"
   
 
     
@@ -71,15 +71,15 @@ const cartDiv: CSSProperties = {
 const cartIcon: CSSProperties = {
     marginTop: '30px',
     fontSize: '45px',
-    marginRight: '1vw',
+    marginRight: '2.5vw',
     textDecoration: 'none',
     color: 'white',
 }
 
 
 const adminIcon: CSSProperties = {
-    marginTop: '30px',
-    fontSize: '45px',
+    marginTop: '25px',
+    fontSize: '50px',
     marginRight: '1vw',
     textDecoration: 'none',
     color: 'white',

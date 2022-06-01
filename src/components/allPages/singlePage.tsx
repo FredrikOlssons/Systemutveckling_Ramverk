@@ -6,6 +6,7 @@ import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC } from "react";
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'; 
+import addToCart from '../functions/addToCart';
 
 
 
@@ -30,19 +31,17 @@ const SinglePage: FC<Props> = (props) => {
 
             <div style={productInfo}>
                 <h2>{foundProduct.title}</h2>
-                <h4>{foundProduct.description}</h4>
+                <h3>{foundProduct.description}</h3>
                 
                 <div style={priceDiv}>
                    
-                    <h4>Pris: {foundProduct.price} kr</h4>
-                    <Button variant="contained" color="primary">Lägg i kundvagn</Button>
+                    <h3>Pris: {foundProduct.price} kr</h3>
+                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary">Lägg i kundvagn</Button>
 
                 </div>
             </div>
 
-        <div>
         </div>
-    </div>
     )
 }
 
@@ -53,8 +52,8 @@ const singleProductContainer: CSSProperties = {
     display: "flex", 
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: "40px",
-    marginTop: "40px", 
+    paddingBottom: "40px",
+    paddingTop: "40px", 
     margin: "auto",
     flexWrap: "wrap",
     alignItems: "center",
@@ -65,6 +64,7 @@ const singleProductContainer: CSSProperties = {
 const imageStyle: CSSProperties = {
     height: '400px',
     width: '400px',
+    borderRadius: "30px"
 
 }
 
@@ -72,10 +72,9 @@ const imageStyle: CSSProperties = {
 const productInfo: CSSProperties = {
     display: "flex",
     flexDirection: "column",
-    border: "1px solid black",
     borderRadius: "15px",
-    padding: "40px",
-    boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px"
+    padding: "35px",
+    boxShadow: "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px"
 }
 
 
