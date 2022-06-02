@@ -10,12 +10,18 @@ export interface CartContext {
     setItemsInCart: () => void
 }
 
-const cartContentContext = React.createContext<CartContext>({
+export const CartContentContext = React.createContext<CartContext>({
     cart: product,
     setItemsInCart: () => {}
 
 })
 
+
+/* const addToCart = () => {
+    let cartButton = document.getElementById('purchaseButton').
+    cartButton.addEventListener
+}
+ */
 
 interface Props  {}
 
@@ -23,27 +29,27 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const [cart, setCart] = useState<Products[]>(product)
     
     const setItemsInCart: () => void = () => {
-        if(!cart) {
-            console.log('cart is empty');
+        //const cart: boolean = true;  
+        if(!cart || cart == []) {
+            setCart(product)
+        }else{
+            console.log('hej')
         }
-        else {'cart is fully loaded'}
     }
+
+    
     
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));}, [cart]); 
-    
+        localStorage.setItem('cart', JSON.stringify(cart))
+    }, [cart])
 
-        useEffect(() => {
-        },[cart])
-
-    return(<cartContentContext.Provider value={{cart, setItemsInCart}}>
-        {props.children}
-    </cartContentContext.Provider>)
-    
-    
-    
+    return (
+        <CartContentContext.Provider value={{cart, setItemsInCart}}>
+            {props.children}
+        </CartContentContext.Provider>
+    )   
 }
 
 export default CartProvider
 
-// add to cart funktion
+
