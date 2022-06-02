@@ -1,9 +1,10 @@
 
-import { FC, CSSProperties } from "react";
+import { FC, CSSProperties, useContext } from "react";
 import { product, Products } from "../data/products";
 import Button from '@material-ui/core/Button'; 
 import { Link } from 'react-router-dom';
-import addToCart from "./functions/addToCart";
+import { CartContentContext } from "./context/cartProvider";
+
 
 
 interface Props {
@@ -11,6 +12,8 @@ interface Props {
 }
 
 const RenderProduct: FC<Props> = (props) => {
+
+    const {addToCart } = useContext(CartContentContext)
 
     return(
         <div style={productContainer}>
@@ -24,7 +27,7 @@ const RenderProduct: FC<Props> = (props) => {
                 <h3>{props.product.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" onClick={() => addToCart(product)} color="primary">Köp</Button>
+                <Button variant="contained" onClick={addToCart} color="primary">Köp</Button>
         </div>
     ); 
 }
@@ -72,3 +75,7 @@ const productContainer: CSSProperties = {
 
 
 export default RenderProduct
+
+function setItemsInCart(): void {
+    throw new Error("Function not implemented.");
+}

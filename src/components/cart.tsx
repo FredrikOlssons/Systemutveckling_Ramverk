@@ -1,5 +1,5 @@
 import {CartContext, CartContentContext} from '../components/context/cartProvider'
-import { useContext, FC } from 'react'
+import { useContext, FC, useEffect } from 'react'
 import CartProvider from '../components/context/cartProvider'
 
 
@@ -7,16 +7,36 @@ import CartProvider from '../components/context/cartProvider'
 
 interface Props {
 
+
 }
 
 const Cart: FC<Props> = (props) => {
     
-const { cart } = useContext(CartContentContext)
+    const { cartItem, addToCart } = useContext(CartContentContext)
+
+    if( cartItem ) {
+
+
+    }
+
+    
+    
+    
+    
+    
+    
+    return (
+        <div>
+
+            {/* <button onClick={addToCart}>add to cart </button> */}
+            
+        </div>
+    )
+
+
 }
 
-/* export const Cart: FC<Props> = (props) => {
-    const [cart, setCart] = useContext(cart)
-} */
+
 
 
 export default Cart

@@ -39,7 +39,7 @@ const SinglePage: FC<Props> = (props) => {
                    
 
                     <h3>Pris: {foundProduct.price} kr</h3>
-                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
+                    <Button onClick={() => setItemsInCart} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
 
 
                 </div>
@@ -96,3 +96,7 @@ const priceDiv: CSSProperties = {
 
 
 export default SinglePage 
+
+function setItemsInCart(): void {
+    throw new Error('Function not implemented.');
+}
