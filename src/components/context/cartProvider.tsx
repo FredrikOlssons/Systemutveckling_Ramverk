@@ -17,17 +17,30 @@ const cartContentContext = React.createContext<CartContext>({
 })
 
 
+/* const addToCart = () => {
+    let cartButton = document.getElementById('purchaseButton').
+    cartButton.addEventListener
+}
+ */
+
 interface Props  {}
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const [cart, setCart] = useState<Products[]>(product)
     
     const setItemsInCart: () => void = () => {
+        //const cart: boolean = true;  
         if(!cart) {
             console.log('cart is empty');
         }
         else {'cart is fully loaded'}
     }
+
+    setItemsInCart();
+
+    
+
+        window.addEventListener("click", setItemsInCart)
     
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));}, [cart]); 
@@ -46,4 +59,3 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 export default CartProvider
 
-// add to cart funktion

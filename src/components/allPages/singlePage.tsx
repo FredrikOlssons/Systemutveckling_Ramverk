@@ -1,6 +1,6 @@
 
 import React from 'react'; 
-import RenderProduct from "../functions/renderProduct";
+//import RenderProduct from "../productCard";
 import {product, Products} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC } from "react";
@@ -36,7 +36,7 @@ const SinglePage: FC<Props> = (props) => {
                 <div style={priceDiv}>
                    
                     <h3>Pris: {foundProduct.price} kr</h3>
-                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary">Lägg i kundvagn</Button>
+                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
 
                 </div>
             </div>
