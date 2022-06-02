@@ -32,13 +32,13 @@ export const product: Products[] = [
         id: 2, 
         title: "Boob Battle Duellspel", 
         image: BoobBattle, 
-        description: "Har du också alltid velat brösta upp dig ut och visa vem som har störst. I det här roliga duellspelet fäster ni varsitt par karaktärshöjande bullar på kroppen och bonkar på varandra tills en av er tappar andan. Men kom ihåg, inga händer tillåtna! Detta är en kamp bystkontrollen ska avgöra! (Obs. inga platshållare tillåtna, byglar kan allvarligt skada produkten)", 
+        description: "Har du också alltid velat brösta upp dig ut och saknar du kuddkrigen från barndomen? I det här roliga duellspelet fäster ni varsitt par karaktärshöjande kuddar på kroppen och bonkar på varandra tills en av er tappar andan. Men kom ihåg, inga händer tillåtna! Detta är en kamp där överkroppskontroll och inte MeToo ska avgöra! (Obs. inga platshållare tillåtna, byglar kan allvarligt skada produkten)", 
         price: 169
     }, {
         id: 3, 
         title: "Cock Fighting Duellspel", 
         image: CockFighting, 
-        description: 'Visa svärfar hur hård och stolt du är! Ta fram ditt vapen under bältet och utmana honom i en ståndaktig tornering och se vem som egentligen är "man of the house" där vinnaren får bragging rights och dessutom får ha kvar sin mojo', 
+        description: 'Känner du att farmor behöver piggas upp med en slap i ansiktet? Eller att du behöver visa svärfar hur hård och stolt du är? Ta fram ditt vapen under bältet och utmana honom i en ståndaktig tornering och se vem som egentligen är "man of the house" där vinnaren får bragging rights och dessutom får ha kvar sin mojo', 
         price: 149
     }, {
         id: 4, 
@@ -56,7 +56,7 @@ export const product: Products[] = [
         id: 6, 
         title: "Fishing for Floaters Spel", 
         image: FloaterSpel, 
-        description: "Önskar du också att dina barn lär sig lite renlighet och miljötänk? Här kan de roa sig i flera timmar med att plocka bajskorvar ifrån badet och samtidigt lära sig att städa. Win - win", 
+        description: "Önskar du också att dina barn lär sig lite om friluftsliv och miljötänk? Här kan de roa sig i flera timmar med att öva på fiske ifrån badet och samtidigt lära sig att städa. Win - win", 
         price: 129
     }, {
         id: 7, 
@@ -74,7 +74,7 @@ export const product: Products[] = [
         id: 9, 
         title: "Toilet Golf", 
         image: ToiletGolf, 
-        description: "Även perfekta spelkvällar behöver sina pauser. Du som har tröttnat på att räkna kakelplattor i badrummet kan nu fortsätta spelkvällen utan att behöva knipa ihop", 
+        description: "Även de bästa spelkvällar behöver sina pauser. Du som har tröttnat på att räkna kakelplattor i badrummet kan nu fortsätta spelkvällen utan att behöva knipa ihop", 
         price: 189
     },
 ]

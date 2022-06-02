@@ -1,12 +1,12 @@
 
 import React from 'react'; 
-import RenderProduct from "../functions/renderProduct";
+import RenderProduct from "../productCard";
 import {product, Products} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC } from "react";
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'; 
-import addToCart from '../functions/addToCart';
+//import addToCart from '../functions/addToCart';
 
 
 
@@ -35,9 +35,9 @@ const SinglePage: FC<Props> = (props) => {
                 
                 <div style={priceDiv}>
                    
-                    <h3>Pris: {foundProduct.price} kr</h3>
+                    {/* <h3>Pris: {foundProduct.price} kr</h3>
                     <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary">Lägg i kundvagn</Button>
-
+ */}
                 </div>
             </div>
 

@@ -15,7 +15,7 @@ const Content: FC = (props) => {
         <div style={productHeader}>
             
         <h1>Välkommen till Company Name</h1>
-        <h2>Mängder av annorlunda och roliga prylar och presenter som du inte visste fanns! </h2>
+        <h2>Där spelkvällar med familjen blir roliga igen! </h2>
 
         </div>
         <div style={productContainer}>
