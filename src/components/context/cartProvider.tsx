@@ -2,49 +2,62 @@ import React, {PropsWithChildren, useState, useEffect} from "react";
 import {FC} from "react"
 import {product, Products} from "../../data/products"
 
-//import CartItem from "../cartItem"
+
 
 
 export interface CartContext {
-    cart: Products[],
-    setItemsInCart: () => void
+    cartItem: Products[],
+    addToCart: () => void,
+    removeFromCart: () => void
 }
 
 export const CartContentContext = React.createContext<CartContext>({
-    cart: product,
-    setItemsInCart: () => {}
+    cartItem: [],
+    addToCart: () => {},
+    removeFromCart: () => {}
 
 })
 
 
-/* const addToCart = () => {
-    let cartButton = document.getElementById('purchaseButton').
-    cartButton.addEventListener
-}
- */
+
 
 interface Props  {}
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
-    const [cart, setCart] = useState<Products[]>(product)
+    const [cartItem, setCart] = useState<Products[]>(product)
     
-    const setItemsInCart: () => void = () => {
-        //const cart: boolean = true;  
-        if(!cart || cart == []) {
+    const addToCart: () => void = () => {
+        
+        if(!cartItem || cartItem == []) {
             setCart(product)
+            
+            console.log(cartItem)
+            console.log("Helloooo")
         }else{
             console.log('hej')
         }
+        
     }
+    
+
+
+    
+    const removeFromCart: () => void = () => {
+
+
+
+    }
+
+
 
     
     
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart))
-    }, [cart])
+        localStorage.setItem('cart', JSON.stringify(cartItem))
+    }, [cartItem])
 
     return (
-        <CartContentContext.Provider value={{cart, setItemsInCart}}>
+        <CartContentContext.Provider value={{cartItem, addToCart, removeFromCart}}>
             {props.children}
         </CartContentContext.Provider>
     )   
