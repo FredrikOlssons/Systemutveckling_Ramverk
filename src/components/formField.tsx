@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC, CSSProperties } from 'react'; 
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
 
@@ -40,8 +40,8 @@ import * as Yup from 'yup';
     }); 
  
     export const ValidationSchemaExample = () => (
-        <div>
-          <h1>Signup</h1>
+        <div style={formStyling}>
+          <h2>Fyll i dina kontaktuppgifter</h2>
           <Formik
             initialValues={{
               firstName: '',
@@ -63,33 +63,41 @@ import * as Yup from 'yup';
           >
             {({ errors, touched }) => (
               <Form>
+                FirstName:
                 <Field name="firstName" />
                 {errors.firstName && touched.firstName ? (
                   <div>{errors.firstName}</div>
                 ) : null}
+                LastName:
                 <Field name="lastName" />
                 {errors.lastName && touched.lastName ? (
                   <div>{errors.lastName}</div>
                 ) : null}
+                E-mail:
                 <Field name="email" type="email" />
                 {errors.email && touched.email ? <div>{errors.email}</div> 
                 : null}
+                Adress:
                 <Field name="streetAdress" />
                 {errors.streetAdress && touched.streetAdress ? (
                   <div>{errors.streetAdress}</div>
                 ) : null}
+                PostalCode:
                 <Field name="postalCode" />
                 {errors.postalCode && touched.postalCode ? (
                   <div>{errors.postalCode}</div>
                 ) : null}
+                Town:
                 <Field name="town" />
                 {errors.town && touched.town ? (
                   <div>{errors.town}</div>
                 ) : null}
+                Country:
                 <Field name="country" />
                 {errors.country && touched.country ? (
                   <div>{errors.country}</div>
                 ) : null}
+                PhoneNumber:
                 <Field name="phoneNumber" />
                 {errors.phoneNumber && touched.phoneNumber ? (
                   <div>{errors.phoneNumber}</div>
@@ -224,6 +232,12 @@ import * as Yup from 'yup';
    </div>
  ); */
  
+
+ const formStyling: CSSProperties = {
+   display: "flex",
+   flexWrap: "wrap",
+   gap: "20px"
+ }
  export default ValidationSchemaExample;
 
 

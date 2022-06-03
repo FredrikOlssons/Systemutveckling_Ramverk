@@ -1,5 +1,5 @@
-import React, {PropsWithChildren, useState, useEffect} from "react";
-import {FC} from "react"
+import React, {PropsWithChildren, useState, useEffect, FC} from "react";
+
 import {product, Products} from "../../data/products"
 
 
@@ -45,7 +45,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     
-    const removeFromCart: (deletedItem: Products) => void = () => {
+    const removeFromCart: () => void = () => {
         const filter = cartItem.filter
         
         }
