@@ -1,6 +1,11 @@
+
 import { Box, Button } from "@mui/material";
 import { height } from "@mui/system";
 import { FC, CSSProperties } from "react";
+
+import { FC } from "react";
+import ValidationSchemaExample from '.././formField'
+
 
 
 interface Props {}
@@ -45,8 +50,16 @@ const CheckOut: FC<Props> = (props) => {
                 <h3>betalningsalternativ:</h3>
                     
                 </Box>
+                
+                <Box style={secondBox}>
+                
+                <h3>Kontaktformulär:</h3>
+                  
+                    <ValidationSchemaExample/>
+                </Box>
 
-            
+          
+
 
         </div>
     )
