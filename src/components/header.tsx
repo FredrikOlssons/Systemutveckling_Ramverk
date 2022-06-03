@@ -1,11 +1,11 @@
 import { FC, CSSProperties } from "react";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { NoEncryption, ThreeSixtyRounded } from "@material-ui/icons";
 import { bodyContent } from "../style/common";
-import { fontSize, margin } from "@mui/system";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Colors } from '../data/colors';
 import { Link } from 'react-router-dom';
+import { Badge, IconButton } from "@mui/material";
+
 
 
 
@@ -20,7 +20,12 @@ const Header: FC = () => {
                 </Link>
                 
                 <Link to={"/checkOut"}>
-                < AddShoppingCartIcon style={cartIcon}/>
+                 
+                <IconButton style={cartIcon} aria-label="cart">
+                    <Badge style={StyledBadge} badgeContent={2} color="secondary">
+                        <AddShoppingCartIcon />
+                    </Badge>
+                </IconButton>
                 
                 </Link>
                 </div>
@@ -70,7 +75,7 @@ const cartDiv: CSSProperties = {
 
 const cartIcon: CSSProperties = {
     marginTop: '30px',
-    fontSize: '45px',
+    fontSize: '50px',
     marginRight: '2.5vw',
     textDecoration: 'none',
     color: 'white',
@@ -78,13 +83,20 @@ const cartIcon: CSSProperties = {
 
 
 const adminIcon: CSSProperties = {
-    marginTop: '25px',
-    fontSize: '50px',
+    marginTop: '28px',
+    fontSize: '40px',
     marginRight: '1vw',
     textDecoration: 'none',
     color: 'white',
 }
 
+
+const StyledBadge: CSSProperties = {
+    right: "-3",
+    top: "13",
+    padding: '0 4px',
+  
+}
 
 
 
