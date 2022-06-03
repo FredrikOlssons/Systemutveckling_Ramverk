@@ -1,11 +1,12 @@
 import { CSSProperties, FC } from "react";
 import Content from "./allPages/StartPageContent";
+import { FC } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import { bodyContent } from "../style/common";
-import Hero from "./Hero"; 
 import RenderView from "./functions/renderView";
 import CartProvider from "./context/cartProvider";
+import Cart from "./cart";
 
 
 
@@ -16,9 +17,10 @@ const Layout: FC = () => {
 
         <div style={{...bodyContent}}>
             <CartProvider>
-            <Header /> 
-            <RenderView />
-            <Footer />
+                <Header /> 
+                <Cart />
+                <RenderView />
+                <Footer />
             </CartProvider>
         </div>
     )

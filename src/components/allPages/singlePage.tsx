@@ -1,6 +1,8 @@
 
 import React from 'react'; 
+
 import RenderProduct from "../productCard";
+
 import {product, Products} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC } from "react";
@@ -35,9 +37,11 @@ const SinglePage: FC<Props> = (props) => {
                 
                 <div style={priceDiv}>
                    
-                    {/* <h3>Pris: {foundProduct.price} kr</h3>
-                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary">Lägg i kundvagn</Button>
- */}
+
+                    <h3>Pris: {foundProduct.price} kr</h3>
+                    <Button onClick={() => setItemsInCart} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
+
+
                 </div>
             </div>
 
@@ -92,3 +96,7 @@ const priceDiv: CSSProperties = {
 
 
 export default SinglePage 
+
+function setItemsInCart(): void {
+    throw new Error('Function not implemented.');
+}

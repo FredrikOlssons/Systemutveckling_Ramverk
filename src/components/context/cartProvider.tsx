@@ -1,49 +1,71 @@
-import React, {PropsWithChildren, useState, useEffect} from "react";
-import {FC} from "react"
+import React, {PropsWithChildren, useState, useEffect, FC} from "react";
+
 import {product, Products} from "../../data/products"
 
-//import CartItem from "../cartItem"
+
 
 
 export interface CartContext {
-    cart: Products[],
-    setItemsInCart: () => void
+    cartItem: Products[],
+    addToCart: () => void,
+    removeFromCart: () => void
 }
 
-const cartContentContext = React.createContext<CartContext>({
-    cart: product,
-    setItemsInCart: () => {}
+export const CartContentContext = React.createContext<CartContext>({
+    cartItem: product,
+    addToCart: () => {},
+    removeFromCart: () => {}
 
 })
+
+
 
 
 interface Props  {}
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
-    const [cart, setCart] = useState<Products[]>(product)
+    const [cartItem, setCart] = useState<Products[]>(product)
     
-    const setItemsInCart: () => void = () => {
-        if(!cart) {
-            console.log('cart is empty');
+    const addToCart: () => void = () => {
+        
+        if(!cartItem || cartItem == []) {
+            //
+            
+           
+        }else{
+            console.log('hej')
+            console.log(cartItem)
+            console.log(cartItem.length)
+            const allProducts = localStorage.getItem('cart')
+            console.log(allProducts)
         }
-        else {'cart is fully loaded'}
+        
     }
     
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));}, [cart]); 
-    
 
-        useEffect(() => {
-        },[cart])
 
-    return(<cartContentContext.Provider value={{cart, setItemsInCart}}>
-        {props.children}
-    </cartContentContext.Provider>)
+    
+    const removeFromCart: () => void = () => {
+        const filter = cartItem.filter
+        
+        }
+ 
+    
+        localStorage.removeItem('cart')
+
     
     
-    
+    //useEffect(() => {
+        //localStorage.setItem('cart', JSON.stringify(cartItem))
+    //}, [cartItem])
+
+    return (
+        <CartContentContext.Provider value={{cartItem, addToCart, removeFromCart}}>
+            {props.children}
+        </CartContentContext.Provider>
+    )   
 }
 
 export default CartProvider
 
-// add to cart funktion
+
