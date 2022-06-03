@@ -78,7 +78,8 @@ const firstBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 const secondBox: CSSProperties = {
@@ -88,7 +89,8 @@ const secondBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 
@@ -97,7 +99,8 @@ const secondBox: CSSProperties = {
 const title: CSSProperties = {
     display: "flex", 
     justifyContent: "center",
-    margin: "40px"
+    margin: "40px",
+    color: "white"
 }
 
 const litleBox: CSSProperties = {
@@ -105,7 +108,8 @@ const litleBox: CSSProperties = {
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 
