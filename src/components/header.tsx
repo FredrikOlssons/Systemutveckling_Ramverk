@@ -6,6 +6,7 @@ import { fontSize, margin } from "@mui/system";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Colors } from '../data/colors';
 import { Link } from 'react-router-dom';
+import '../style/hero.css'
 
 
 
@@ -13,7 +14,7 @@ const Header: FC = () => {
     return (
         <>
         <div style={{...headerStyle, ...bodyContent}}>
-             <Link to={"/"} style={{...companyLogo}}> COMPANY NAME</Link>
+             <Link to={"/"} style={{...companyLogo}}> Wholehearted Family Adventure</Link>
             <div style={{...cartDiv}}> 
                 <Link to={"/admin"}>
                 < SupervisorAccountIcon style={adminIcon}/>
@@ -32,26 +33,28 @@ const Header: FC = () => {
 
 
 const headerStyle: CSSProperties = {
+    //backgroundColor: 'black',
     display: 'flex',
     width: '100%', 
-    color: "white",
-    background: Colors.fourth,
+    color: "silver",
     position: 'relative',
     height: '100px',
     alignItems: 'stretch',
     fontSize: '1rem',
-  
+    zIndex: '1',
+    
 }
 
 const companyLogo: CSSProperties = {
-    fontFamily: 'arial',
+    
     cursor: 'pointer',
     marginLeft: '2.5vw',
-    color: "white",
+    color: 'silver',
     textDecoration: 'none',
     fontSize: '2em',
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    fontFamily: 'Frijole'
 
 
 }
@@ -73,7 +76,7 @@ const cartIcon: CSSProperties = {
     fontSize: '45px',
     marginRight: '2.5vw',
     textDecoration: 'none',
-    color: 'white',
+    color: 'silver',
 }
 
 
@@ -82,7 +85,7 @@ const adminIcon: CSSProperties = {
     fontSize: '50px',
     marginRight: '1vw',
     textDecoration: 'none',
-    color: 'white',
+    color: 'silver',
 }
 
 

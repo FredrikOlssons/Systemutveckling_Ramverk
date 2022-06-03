@@ -13,6 +13,7 @@ interface Props {
 const RenderProduct: FC<Props> = (props) => {
 
     return(
+        
         <div style={productContainer}>
             
 
@@ -26,6 +27,7 @@ const RenderProduct: FC<Props> = (props) => {
                 </Link>
                 <Button variant="contained" onClick={() => addToCart(product)} color="primary">Köp</Button>
         </div>
+
     ); 
 }
 
@@ -38,13 +40,12 @@ const title: CSSProperties = {
     
 }
 
-
-
 const imageStyle: CSSProperties = {
-    height: '250px',
-    width: '250px',
+    height: '50%',
+    width: '90%',
     cursor: "pointer",
-    borderRadius: "15px"
+    borderRadius: "15px",
+    minWidth: '150px',
 }
 
 const productInfo: CSSProperties = {
@@ -57,12 +58,14 @@ const productInfo: CSSProperties = {
 }
 
 const productContainer: CSSProperties = {
-    width: "300px",
+    width: "25%",
     paddingTop: "10px",
     border: "3px solid black",
     borderRadius: "15px",
-    boxShadow: "rgb(38, 57, 77) 0px 20px 30px -10px",
+    boxShadow: "rgb(254 254 254) 0px 20px 30px -10px",
     paddingBottom: '10px',
+    backgroundColor: 'white',
+    minWidth: '200px'
     
 
 }
