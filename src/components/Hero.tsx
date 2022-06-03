@@ -18,7 +18,7 @@ const Hero: FC = () => {
         
                  <div style={hero}>
                    <div style={heroImg}><img style={img} src={lady}/>
-                   <div style={heroTitle}><h1>Company Name</h1>
+                   <div style={heroTitle}><h1>WFA</h1>
                    </div>
                    <div style={heroSubtitle}><h3>Vi gör spelkvällar med familjen roliga igen</h3>
                    </div>
@@ -31,27 +31,35 @@ const Hero: FC = () => {
 
 const hero: CSSProperties = {
   paddingTop: '40px',
-  width: '100vw',
+  //width: '100vw',
   paddingBottom: '40px',
   justifyContent: 'center',
-  display: 'flex'
+  display: 'flex',
+  borderRadius: '40px',
+  maxHeight: '450px'
   }
 
 const heroImg: CSSProperties = {
     position: 'relative',
     width: '90%',
     display: 'flex',
+    boxShadow: 'rgb(179 98 0 / 75%) 0px 20px 28px, rgb(179 98 0 / 40%) 0px 10px 1000px',
+    borderRadius: '40px',
+    
 }
 
+
+
 const img: CSSProperties = {
-width: '100%'
+width: '100%',
+borderRadius: '40px',
 }
 
 const heroTitle: CSSProperties = {
     position: 'absolute',
-    left: '6%',
+    left: '10%',
     bottom: '5%',
-    fontSize: '20px',
+    fontSize: '23px',
     fontFamily: 'Frijole'
    
     }
@@ -60,7 +68,7 @@ const heroTitle: CSSProperties = {
       position: 'absolute',
       left: '11%',
       bottom: '0px',
-      fontSize: '14px',
+      fontSize: '17px',
       fontFamily: 'Frijole'
      
       }

@@ -8,7 +8,7 @@ import { minWidth, textAlign } from "@mui/system";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-
+import '../style/hero.css'
 
 
 const Footer: FC = () => {
@@ -53,6 +53,7 @@ const footerStyle: CSSProperties = {
     background: Colors.secondary,
     color: 'silver',
     height: '200px',
+    
   
 }
 
@@ -64,11 +65,13 @@ const line: CSSProperties = {
     paddingTop: '10px',
     borderColor: 'silver',
     textAlign: 'center',
-    fontSize: '8px',
+    fontSize: '10px',
     color: "white"
     
     
 }
+
+
 
 const socialMedia: CSSProperties = {
     display: 'flex',
@@ -104,7 +107,7 @@ const footerRow2: CSSProperties = {
 
 const footerTag: CSSProperties = {
     margin: '0',
-    fontSize: '13px',
+    fontSize: '15px',
     marginBlock: '0px'
 }
 
