@@ -12,7 +12,7 @@ export interface CartContext {
 }
 
 export const CartContentContext = React.createContext<CartContext>({
-    cartItem: [],
+    cartItem: product,
     addToCart: () => {},
     removeFromCart: () => {}
 
@@ -29,12 +29,15 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const addToCart: () => void = () => {
         
         if(!cartItem || cartItem == []) {
-            setCart(product)
+            //
             
-            console.log(cartItem)
-            console.log("Helloooo")
+           
         }else{
             console.log('hej')
+            console.log(cartItem)
+            console.log(cartItem.length)
+            const allProducts = localStorage.getItem('cart')
+            console.log(allProducts)
         }
         
     }
@@ -42,19 +45,19 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     
-    const removeFromCart: () => void = () => {
-
-
-
-    }
-
-
+    const removeFromCart: (deletedItem: Products) => void = () => {
+        const filter = cartItem.filter
+        
+        }
+ 
+    
+        localStorage.removeItem('cart')
 
     
     
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartItem))
-    }, [cartItem])
+    //useEffect(() => {
+        //localStorage.setItem('cart', JSON.stringify(cartItem))
+    //}, [cartItem])
 
     return (
         <CartContentContext.Provider value={{cartItem, addToCart, removeFromCart}}>
