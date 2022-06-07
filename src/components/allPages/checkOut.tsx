@@ -16,26 +16,37 @@ const CheckOut: FC<Props> = (props) => {
             <div style={Container}>
                 <Box style={firstBox}>
                 
-                <h2>Din beställning:</h2>
-                    
-                </Box>
+                    <h2>Varukorg</h2>
+                        
+                    </Box>
 
                 <Box style={litleBox}>
+                    <h2>Totalsumma</h2>
 
-                <h3>Totalsumma: </h3>
+                    <h3>Totalsumman (inkl. moms): </h3>
 
-                <h3>Frakt: </h3>
+                    <h3>Frakt: </h3>
 
-                <h3>Betalningssätt: </h3>
+                    <h3>Betalningssätt: </h3>
 
-                <div style={buttonStyle}>
+                    <div style={buttonStyle}>
 
-                <Button variant="contained" color="primary">Slutför köp</Button>
-                </div>
+                    <Button variant="contained" color="primary">Slutför köp</Button>
+                    </div>
 
                 </Box>
 
                 </div>
+
+                <Box style={secondBox}>
+                
+                <h3>Fyll i dina kontaktuppgifter:</h3>
+                  <div style={contactForm}>
+
+                    <ValidationSchemaExample/>
+                  </div>
+
+                </Box>
 
                 <Box style={secondBox}>
                 
@@ -49,12 +60,6 @@ const CheckOut: FC<Props> = (props) => {
                     
                 </Box>
                 
-                <Box style={secondBox}>
-                
-                <h3>Kontaktformulär:</h3>
-                  
-                    <ValidationSchemaExample/>
-                </Box>
 
           
 
@@ -73,7 +78,8 @@ const firstBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 const secondBox: CSSProperties = {
@@ -83,7 +89,8 @@ const secondBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 
@@ -92,16 +99,17 @@ const secondBox: CSSProperties = {
 const title: CSSProperties = {
     display: "flex", 
     justifyContent: "center",
-    margin: "40px"
+    margin: "40px",
+    color: "white"
 }
 
 const litleBox: CSSProperties = {
     width: "30%",
-    height: "200px",
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
-    padding: "10px"
+    padding: "10px",
+    backgroundColor: "white"
 }
 
 
@@ -118,4 +126,12 @@ const buttonStyle: CSSProperties = {
     marginTop: "40px",
     
 }
+
+const contactForm: CSSProperties = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between"
+}
+
+
 export default CheckOut 
