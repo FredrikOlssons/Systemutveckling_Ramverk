@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { CSSProperties, FC } from "react";
+import Content from "./allPages/StartPageContent";
 import Footer from "./footer";
 import Header from "./header";
 import { bodyContent } from "../style/common";

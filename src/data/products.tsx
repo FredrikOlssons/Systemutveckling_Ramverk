@@ -54,9 +54,9 @@ export const product: Products[] = [
         price: 249
     }, {
         id: 6, 
-        title: "Fishing for Floaters Spel", 
+        title: "Fishing for Floaters", 
         image: FloaterSpel, 
-        description: "Önskar du också att dina barn lär sig lite om friluftsliv och miljötänk? Här kan de roa sig i flera timmar med att öva på fiske ifrån badet och samtidigt lära sig att städa. Win - win", 
+        description: "Önskar du också att dina barn lär sig lite om friluftsliv och miljötänk? Här kan de roa sig i flera timmar med att öva sig på att fiska ifrån badkaret och samtidigt lära sig att städa. Win - win", 
         price: 129
     }, {
         id: 7, 
