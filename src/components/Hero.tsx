@@ -69,7 +69,8 @@ const heroTitle: CSSProperties = {
       left: '11%',
       bottom: '0px',
       fontSize: '17px',
-      fontFamily: 'Frijole'
+      fontFamily: 'Frijole',
+      width: '50%',
      
       }
   

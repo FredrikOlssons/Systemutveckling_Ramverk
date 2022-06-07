@@ -53,7 +53,7 @@ const imageStyle: CSSProperties = {
 
 const productInfo: CSSProperties = {
     textAlign: 'center',
-    padding: "15px",
+    padding: "3%",
     cursor: "pointer",
     fontSize: '12px',
     color: 'black'
@@ -68,7 +68,7 @@ const productContainer: CSSProperties = {
     boxShadow: "rgb(254 254 254) 0px 20px 30px -10px",
     paddingBottom: '10px',
     backgroundColor: 'white',
-    minWidth: '200px'
+    minWidth: '250px'
     
 
 }
