@@ -12,7 +12,7 @@ export interface Payment {
     price: number
 }
 
-export const payment: Payment[] = [
+export const paymentList: Payment[] = [
     {
         id: 1,
         title: "Swish",
