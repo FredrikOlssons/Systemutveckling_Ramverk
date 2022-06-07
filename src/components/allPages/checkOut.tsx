@@ -3,6 +3,10 @@ import { Box, Button } from "@mui/material";
 import { height } from "@mui/system";
 import { FC, CSSProperties } from "react";
 import ValidationSchemaExample from '.././formField'
+import Delivery from "../options/delivery";
+
+import { Payment } from '../options/payment'
+
 
 
 
@@ -10,6 +14,7 @@ interface Props {}
 
 const CheckOut: FC<Props> = (props) => {
     return (
+        <>
         <div>
             <h1 style={title}> Checka-ut sidan </h1>
             
@@ -51,12 +56,16 @@ const CheckOut: FC<Props> = (props) => {
                 <Box style={secondBox}>
                 
                 <h3>Fraktalternativ:</h3>
+
+                <Delivery />
                     
                 </Box>
 
                 <Box style={secondBox}>
                 
                 <h3>betalningsalternativ:</h3>
+
+                <Payment /> 
                     
                 </Box>
                 
@@ -65,6 +74,7 @@ const CheckOut: FC<Props> = (props) => {
 
 
         </div>
+        </>
     )
 }
 
@@ -90,7 +100,9 @@ const secondBox: CSSProperties = {
     marginBottom: "20px",
     marginLeft: "10px",
     padding: "10px",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    display: "flex",
+    flexDirection: "column"
 }
 
 
