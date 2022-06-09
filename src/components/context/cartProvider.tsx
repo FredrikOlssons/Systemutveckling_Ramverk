@@ -50,7 +50,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         }else{
             
             updatedCart[found].quantity++
-            console.log('potato')
+           
             
             
         }
@@ -61,6 +61,9 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     
     }
+
+
+
     
 
 
