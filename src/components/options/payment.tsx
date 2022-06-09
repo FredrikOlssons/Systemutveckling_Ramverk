@@ -1,4 +1,4 @@
-import { FC, useState, CSSProperties } from "react"
+import { FC, useState, CSSProperties} from "react"
 import { paymentList } from '../../data/payment'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -20,6 +20,16 @@ export const Payment: FC<Props> = (props) => {
         }
     }
     choosePayment; 
+    const [query, setQuery] = useState('');
+
+    const changeData: React.ChangeEventHandler | undefined = 
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const paymentPrice = event.target.value;
+        setQuery(paymentPrice);
+        console.log(paymentPrice)
+        return query
+    }
+ 
 
     return (
         <FormControl>
@@ -34,12 +44,13 @@ export const Payment: FC<Props> = (props) => {
                 paymentList.map((choosenPayment) => {
                     return (
                     <div style={paymentBox}>
-                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.title} control={<Radio />} label={choosenPayment.title} />
+                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.price} control={<Radio />} label={choosenPayment.title} onChange={changeData}/>
                         <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
                         <br />
                         <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
                         <br />
                         <span key={choosenPayment.description}>{choosenPayment.description}</span>
+                        
 
                     </div>
                     )

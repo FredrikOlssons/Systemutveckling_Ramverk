@@ -10,7 +10,9 @@ import { Payment } from '../options/payment'
 
 
 
-interface Props {}
+interface Props {
+    
+}
 
 const CheckOut: FC<Props> = (props) => {
     return (
@@ -63,7 +65,7 @@ const CheckOut: FC<Props> = (props) => {
 
                 <Box style={secondBox}>
                 
-                <h3>betalningsalternativ:</h3>
+                <h3>Betalningsalternativ:</h3>
 
                 <Payment /> 
                     
