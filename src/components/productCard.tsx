@@ -8,28 +8,15 @@ import { CartContext } from "./context/cartProvider";
 
 
 
+
 interface Props {
     products: Product
 }
 
 const RenderProduct: FC<Props> = (props) => {
 
-    const { getCart, allProducts, cartItem } = useContext(CartContext)
-
-
-
-/* 
-    const addToCart: () => {
-
-    const found = allProducts.find((product) => Number(props.products.id) == product.id)
-    const copy = [...cartItem]
-    copy.push(found!)
-    console.log(copy)
-    //getCart() */
+    const { getCart, cartItems, addToCart } = useContext(CartContext)
      
-
-     
-    
     return(
         
         <div style={productContainer}>
@@ -43,7 +30,7 @@ const RenderProduct: FC<Props> = (props) => {
                 <h3>{props.products.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" onClick={() => addToCart()} color="primary">Köp</Button>
+                <Button variant="contained" onClick={() => addToCart(props.products)} color="primary">Köp</Button>
         </div>
 
     ); 
