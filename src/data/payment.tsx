@@ -25,7 +25,7 @@ export const paymentList: Payment[] = [
         title: "Visakort",
         image: Visakort,
         description: "Betala med Visa/Kreditkort direkt i samband med ditt köp.",
-        price: 0
+        price: 25
     }, {
         id: 1,
         title: "Faktura",

@@ -1,6 +1,8 @@
-import React, {PropsWithChildren, useState, useEffect, FC} from "react";
 
-import {product, Products} from "../../data/products"
+
+
+import { UpdateSharp } from "@material-ui/icons";
+import React, {PropsWithChildren, useState, useEffect, FC} from "react";
 
 
 
@@ -8,62 +10,135 @@ import {product, Products} from "../../data/products"
 export interface CartContext {
     cartItem: Products[],
     addToCart: () => void,
+
+import { CartItem } from '../cartItem'
+
+import {products, Product} from "../../data/products"
+
+
+export interface CartContextData {
+    cartItem: Product[],
+
     removeFromCart: () => void
+    getCart: () => void 
+    allProducts: Product[],
+    addToCart: Product[],
 }
 
-export const CartContentContext = React.createContext<CartContext>({
-    cartItem: product,
-    addToCart: () => {},
-    removeFromCart: () => {}
+export const CartContext = React.createContext<CartContextData>({
+    cartItem: products,
+    removeFromCart: () => {},
+    getCart: () => {},
+    allProducts: products,
+    addToCart: products
+}
 
-})
-
-
-
-
-interface Props  {}
+)
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
-    const [cartItem, setCart] = useState<Products[]>(product)
+
+    const [allProducts, setAllProducts] = useState<Product[]>(products)
+    const [cartItems, setCart] = useState<Product[]> ([])
     
-    const addToCart: () => void = () => {
-        
-        if(!cartItem || cartItem == []) {
-            //
-            
-           
-        }else{
-            console.log('hej')
-            console.log(cartItem)
-            console.log(cartItem.length)
-            const allProducts = localStorage.getItem('cart')
-            console.log(allProducts)
-        }
-        
+  
+     const getCart: () => void = () => {
+        const getCartItem = localStorage.getItem('cart')
+       //localStorage.removeItem('cart')
+    
+    if(getCartItem){
+        const cart = JSON.parse(getCartItem)
+        setCart(cart)
+        console.log(typeof(cart), 'cart')
+        console.log(cart)
+        //console.log(cart)
+    }else{
+        localStorage.setItem('cart', JSON.stringify(cartItems))
+        /* console.log(cartItem, allProducts, 'tomato')
+        console.log(typeof(cartItem), 'cartitem')
+        console.log(typeof(allProducts), 'allProducts')
+        console.log(typeof(products), 'products') */
+    } 
+     
     }
+
+ 
+     const addToCart = (product: Product) => {
+
+        const found = allProducts.find((item) => item.id == product.id)
+        console.log(product.id, 'product')
+        
+
+        console.log(allProducts)
+        console.log(found, 'found')
+
+       
+        //const copy = [...cartItems]
+        if(!found){
+
+            console.log('hej')
+        }else{
+            console.log('potato')
+            
+        }
+    }
+        /* copy.push(found!)
+        console.log(copy) */
+        //getCart() */
+
+     
+
+ 
+    /*  const addToCart: () => void = () => {
+      
+           console.log('hej')
+            //console.log(product.id)
+        }
+    } */
     
 
 
+        /* const updatedCart = [...allProducts];
+        const updatedItemIndex = updatedCart.findIndex(
+        item => item.id == product[0].id)
+        
+        if (updatedItemIndex < 0) {
+            updatedCart.push({...product});
+          }  */
     
     const removeFromCart: () => void = () => {
+
         const filter = cartItem.filter
-        
         }
- 
     
         localStorage.removeItem('cart')
 
-    
-    
     //useEffect(() => {
         //localStorage.setItem('cart', JSON.stringify(cartItem))
     //}, [cartItem])
 
+        //const filter = allProducts.filter
+        
+        }
+ 
+
+
+
+    
+    
+     useEffect(() => {
+        //getAllProducts(); 
+        getCart(); 
+    }, []) 
+
+
+
+
     return (
-        <CartContentContext.Provider value={{cartItem, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{allProducts, removeFromCart, getCart, addToCart}}>
             {props.children}
-        </CartContentContext.Provider>
+        </CartContext.Provider>
     )   
+
 }
 
 export default CartProvider

@@ -1,6 +1,6 @@
 import { FC, CSSProperties } from "react";
 import RenderProduct from "../productCard";
-import { product } from "../../data/products";
+import { products } from "../../data/products";
 import Hero from "../Hero";
 import "../../style/hero.css";
 import { width } from "@mui/system";
@@ -10,7 +10,7 @@ import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/no
 const Content: FC = (props) => {
   return (
     <>
-      <Hero />
+     {/* <Hero /> */}
       <div style={productHeader}>
         <h1 style={startpageheader}>
           <span style={{ ...V, ...span }}>V</span>
@@ -33,18 +33,18 @@ const Content: FC = (props) => {
 
         <h1 style={startpageheader}>Wholehearted Family Adventure</h1>
         
-        <h2 style={startpagesubHeader}>Tjatar ungarna på att de har tråkigt på helgerna? Brukar släktmiddagarna bara bli artiga och 
+        {/* <h2 style={startpagesubHeader}>Tjatar ungarna på att de har tråkigt på helgerna? Brukar släktmiddagarna bara bli artiga och 
             stela, eller har familjen fastnat i en loop av rutiner med sina skärmar på fredagskvällarna? Lösningen är sällskapsspel! 
             Spelkvällar med familjen har inte längre samma status. Stärk familjebanden och med WFA:s hjälp, vill prioritera bort skärmarna
              och satsar helhjärtat på gammal hederlig familjeunderhållning där man faktiskt umgås och spenderar den lediga tiden tillsammans. 
-             Gör familjetiden rolig med klassiska och nya brädspel och med roliga aktiviteter som passar för familjer i alla åldrar.</h2>
+             Gör familjetiden rolig med klassiska och nya brädspel och med roliga aktiviteter som passar för familjer i alla åldrar.</h2> */}
       </div>
 
       <div style={bigContainer}>
         <div style={productDiv}>
           <div style={productContainer}>
-            {product.map((products) => (
-              <RenderProduct key={products.id} product={products} />
+            {products.map((product) => (
+              <RenderProduct key={product.id} products={product} />
             ))}
           </div>
         </div>
@@ -125,8 +125,7 @@ const productHeader: CSSProperties = {
   margin: "0",
   paddingBottom: "50px",
   color: "silver",
-  fontFamily: "Frijole, cursive",
- // font-family: 'Frijole', cursive;
+  // font-family: 'Frijole', cursive;
   display: 'flex',
   justifyContent: 'center',
   rowGap: '15%',
@@ -134,6 +133,7 @@ const productHeader: CSSProperties = {
 };
 
 const startpageheader: CSSProperties = {
+  fontFamily: "Frijole, cursive",
   margin: "0",
 };
 
@@ -143,6 +143,7 @@ const startpagesubHeader: CSSProperties = {
   marginTop: '30px',
   marginLeft: '10%',
   marginRight: '10%',
+  fontFamily: 'Aclonica, sans-serif',
 };
 
 

@@ -1,4 +1,4 @@
-import { FC, useState, CSSProperties } from "react"
+import { FC, useState, CSSProperties} from "react"
 import { paymentList } from '../../data/payment'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -15,7 +15,7 @@ export const Payment: FC<Props> = (props) => {
     const [isChoosenPayment, setIsChoosenPayment] = useState("")
   
 
-    
+
 
     return (
         <FormControl>
@@ -30,6 +30,7 @@ export const Payment: FC<Props> = (props) => {
             
 
                     return (
+
                     
                         <div style={paymentBox}>
                             
@@ -51,7 +52,6 @@ export const Payment: FC<Props> = (props) => {
                             
                         </div>
 
-                    
                 
                     )
                     

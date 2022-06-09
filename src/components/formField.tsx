@@ -2,7 +2,7 @@ import { FC, CSSProperties } from 'react';
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
 import { Grid } from '@mui/material';
-
+import { Button } from "@mui/material";
 
 
     const SignupSchema = Yup.object().shape({
@@ -127,14 +127,15 @@ import { Grid } from '@mui/material';
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
-                    Telefonnummer:
+                    Tel.nummer:
                     <Field name="phoneNumber" />
                     {errors.phoneNumber && touched.phoneNumber ? (
                       <div>{errors.phoneNumber}</div>
                     ) : null}
                     </Grid>
                     <Grid style={submitStyling} item xs={12} sm={6}>
-                    <button type="submit">Skicka</button>
+                    <Button type="submit" variant="contained" color="primary">Vidare</Button>
+                    
                     </Grid>
 
                 </Grid>
@@ -146,156 +147,32 @@ import { Grid } from '@mui/material';
                   
       );
 
-/* 
-      interface User {
-          firstname: string
-          lastname: string
-          email: string
-          streetAdress: string
-
-      } */
-
-      /*
-      const Basic = () => (
-    <div>
-
-      <Formik
-        initialValues={{ firstName: '', lastName: '', email: '', 
-        streetAdress: '', postalCode: '', town: '', country: '', phoneNumber: ''}}
-      
-        validate={values => {
-          let errors: any;
-          if (!values.email) {
-            
-            errors.email = 'Email';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-           errors.email = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-
-/* 
-
- }) => (
-         <form onSubmit={handleSubmit}>
-           <input
-             type="firstName"
-             name="firstName"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.firstName}
-           />
-           {errors.firstName && touched.firstName && errors.firstName}
-           <input
-             type="lastName"
-             name="lastName"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.lastName}
-           />
-           {errors.lastName && touched.lastName && errors.lastName}
-           <input
-             type="email"
-             name="email"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.email}
-           />
-           {errors.email && touched.email && errors.email}
-           <input
-             type="streetAdress"
-             name="streetAdress"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.streetAdress}
-           />
-           {errors.streetAdress && touched.streetAdress && errors.streetAdress}
-           <input
-             type="postalCode"
-             name="postalCode"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.postalCode}
-           />
-           {errors.postalCode && touched.postalCode && errors.postalCode}
-           <input
-             type="town"
-             name="town"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.town}
-           />
-           {errors.town && touched.town && errors.town}
-           <input
-             type="country"
-             name="country"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.country}
-           />
-           {errors.country && touched.country && errors.country}
-           <input
-             type="phoneNumber"
-             name="phoneNumber"
-             onChange={handleChange}
-             onBlur={handleBlur}
-             value={values.phoneNumber}
-           />
-           {errors.phoneNumber && touched.phoneNumber && errors.phoneNumber}
-           <button type="submit" disabled={isSubmitting}>
-             Submit
-           </button>
-         </form>
-       )}
-     </Formik>
-   </div>
- ); */
- 
 
  const formStyling: CSSProperties = {
    display: "flex",
    justifyContent: "space-between",
    flexWrap: "wrap"
-   
-   
  }
 
  const gridContainer: CSSProperties = {
    display: "flex", 
    flexDirection: "column",
-   alignContent: "center",
    flexWrap: "wrap",
    gap: "20px",
-   marginLeft: "50px",
-   marginBottom: "10px"
+   marginLeft: "5%",
+   marginBottom: "20px", 
+   width: '300px'
  }
 
 const grid: CSSProperties = {
   display: "flex",
-  justifyContent: "space-between"
+  justifyContent: "space-between",
+  width: '90%',
 }
 
 const submitStyling: CSSProperties = {
   display: "flex",
-  justifyContent: "flex-end"
+  justifyContent: "center"
 }
 
 
