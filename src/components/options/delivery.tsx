@@ -29,30 +29,15 @@ export const Delivery: FC<Props> = (props) => {
     
     
     const getDeliveryDate = (choosenDelivery: number | undefined) => {
-    let arrivalDate: Date = new Date();
-    arrivalDate = new Date(new Date().setHours(new Date().getHours() + choosenDelivery!))
-       
-    console.log(typeof(arrivalDate))
-    let newString = arrivalDate.toLocaleDateString(); 
-    console.log(typeof(newString))
+        let arrivalDate: Date = new Date();
+        arrivalDate = new Date(new Date().setHours(new Date().getHours() + choosenDelivery!))
+        
+        let newString = arrivalDate.toLocaleDateString(); 
+        
+        return newString
     
-    return newString
-    
-} 
+    } 
 
-
-
-
-
-
-  /*   const getArrivalDate = () => {
-      
-        deliveryList.map(choosenD) => {
-            let arrivalDate: Date = new Date();
-            arrivalDate = new Date(new Date().setHours(new Date().getHours() + choosenD.estimatedDelivery))
-
-        }
-    } */
 
     return (
         <FormControl>
