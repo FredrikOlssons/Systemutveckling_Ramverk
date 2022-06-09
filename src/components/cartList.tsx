@@ -91,9 +91,10 @@ export default function CartList() {
                     label="Visa produktbeskrivning"
                 />
             </FormGroup>
-            <Grid container spacing={2}>
+            
+          <Grid container spacing={2}>
    <Grid item xs={12} md={6}>
-     <Demo>
+     {/* <Demo> */}
        <List>
             {
                 items.map((cartItems) => {
@@ -107,8 +108,12 @@ export default function CartList() {
                         </div>
                     )
                 })}
-            </Box>)
-
+        </List>
+      {/* </Demo> */}
+    </Grid>
+  </Grid>
+  </Box>)
+      
 
       }
 
