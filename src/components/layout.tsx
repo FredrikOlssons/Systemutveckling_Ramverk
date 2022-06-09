@@ -5,7 +5,7 @@ import Header from "./header";
 import { bodyContent } from "../style/common";
 import RenderView from "./functions/renderView";
 import CartProvider from "./context/cartProvider";
-import Cart from "./cart";
+
 
 
 
@@ -17,7 +17,6 @@ const Layout: FC = () => {
         <div style={{...bodyContent}}>
             <CartProvider>
                 <Header /> 
-                <Cart />
                 <RenderView />
                 <Footer />
             </CartProvider>
