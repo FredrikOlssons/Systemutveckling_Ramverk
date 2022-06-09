@@ -1,11 +1,8 @@
+import { Product } from "../data/products";
 
 
 
 export interface CartItem {
-    id: number
-    title: string
-    price: number
-    description: string
-    image: string
-    amount: number
+    product: Product
+    quantity: number
 }

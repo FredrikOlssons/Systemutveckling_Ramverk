@@ -9,36 +9,29 @@ import React, {PropsWithChildren, useState, useEffect, FC} from "react";
 
 interface Props {}
 
-export interface CartContext {
-    //cartItem: Product[],
-    addToCart: () => void,
-
-}
-
 
 export interface CartContextData {
     //cartItem: Product[],
 
     removeFromCart: () => void
     getCart: () => void 
-    allProducts: Product[],
-    //addToCart: Product[],
+    cartItems: CartItem[],
+    addToCart: (product: Product) => void
 }
 
 export const CartContext = React.createContext<CartContextData>({
     //cartItem: products,
     removeFromCart: () => {},
     getCart: () => {},
-    allProducts: products,
-    //addToCart: products
+    cartItems: [],
+    addToCart: (product) => {}
 }
 
 )
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
-    const [allProducts, setAllProducts] = useState<Product[]>(products)
-    const [cartItems, setCart] = useState<Product[]> ([])
+    const [cartItems, setCart] = useState<CartItem[]> ([])
     
   
      const getCart: () => void = () => {
@@ -48,63 +41,46 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         if(getCartItem){
             const cart = JSON.parse(getCartItem)
             setCart(cart)
-            console.log(typeof(cart), 'cart')
-            console.log(cart)
-            //console.log(cart)
+            
+            
         }else{
             localStorage.setItem('cart', JSON.stringify(cartItems))
-            /* console.log(cartItem, allProducts, 'tomato')
-            console.log(typeof(cartItem), 'cartitem')
-            console.log(typeof(allProducts), 'allProducts')
-            console.log(typeof(products), 'products') */
+            
         } 
+
+        return getCartItem
     }
      
     
 
  
-     //const addToCart = (product: Product) => {
-
-        //const found = allProducts.find((item) => item.id == product.id)
-        //console.log(product.id, 'product')
+     const addToCart = (product: Product) => {
         
-
-        //console.log(allProducts)
-        //console.log(found, 'found')
-
+        const updatedCart = [...cartItems]
        
-        //const copy = [...cartItems]
-        /* if(!found){
-
-            console.log('hej')
+        const found = updatedCart.findIndex((item) => item.product.id == product.id)
+        
+        
+        if(found == -1){
+            
+            updatedCart.push({product, quantity: 1 });
         }else{
+            
+            updatedCart[found].quantity++
             console.log('potato')
             
-        } */
-     //}
-        /* copy.push(found!)
-        console.log(copy) */
-        //getCart() */
-
-     
-
- 
-    /*  const addToCart: () => void = () => {
-      
-           console.log('hej')
-            //console.log(product.id)
+            
         }
-    } */
+
+        setCart(updatedCart)
+      
+
+    
+    }
     
 
 
-        /* const updatedCart = [...allProducts];
-        const updatedItemIndex = updatedCart.findIndex(
-        item => item.id == product[0].id)
-        
-        if (updatedItemIndex < 0) {
-            updatedCart.push({...product});
-          }  */
+    
     
     const removeFromCart: () => void = () => {
 
@@ -127,7 +103,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     
     
-     useEffect(() => {
+    useEffect(() => {
         //getAllProducts(); 
         getCart(); 
     }, []) 
@@ -136,7 +112,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     return (
-        <CartContext.Provider value={{allProducts, removeFromCart, getCart}}>
+        <CartContext.Provider value={{cartItems, removeFromCart, getCart, addToCart}}>
             {props.children}
         </CartContext.Provider>
     )   
