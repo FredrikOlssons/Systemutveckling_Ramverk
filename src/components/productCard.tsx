@@ -1,34 +1,49 @@
 
 import { FC, CSSProperties, useContext } from "react";
-import { product, Products } from "../data/products";
+import { products, Product } from "../data/products";
 import Button from '@material-ui/core/Button'; 
 import { Link } from 'react-router-dom';
-import { CartContentContext } from "./context/cartProvider";
+import { CartContext } from "./context/cartProvider";
+
 
 
 
 interface Props {
-    product: Products
+    products: Product
 }
 
 const RenderProduct: FC<Props> = (props) => {
 
-    const {addToCart } = useContext(CartContentContext)
+    const { getCart, allProducts, cartItem } = useContext(CartContext)
 
+
+
+/* 
+    const addToCart: () => {
+
+    const found = allProducts.find((product) => Number(props.products.id) == product.id)
+    const copy = [...cartItem]
+    copy.push(found!)
+    console.log(copy)
+    //getCart() */
+     
+
+     
+    
     return(
         
         <div style={productContainer}>
             
 
-            <Link style={{textDecoration:'none'}} to={`/${props.product.id}`}>
-            <img src={props.product.image} style={imageStyle}/>
-
+            <Link style={{textDecoration:'none'}} to={`/${props.products.id}`}>
+            <img src={props.products.image} style={imageStyle}/>
+           
             <div style={productInfo}>
-                <h2 style={{...title}}>{props.product.title}</h2>
-                <h3>{props.product.price} kr</h3>
+                <h2 style={{...title}}>{props.products.title}</h2>
+                <h3>{props.products.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" onClick={addToCart} color="primary">Köp</Button>
+                <Button variant="contained" onClick={() => addToCart()} color="primary">Köp</Button>
         </div>
 
     ); 

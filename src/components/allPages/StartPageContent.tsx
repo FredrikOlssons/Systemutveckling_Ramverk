@@ -1,6 +1,6 @@
 import { FC, CSSProperties } from "react";
 import RenderProduct from "../productCard";
-import { product } from "../../data/products";
+import { products } from "../../data/products";
 import Hero from "../Hero";
 import "../../style/hero.css";
 import { width } from "@mui/system";
@@ -43,8 +43,8 @@ const Content: FC = (props) => {
       <div style={bigContainer}>
         <div style={productDiv}>
           <div style={productContainer}>
-            {product.map((products) => (
-              <RenderProduct key={products.id} product={products} />
+            {products.map((product) => (
+              <RenderProduct key={product.id} products={product} />
             ))}
           </div>
         </div>

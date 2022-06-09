@@ -25,7 +25,8 @@ export const Delivery: FC<Props> = (props) => {
  
 
     choosenDelivery; 
-
+    
+    
     
     const getDeliveryDate = (choosenDelivery: number | undefined) => {
     let arrivalDate: Date = new Date();
@@ -67,7 +68,7 @@ export const Delivery: FC<Props> = (props) => {
                 deliveryList.map((choosenDelivery) => {
                     return (
                     <div style={deliveryBox}>
-                        <FormControlLabel key={choosenDelivery.id} value={choosenDelivery.title} control={<Radio />} label={choosenDelivery.title}
+                        <FormControlLabel key={choosenDelivery.id} value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title}
                          onChange = {() => getDeliveryDate(choosenDelivery.estimatedDelivery)} />
                         <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
                         <br />
