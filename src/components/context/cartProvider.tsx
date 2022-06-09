@@ -3,17 +3,22 @@
 
 import { UpdateSharp } from "@material-ui/icons";
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
+
+
+
+
+export interface CartContext {
+    cartItem: Products[],
+    addToCart: () => void,
+
 import { CartItem } from '../cartItem'
 
 import {products, Product} from "../../data/products"
 
 
-interface Props {
-
-}
-
 export interface CartContextData {
     cartItem: Product[],
+
     removeFromCart: () => void
     getCart: () => void 
     allProducts: Product[],
@@ -29,10 +34,6 @@ export const CartContext = React.createContext<CartContextData>({
 }
 
 )
-
-
-
-
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
@@ -66,12 +67,14 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         const found = allProducts.find((item) => item.id == product.id)
         console.log(product.id, 'product')
         
+
         console.log(allProducts)
         console.log(found, 'found')
 
        
         //const copy = [...cartItems]
         if(!found){
+
             console.log('hej')
         }else{
             console.log('potato')
@@ -102,10 +105,17 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             updatedCart.push({...product});
           }  */
     
-
-
-    
     const removeFromCart: () => void = () => {
+
+        const filter = cartItem.filter
+        }
+    
+        localStorage.removeItem('cart')
+
+    //useEffect(() => {
+        //localStorage.setItem('cart', JSON.stringify(cartItem))
+    //}, [cartItem])
+
         //const filter = allProducts.filter
         
         }
@@ -119,6 +129,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         //getAllProducts(); 
         getCart(); 
     }, []) 
+
 
 
 

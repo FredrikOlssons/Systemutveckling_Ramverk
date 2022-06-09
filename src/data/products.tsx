@@ -7,11 +7,11 @@ import FloaterSpel from '../assets/FloaterSpel.jpg'
 import Monopoly from '../assets/Monopoly.jpg'
 import Puzzle from '../assets/Puzzle.jpg'
 import ToiletGolf from '../assets/ToiletGolf.jpg'
+
 import Potatoes from '../assets/potatis.jpg'
-
 import Valium from '../assets/619RlSBZL4L._SS500_.jpg'
-
 import Self from '../assets/man-with-question-mark.jpg'
+
 
 
 
@@ -67,6 +67,27 @@ export const products: Product[] = [
 
         price: 346
 
+    },
+   /*  {
+        id: 1, 
+        title: "Sense of self", 
+        image: Self, 
+        description: "Sense of self.", 
+        price: 247
+    },
+    {
+        id: 2, 
+        title: "Potatis", 
+        image: Potatoes, 
+        description: "Potatis.", 
+        price: 16
+    },
+    {
+        id: 3, 
+        title: "Valium", 
+        image: Valium, 
+        description: "Valium.", 
+        price: 346
     },
    /*  {
         id: 1, 

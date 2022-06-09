@@ -22,7 +22,7 @@ const Footer: FC = () => {
                 <div style={footerRow}><LocalPhoneIcon style={footerTag}/><h5 style={footerTag}>+46 (0) 7 019 400 10</h5></div>
                 </div>
                 <div style={footerLayout}>
-                <h4>Företagets namn</h4>
+                    <div style={footerLogo}><h4>Wholehearted Family Adventure</h4></div>
                 </div>
                 <div style={footerLayout}>
                 <h4>Sociala media</h4>
@@ -52,7 +52,7 @@ const footerStyle: CSSProperties = {
     width: '100%',
     background: Colors.secondary,
     color: 'silver',
-    height: '200px',
+    height: '240px',
     
   
 }
@@ -87,9 +87,21 @@ const footerLayout: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     rowGap: '10px',
+    minWidth: '200px',
+    textAlign: 'center',
+    height: '100%',
+    justifyContent: 'center'
+
+}
+
+const footerLogo: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    rowGap: '10px',
     //flex: '1',
     minWidth: '200px',
-    textAlign: 'center'
+    textAlign: 'center',
+    alignItems: 'center'
 
 }
 

@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import { BorderColor } from '@material-ui/icons';
 import { borderColor, height, width } from '@mui/system';
 import { minWidth } from '@material-ui/core/node_modules/@material-ui/system';
+import "../../style/hero.css";
 //import addToCart from '../functions/addToCart';
 
 
@@ -37,7 +38,7 @@ const SinglePage: FC<Props> = (props) => {
                 </div>
             </span>
             <div style={productInfo}>
-                <h2>{foundProduct.title}</h2>
+                <h2 style={productHeader}>{foundProduct.title}</h2>
                 <h3 style={description}>{foundProduct.description}</h3>
                 
                 <div style={priceDiv}>
@@ -125,6 +126,10 @@ const productInfo: CSSProperties = {
     minWidth: '300px',
 }
 
+const productHeader: CSSProperties = {
+    fontFamily: "Frijole, cursive",
+}
+
 
 const priceDiv: CSSProperties = {
     display: "flex",
@@ -139,6 +144,8 @@ const description: CSSProperties = {
     width: '70%',
     textAlign: 'justify',
     minWidth: '300px',
+    fontFamily: 'Aclonica, sans-serif',
+    fontSize: '14px',
 }
 
 
