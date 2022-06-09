@@ -1,5 +1,5 @@
-import { FC, useState, CSSProperties } from "react"
-import { payment } from '../../data/payment'
+import { FC, useState, CSSProperties} from "react"
+import { paymentList } from '../../data/payment'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -20,26 +20,37 @@ export const Payment: FC<Props> = (props) => {
         }
     }
     choosePayment; 
+    const [query, setQuery] = useState('');
+
+    const changeData: React.ChangeEventHandler | undefined = 
+    (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const paymentPrice = event.target.value;
+        setQuery(paymentPrice);
+        console.log(paymentPrice)
+        return query
+    }
+ 
 
     return (
         <FormControl>
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={payment[0].title}
+                defaultValue={paymentList[0].title}
                 
                 name="radio-buttons-group">
 
                 {
-                payment.map((choosenPayment) => {
+                paymentList.map((choosenPayment) => {
                     return (
                     <div style={paymentBox}>
-                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.title} control={<Radio />} label={choosenPayment.title} />
+                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.price} control={<Radio />} label={choosenPayment.title} onChange={changeData}/>
                         <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
                         <br />
                         <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
                         <br />
                         <span key={choosenPayment.description}>{choosenPayment.description}</span>
+                        
 
                     </div>
                     )

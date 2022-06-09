@@ -3,7 +3,7 @@ import React from 'react';
 
 import RenderProduct from "../productCard";
 
-import {product, Products} from '../../data/products'
+import {products, Product} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC } from "react";
 import { Link } from 'react-router-dom';
@@ -22,7 +22,7 @@ const SinglePage: FC<Props> = (props) => {
 
     const { productId } = useParams(); 
 
-    const foundProduct = product.find((singleProduct) => Number(productId) == singleProduct.id) 
+    const foundProduct = products.find((singleProduct) => Number(productId) == singleProduct.id) 
 
     if(!foundProduct) {
         return <Navigate to="/" />

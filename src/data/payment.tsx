@@ -12,7 +12,7 @@ export interface Payment {
     price: number
 }
 
-export const payment: Payment[] = [
+export const paymentList: Payment[] = [
     {
         id: 1,
         title: "Swish",
@@ -25,7 +25,7 @@ export const payment: Payment[] = [
         title: "Visakort",
         image: Visakort,
         description: "Betala med Visa/Kreditkort direkt i samband med ditt köp.",
-        price: 0
+        price: 25
     }, {
         id: 1,
         title: "Faktura",

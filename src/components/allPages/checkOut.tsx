@@ -11,7 +11,9 @@ import Cartlist from '../cartList'
 
 
 
-interface Props {}
+interface Props {
+    
+}
 
 const CheckOut: FC<Props> = (props) => {
     return (
@@ -39,7 +41,9 @@ const CheckOut: FC<Props> = (props) => {
                 </Box>
 
                 <Box style={secondBox}>
+
                 <h3>Betalningsalternativ:</h3>
+
                 <Payment /> 
                 </Box>
                 </div>

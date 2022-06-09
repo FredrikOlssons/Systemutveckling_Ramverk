@@ -1,10 +1,12 @@
 import { FC, useState, CSSProperties } from "react"
-import { delivery } from "../../data/delivery"; 
+import { deliveryList } from "../../data/delivery"; 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+
+import DatePicker from "react-datepicker";  
 
 
 interface Props {}
@@ -19,26 +21,63 @@ export const Delivery: FC<Props> = (props) => {
             return deliveryAlt
         }
     }
+
+ 
+
     choosenDelivery; 
+    
+    
+    
+    const getDeliveryDate = (choosenDelivery: number | undefined) => {
+    let arrivalDate: Date = new Date();
+    arrivalDate = new Date(new Date().setHours(new Date().getHours() + choosenDelivery!))
+       
+    console.log(typeof(arrivalDate))
+    let newString = arrivalDate.toLocaleDateString(); 
+    console.log(typeof(newString))
+    
+    return newString
+    
+} 
+
+
+
+
+
+
+  /*   const getArrivalDate = () => {
+      
+        deliveryList.map(choosenD) => {
+            let arrivalDate: Date = new Date();
+            arrivalDate = new Date(new Date().setHours(new Date().getHours() + choosenD.estimatedDelivery))
+
+        }
+    } */
 
     return (
         <FormControl>
             <FormLabel id="demo-radio-buttons-group-label">Våra fraktalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={delivery[0].title}
+                defaultValue={deliveryList[0].title}
+                
                 
                 name="radio-buttons-group">
 
                 {
-                delivery.map((choosenDelivery) => {
+                deliveryList.map((choosenDelivery) => {
                     return (
                     <div style={deliveryBox}>
-                        <FormControlLabel key={choosenDelivery.id} value={choosenDelivery.title} control={<Radio />} label={choosenDelivery.title} />
+                        <FormControlLabel key={choosenDelivery.id} value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title}
+                         onChange = {() => getDeliveryDate(choosenDelivery.estimatedDelivery)} />
                         <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
                         <br />
+                        
+                        
                         <span key={choosenDelivery.description}>{choosenDelivery.description}</span>
-
+                      
+                        <h4>Beräknad leveransdag: { getDeliveryDate(choosenDelivery.estimatedDelivery)}</h4>
+                        <span></span>
                     </div>
                     )
                 })
