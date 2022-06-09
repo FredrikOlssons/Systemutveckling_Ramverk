@@ -9,6 +9,8 @@ import '../style/hero.css'
 
 import { Badge, IconButton } from "@mui/material";
 
+import CartFunctions from './functions/cartFunctions'
+
 
 
 
@@ -26,7 +28,7 @@ const Header: FC = () => {
                 <Link to={"/checkOut"}>
                  
                 <IconButton style={cartIcon} aria-label="cart">
-                    <Badge style={StyledBadge} badgeContent={2} color="secondary">
+                    <Badge style={StyledBadge} color="secondary">
                         <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>

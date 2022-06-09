@@ -5,20 +5,24 @@ import RenderProduct from "../productCard";
 
 import {products, Product} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, useContext } from "react";
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'; 
 import { BorderColor } from '@material-ui/icons';
 import { borderColor, height, width } from '@mui/system';
 import { minWidth } from '@material-ui/core/node_modules/@material-ui/system';
 import "../../style/hero.css";
-//import addToCart from '../functions/addToCart';
+
+import { CartContext } from '../context/cartProvider';
 
 
-
-interface Props {}
+interface Props {
+    products: Product
+}
 
 const SinglePage: FC<Props> = (props) => {
+
+    const { addToCart } = useContext(CartContext)
 
     const { productId } = useParams(); 
 
@@ -43,7 +47,7 @@ const SinglePage: FC<Props> = (props) => {
                 
                 <div style={priceDiv}>
                     <h3>Pris: {foundProduct.price} kr</h3>
-                    <Button onClick={() => setItemsInCart} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
+                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
                 </div>
             </div>
         </span>
