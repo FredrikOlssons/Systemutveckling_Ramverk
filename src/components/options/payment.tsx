@@ -11,42 +11,57 @@ interface Props {}
 
 export const Payment: FC<Props> = (props) => {
 
-    const [paymentAlt, setPaymentAlt] = useState<String | undefined>()
 
-    const choosePayment = (title: string) => {
+    const [isChoosenPayment, setIsChoosenPayment] = useState("")
+  
 
-        if(paymentAlt) {
-            return paymentAlt
-        }
-    }
-    choosePayment; 
+    
 
     return (
         <FormControl>
+            <h2>{isChoosenPayment}</h2>
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={paymentList[0].title}
-                
                 name="radio-buttons-group">
 
                 {
                 paymentList.map((choosenPayment) => {
+            
+
                     return (
-                    <div style={paymentBox}>
-                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.title} control={<Radio />} label={choosenPayment.title} />
-                        <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
-                        <br />
-                        <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
-                        <br />
-                        <span key={choosenPayment.description}>{choosenPayment.description}</span>
+                    
+                        <div style={paymentBox}>
+                            
+                        <FormControlLabel key={choosenPayment.id} value={choosenPayment.title} control={<Radio />} onChange={() => {
+                            setIsChoosenPayment(choosenPayment.title)
+                        }} label={choosenPayment.title} />
+                            
+                            
+                            
+                            <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
+                            <br />
+                            <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
+                            <br />
+                            <span key={choosenPayment.description}>{choosenPayment.description}</span>
 
-                    </div>
+                            {
+                                isChoosenPayment == choosenPayment.title ? <h1>{choosenPayment.title} VALD</h1> : undefined
+                            }
+                            
+                        </div>
+
+                    
+                
                     )
+                    
+            
+
                 })
-
-
+            
                 }
+               
+    
                 
             </RadioGroup>
             </FormControl>

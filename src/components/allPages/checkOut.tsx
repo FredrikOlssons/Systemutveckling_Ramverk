@@ -66,6 +66,8 @@ const CheckOut: FC<Props> = (props) => {
                 <h3>betalningsalternativ:</h3>
 
                 <Payment /> 
+
+                
                     
                 </Box>
                 
