@@ -1,8 +1,5 @@
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
-
 import {product, Products} from "../../data/products"
-
-
 
 
 export interface CartContext {
@@ -18,9 +15,6 @@ export const CartContentContext = React.createContext<CartContext>({
 
 })
 
-
-
-
 interface Props  {}
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
@@ -30,7 +24,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
         if(!cartItem || cartItem == []) {
             //
-            
            
         }else{
             console.log('hej')
@@ -39,22 +32,14 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             const allProducts = localStorage.getItem('cart')
             console.log(allProducts)
         }
-        
     }
-    
-
-
     
     const removeFromCart: () => void = () => {
         const filter = cartItem.filter
-        
         }
- 
     
         localStorage.removeItem('cart')
 
-    
-    
     //useEffect(() => {
         //localStorage.setItem('cart', JSON.stringify(cartItem))
     //}, [cartItem])

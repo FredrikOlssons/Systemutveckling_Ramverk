@@ -2,11 +2,7 @@ import {CartContext, CartContentContext} from '../components/context/cartProvide
 import { useContext, FC, useEffect } from 'react'
 import CartProvider from '../components/context/cartProvider'
 
-
-
-
 interface Props {
-
 
 }
 
@@ -16,27 +12,14 @@ const Cart: FC<Props> = (props) => {
 
     if( cartItem ) {
 
-
     }
 
-    
-    
-    
-    
-    
-    
     return (
         <div>
-
             {/* <button onClick={addToCart}>add to cart </button> */}
-            
         </div>
     )
 
-
 }
-
-
-
 
 export default Cart
