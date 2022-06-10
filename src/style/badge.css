@@ -1,0 +1,38 @@
+
+
+
+.styledBagde {
+    right: -3;
+    top: 13; 
+    height: 2px;
+    padding: 0 4px; 
+  
+
+}
+
+
+Badge.Mui-selected {
+    height: 200px;
+}
+
+
+.button.MuiButtonBase-root-MuiIconButton-root{
+    height: 20px!important; 
+    font-size: 20px!important;
+}
+
+
+.css-78trlr-MuiButtonBase-root-MuiIconButton-root {
+    right: -3!important;
+    top: 13!important;
+    height: 2px!important;
+    padding: 0 4px!important; 
+    height: 20px!important; 
+    font-size: 20px!important;
+    height: 25px!important;
+    width: 25px!important;
+    background-color: #bbb;
+    border-radius: 50%!important;S
+    
+
+}

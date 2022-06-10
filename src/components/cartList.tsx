@@ -14,6 +14,9 @@ import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+
+import { Title } from '@material-ui/icons';
+
 import { CSSProperties, useContext } from "react";
 
 
@@ -21,14 +24,32 @@ import Potatoes from '../assets/potatis.jpg'
 import Valium from '../assets/619RlSBZL4L._SS500_.jpg'
 import Self from '../assets/man-with-question-mark.jpg'
 import { minWidth, textAlign } from '@material-ui/core/node_modules/@material-ui/system';
+
 import CartProvider from '../components/context/cartProvider'
 import { CartContext } from '../components/context/cartProvider';
 import {CartItem} from './cartItem'
 
 
+
+
+
+
+export function displayProductsInCart() {
+  const { cartItems } = useContext(CartContext)
+  console.log(cartItems)
+
+
+}
+
+
+
+
+
+
 interface Props {
   cartItems: CartItem
 }
+
 
 export default function CartList() {
   const {cartItems} = useContext(CartContext)
@@ -51,6 +72,7 @@ export default function CartList() {
           }
           label="Visa produktbeskrivning"
         />
+        
       </FormGroup>
 
       <Grid>
