@@ -9,6 +9,7 @@ import { Payment } from '../options/payment'
 import Cartlist, {displayProductsInCart} from '../cartList'
 import { CartContext } from "../context/cartProvider";
 import { Product, products } from '../../data/products'
+import { FormField } from '../formHook'
 
 
 
@@ -38,7 +39,7 @@ const CheckOut: FC<Props> = (props) => {
                 <Box style={secondBox}>
                 <h3>Fyll i dina kontaktuppgifter:</h3>
                   <div style={contactForm}>
-                    <ValidationSchemaExample/>
+                    <FormField/>
                   </div>
                 </Box>
 

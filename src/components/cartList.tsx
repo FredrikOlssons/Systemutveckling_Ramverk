@@ -91,7 +91,7 @@ export default function CartList() {
                       <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItem.product.description) : null} />
                     </div>
 
-                    <div style={{ ...cartPriceStyle }} onChange={() => {totPricePerProduct()}}> Sum {totPricePerProduct()} kr</div>
+                    <div style={{ ...cartPriceStyle }}> Pris: {totPricePerProduct(cartItem.product)}kr</div>
                   </>
 
 
