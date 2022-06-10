@@ -21,13 +21,13 @@ export const paymentList: Payment[] = [
         price: 0
 
     }, {
-        id: 1,
+        id: 2,
         title: "Visakort",
         image: Visakort,
         description: "Betala med Visa/Kreditkort direkt i samband med ditt köp.",
         price: 25
     }, {
-        id: 1,
+        id: 3,
         title: "Faktura",
         image: Faktura, 
         description: "Betala senare med faktura som skickas efter slutförd köp.",

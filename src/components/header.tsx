@@ -11,7 +11,9 @@ import '../style/badge.css'
 import { Badge, IconButton } from "@mui/material";
 
 import CartFunctions from './functions/cartFunctions'
-import { CartContext, CartContextData } from "./context/cartProvider";
+
+import { CartContext } from '../components/context/cartProvider';
+import {CartItem} from './cartItem'
 
 
 
@@ -26,6 +28,9 @@ import { CartContext, CartContextData } from "./context/cartProvider";
 const Header: FC<Props> = (props) => {
     const { calculateTotalQty, cartItems } = useContext(CartContext)
 
+
+
+
     return (
         <>
         <div style={{...headerStyle, ...bodyContent}}>
@@ -39,10 +44,12 @@ const Header: FC<Props> = (props) => {
                 <Link to={"/checkOut"}>
                  
                 <IconButton style={cartIcon} aria-label="cart">
+
                     <Badge style={styledBadge} className='styledBadge' color="secondary">
                         <div id='styledbadge'>{calculateTotalQty()}</div>
                         
                        
+
                         <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>
