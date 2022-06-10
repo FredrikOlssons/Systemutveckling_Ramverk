@@ -1,21 +1,28 @@
 
 import { Box, Button } from "@mui/material";
 import { height } from "@mui/system";
-import { FC, CSSProperties } from "react";
+import { FC, CSSProperties, useContext } from "react";
 import ValidationSchemaExample from '.././formField'
 import Delivery from "../options/delivery";
-import "../../style/hero.css";
+import "../../style/hero.css"
 import { Payment } from '../options/payment'
-import Cartlist from '../cartList'
+import Cartlist, {displayProductsInCart} from '../cartList'
+import { CartContext } from "../context/cartProvider";
+import { Product, products } from '../../data/products'
+
 
 
 
 
 interface Props {
+    products: Product
     
 }
 
 const CheckOut: FC<Props> = (props) => {
+    
+    const { removeFromCart, cartItems, totalPrice} = useContext(CartContext)
+
     return (
         <>
         <div>
@@ -39,8 +46,10 @@ const CheckOut: FC<Props> = (props) => {
                 <h3>Fraktalternativ:</h3>
                 <Delivery />
                 </Box>
-
-                <Box style={secondBox}>
+                
+                <Button variant="contained" onClick={() => removeFromCart(props.products)} color="primary">remove product </Button>
+                <Button variant="contained" onClick={() => totalPrice()} color="primary">product </Button>
+                <Box style={secondBox}>)
 
                 <h3>Betalningsalternativ:</h3>
 

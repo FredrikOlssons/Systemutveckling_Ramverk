@@ -13,16 +13,22 @@ interface Props {}
 export interface CartContextData {
     //cartItem: Product[],
 
-    removeFromCart: () => void
+    removeFromCart: (product: Product) => void
+    removeProductFromCart: (product: Product) => void
     cartItems: CartItem[],
     addToCart: (product: Product) => void
+    totalPrice: () => void
+    calculateTotalQty: () => void
 }
 
 export const CartContext = React.createContext<CartContextData>({
     //cartItem: products,
-    removeFromCart: () => {},
+    removeFromCart: (product) => {},
+    removeProductFromCart: (product) => {},
     cartItems: [],
-    addToCart: (product) => {}
+    addToCart: (product) => {},
+    totalPrice: () => {},
+    calculateTotalQty: () => {}
 }
 
 )
@@ -55,6 +61,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             
         }
 
+        
+
         setCart(updatedCart)
         console.log(updatedCart)
       
@@ -68,13 +76,74 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     
+    // removes one product at a time
+    const removeFromCart = (product: Product) => {
+
+        const updatedCart = [...cartItems]
+        const updatedCartIndex = updatedCart.findIndex(item => item.product.id == product.id);
+
+        const updatedItem = {
+            ...updatedCart[updatedCartIndex]
+        }
+        updatedItem.quantity--; 
+        if(updatedItem.quantity <= 0) {
+            updatedCart.splice(updatedCartIndex, 1)
+            console.log(updatedCart)
+        }else{
+            updatedCart[updatedCartIndex] = updatedItem
+        }
+        setCart(updatedCart)
+
+       
+    }
+
+    // removes the entire product regardless how many in cart 
+    const removeProductFromCart = (product: Product) =>  {
+        const listOfProducts = [...cartItems]
+        let updatedList = listOfProducts.filter((item) => item.product.id !== product.id); 
+        setCart(updatedList)
+        console.log(updatedList)
+      
     
-    const removeFromCart: () => void = () => {
-
-
-        //const filter = cartItem.filter
     }
     
+
+    const calculateTotalQty: () => void = () => {
+        let total: number = 0
+        const listOfProducts = [...cartItems]
+        listOfProducts.forEach((item) => {
+            total += item.quantity
+        })
+        console.log(total)
+        let element = document.getElementById("styledBadge")
+        
+
+        if(element)
+        element.textContent = total.toString();
+
+        return total 
+        
+
+    }
+
+
+// displays total price for all items in cart
+const totalPrice: () => void  = () => {
+    const listOfProducts = [...cartItems]
+    let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
+    
+    console.log(amount)
+    return amount
+    
+}
+
+
+
+useEffect(()=>{
+    calculateTotalQty(); 
+    
+    
+    }, [cartItems])
        
 
     useEffect(() => {
@@ -105,7 +174,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     return (
-        <CartContext.Provider value={{cartItems, removeFromCart, addToCart}}>
+        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPrice, calculateTotalQty}}>
             {props.children}
         </CartContext.Provider>
     )   

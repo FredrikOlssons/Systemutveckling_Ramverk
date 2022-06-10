@@ -1,4 +1,4 @@
-import { FC, CSSProperties } from "react";
+import { FC, CSSProperties, useContext } from "react";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { bodyContent } from "../style/common";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
@@ -6,19 +6,30 @@ import { Colors } from '../data/colors';
 import { Link } from 'react-router-dom';
 
 import '../style/hero.css'
+import '../style/badge.css'
 
 import { Badge, IconButton } from "@mui/material";
 
 import CartFunctions from './functions/cartFunctions'
+import { CartContext, CartContextData } from "./context/cartProvider";
 
 
 
 
+ interface Props {
+    cartQty: CartContextData
+}
+ 
 
-const Header: FC = () => {
+
+
+const Header: FC<Props> = (props) => {
+    const { calculateTotalQty, cartItems } = useContext(CartContext)
+
     return (
         <>
         <div style={{...headerStyle, ...bodyContent}}>
+            
              <Link to={"/"} style={{...companyLogo}}> Wholehearted Family Adventure</Link>
             <div style={{...cartDiv}}> 
                 <Link to={"/admin"}>
@@ -28,10 +39,14 @@ const Header: FC = () => {
                 <Link to={"/checkOut"}>
                  
                 <IconButton style={cartIcon} aria-label="cart">
-                    <Badge style={StyledBadge} color="secondary">
+                    <Badge style={styledBadge} className='styledBadge' color="secondary">
+                        <div id='styledbadge'>{calculateTotalQty()}</div>
+                        
+                       
                         <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>
+
                 
                 </Link>
                 </div>
@@ -99,12 +114,13 @@ const adminIcon: CSSProperties = {
 }
 
 
-const StyledBadge: CSSProperties = {
+ const styledBadge: CSSProperties = {
     right: "-3",
     top: "13",
+    height: '2px',
     padding: '0 4px',
   
-}
+} 
 
 
 

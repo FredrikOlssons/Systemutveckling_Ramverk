@@ -33,7 +33,7 @@ import { Button } from "@mui/material";
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
    .required('Required'),
-   phoneNumber: Yup.string()
+   phoneNumber: Yup.number()
    .min(9, 'Too Short!')
    .max(12, 'Too Long!')
    .required('Required'),
@@ -130,7 +130,7 @@ import { Button } from "@mui/material";
                     Tel.nummer:
                     <Field name="phoneNumber" />
                     {errors.phoneNumber && touched.phoneNumber ? (
-                      <div>{errors.phoneNumber}</div>
+                      <div></div>
                     ) : null}
                     </Grid>
                     <Grid style={submitStyling} item xs={12} sm={6}>
