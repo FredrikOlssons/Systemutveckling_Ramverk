@@ -11,54 +11,27 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
-import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
-import { Title } from '@material-ui/icons';
-import { CSSProperties } from "react";
+import { CSSProperties, useContext } from "react";
 
 
 import Potatoes from '../assets/potatis.jpg'
 import Valium from '../assets/619RlSBZL4L._SS500_.jpg'
 import Self from '../assets/man-with-question-mark.jpg'
 import { minWidth, textAlign } from '@material-ui/core/node_modules/@material-ui/system';
+import CartProvider from '../components/context/cartProvider'
+import { CartContext } from '../components/context/cartProvider';
+import {CartItem} from './cartItem'
 
-export interface Cartitem {
-  id: number
-  title: string
-  image: string
-  description: string
-  price: number
+
+interface Props {
+  cartItems: CartItem
 }
 
-export const items: Cartitem[] = [
-  {
-    id: 1,
-    title: "Sense of self",
-    image: Self,
-    description: "Självkänsla på burk.",
-    price: 247
-  },
-  {
-    id: 2,
-    title: "Potatis",
-    image: Potatoes,
-    description: "Vital föda.",
-    price: 16
-  },
-  {
-    id: 3,
-    title: "Valium",
-    image: Valium,
-    description: "Också vital föda.",
-    price: 346
-  },
-
-]
-
 export default function CartList() {
+  const {cartItems} = useContext(CartContext)
   const [secondary, setSecondary] = React.useState(false);
 
   const getShortTextVersion: (text: string) => string = (text) => {
@@ -83,24 +56,24 @@ export default function CartList() {
       <Grid>
         <List style={cartItemsStyle}>
           {
-            items.map((cartItems) => {
+            cartItems.map((cartItem) => {
               return (
 
-                <ListItem style={{ ...cartItemStyle }}> 
+                <ListItem key={cartItem.product.id} style={{ ...cartItemStyle }}> 
 
                 
-                  <ListItemAvatar style={cartImgDiv}><img src={cartItems.image} style={cartImageStyle} /></ListItemAvatar>
+                  <ListItemAvatar style={cartImgDiv}><img src={cartItem.product.image} style={cartImageStyle} /></ListItemAvatar>
                   <>
                     <div style={textbox}>
-                      <div style={{ ...cartTitleStyle }}>{cartItems.title}</div>
-                      <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItems.description) : null} />
+                      <div style={{ ...cartTitleStyle }}>{cartItem.product.title}</div>
+                      <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItem.product.description) : null} />
                     </div>
 
-                    <div style={{ ...cartPriceStyle }}>{cartItems.price} kr</div>
+                    <div style={{ ...cartPriceStyle }}>{cartItem.product.price} kr</div>
                   </>
 
                     <IconButton edge="end" aria-label="delete"><AddIcon /></IconButton>
-                    <p style={quantity}> 10{/* {cartItems.quantity} */} </p>
+                    <p style={quantity}>{cartItem.quantity}</p>
                     <IconButton edge="end" aria-label="delete"><RemoveIcon /></IconButton>
                     <IconButton edge="end" aria-label="delete"><DeleteIcon /></IconButton>
 

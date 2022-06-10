@@ -28,45 +28,27 @@ export interface Product {
 
 export const products: Product[] = [
     {
-
         id: 1,
-
         title: "Sense of self",
-
         image: Self,
-
-        description: "Sense of self.",
-
+        description: "Sense of self.jldshvoisdhvoihdsvhgjkpfghghohgjoghj",
         price: 247
-
     },
 
     {
-
         id: 2,
-
         title: "Potatis",
-
         image: Potatoes,
-
         description: "Potatis.",
-
         price: 16
-
     },
 
     {
-
         id: 3,
-
         title: "Valium",
-
         image: Valium,
-
         description: "Valium.",
-
         price: 346
-
     },
    /*  {
         id: 1, 
