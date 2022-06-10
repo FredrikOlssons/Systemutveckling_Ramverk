@@ -52,8 +52,8 @@ export const Delivery: FC<Props> = (props) => {
                 {
                 deliveryList.map((choosenDelivery) => {
                     return (
-                    <div style={deliveryBox}>
-                        <FormControlLabel key={choosenDelivery.id} value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title}
+                    <div key={choosenDelivery.id} style={deliveryBox}>
+                        <FormControlLabel value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title}
                          onChange = {() => getDeliveryDate(choosenDelivery.estimatedDelivery)} />
                         <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
                         <br />

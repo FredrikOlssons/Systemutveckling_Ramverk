@@ -1,4 +1,4 @@
-import { FC, CSSProperties } from "react";
+import { FC, CSSProperties, useContext } from "react";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { bodyContent } from "../style/common";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
@@ -10,12 +10,14 @@ import '../style/hero.css'
 import { Badge, IconButton } from "@mui/material";
 
 import CartFunctions from './functions/cartFunctions'
-
+import { CartContext } from '../components/context/cartProvider';
+import {CartItem} from './cartItem'
 
 
 
 
 const Header: FC = () => {
+    const {cartItems} = useContext(CartContext)
     return (
         <>
         <div style={{...headerStyle, ...bodyContent}}>
@@ -28,7 +30,8 @@ const Header: FC = () => {
                 <Link to={"/checkOut"}>
                  
                 <IconButton style={cartIcon} aria-label="cart">
-                    <Badge style={StyledBadge} color="secondary">
+                    <Badge style={StyledBadge}badgeContent={0} color="secondary">
+                        
                         <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>
