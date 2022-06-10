@@ -19,6 +19,7 @@ export interface CartContextData {
     addToCart: (product: Product) => void
     totalPrice: () => void
     calculateTotalQty: () => void
+    totPricePerProduct: (product: Product) => void
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -28,7 +29,8 @@ export const CartContext = React.createContext<CartContextData>({
     cartItems: [],
     addToCart: (product) => {},
     totalPrice: () => {},
-    calculateTotalQty: () => {}
+    calculateTotalQty: () => {},
+    totPricePerProduct: (product) => {}
 }
 
 )
@@ -123,8 +125,23 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
         return total 
         
-
     }
+
+// display total price for single product 
+const totPricePerProduct = (product: Product)  => {
+    
+    const listOfProducts = [...cartItems]
+    console.log(listOfProducts)
+
+    let updatedList = listOfProducts.filter((item) => item.product.id !== product.id); 
+    if(updatedList) {
+
+        console.log(updatedList)
+    }
+    //let totalPrice = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
+    //return totalPrice
+    
+}
 
 
 // displays total price for all items in cart
@@ -134,7 +151,6 @@ const totalPrice: () => void  = () => {
     
     let element = document.getElementById("priceDiv")
         
-
         if(element)
         element.textContent = amount.toString();
     
@@ -180,7 +196,7 @@ useEffect(()=>{
 
 
     return (
-        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPrice, calculateTotalQty}}>
+        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPrice, calculateTotalQty, totPricePerProduct}}>
             {props.children}
         </CartContext.Provider>
     )   
