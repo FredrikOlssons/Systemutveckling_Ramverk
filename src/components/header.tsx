@@ -19,7 +19,7 @@ import {CartItem} from './cartItem'
 
 
  interface Props {
-    cartQty: CartContextData
+    /* cartQty: CartContextData */
 }
  
 
@@ -46,7 +46,7 @@ const Header: FC<Props> = (props) => {
                 <IconButton style={cartIcon} aria-label="cart">
 
                     <Badge style={styledBadge} className='styledBadge' color="secondary">
-                        <div id='styledbadge'>{calculateTotalQty()}</div>
+                        {/* <div id='styledbadge'>{calculateTotalQty()}</div> */}
                         
                        
 

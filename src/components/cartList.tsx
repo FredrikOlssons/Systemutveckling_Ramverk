@@ -52,7 +52,7 @@ interface Props {
 
 
 export default function CartList() {
-  const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPrice} = useContext(CartContext)
+  const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPrice, totPricePerProduct} = useContext(CartContext)
   const [secondary, setSecondary] = React.useState(false);
 
   const getShortTextVersion: (text: string) => string = (text) => {
@@ -77,10 +77,10 @@ export default function CartList() {
 
       <Grid>
         <List style={cartItemsStyle}>
+        
           {
             cartItems.map((cartItem) => {
               return (
-
                 <ListItem key={cartItem.product.id} style={{ ...cartItemStyle }}> 
 
                 
@@ -91,21 +91,25 @@ export default function CartList() {
                       <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItem.product.description) : null} />
                     </div>
 
-                    <div style={{ ...cartPriceStyle }} >{cartItem.product.price} kr</div>
+                    <div style={{ ...cartPriceStyle }} onChange={() => {totPricePerProduct()}}> Sum {totPricePerProduct()} kr</div>
                   </>
-<h1 id='totalPrice'>{totalPrice()} </h1>
+
 
                     <IconButton edge="end" aria-label="delete"><AddIcon onClick={() => addToCart(cartItem.product)}/></IconButton>
-                    <p style={quantity}>{cartItem.quantity}</p>
+                    <p style={quantity}>Antal: {cartItem.quantity}</p>
                     <IconButton edge="end" aria-label="delete"><RemoveIcon onClick={() => removeFromCart(cartItem.product)} /></IconButton>
                     <IconButton edge="end" aria-label="delete"><DeleteIcon onClick={() => removeProductFromCart(cartItem.product)}/></IconButton>
-
                 
+                    
                 </ListItem>
-
               )
             })}
         </List>
+              
+                <div >
+                    <p id='totalPrice' onChange={() => {totalPrice()}}>Totalsumma: {totalPrice()} kr </p>
+                </div>
+               
       </Grid>
     </Box >)
 }
