@@ -47,9 +47,8 @@ const CheckOut: FC<Props> = (props) => {
                 <Delivery />
                 </Box>
                 
-                <Button variant="contained" onClick={() => removeFromCart(props.products)} color="primary">remove product </Button>
-                <Button variant="contained" onClick={() => totalPrice()} color="primary">product </Button>
-                <Box style={secondBox}>)
+                
+                <Box style={secondBox}>
 
                 <h3>Betalningsalternativ:</h3>
 

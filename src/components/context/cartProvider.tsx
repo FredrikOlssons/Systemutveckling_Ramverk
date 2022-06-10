@@ -132,8 +132,14 @@ const totalPrice: () => void  = () => {
     const listOfProducts = [...cartItems]
     let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
     
-    console.log(amount)
-    return amount
+    let element = document.getElementById("priceDiv")
+        
+
+        if(element)
+        element.textContent = amount.toString();
+    
+
+        return amount
     
 }
 
