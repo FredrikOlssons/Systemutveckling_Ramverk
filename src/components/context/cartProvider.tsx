@@ -11,7 +11,6 @@ interface Props {}
 
 
 export interface CartContextData {
-    //cartItem: Product[],
 
     removeFromCart: (product: Product) => void
     removeProductFromCart: (product: Product) => void
@@ -23,7 +22,7 @@ export interface CartContextData {
 }
 
 export const CartContext = React.createContext<CartContextData>({
-    //cartItem: products,
+    
     removeFromCart: (product) => {},
     removeProductFromCart: (product) => {},
     cartItems: [],
@@ -55,9 +54,11 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         if(found == -1){
             
             updatedCart.push({product, quantity: 1 });
+            
         }else{
             
             updatedCart[found].quantity++
+            
            
             
             
@@ -116,7 +117,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         listOfProducts.forEach((item) => {
             total += item.quantity
         })
-        console.log(total)
+       
         let element = document.getElementById("styledBadge")
         
 
@@ -127,41 +128,39 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
     }
 
-// display total price for single product 
-const totPricePerProduct = (product: Product)  => {
-    
-    const listOfProducts = [...cartItems]
-
-    let updatedList = listOfProducts.filter((item) => item.product.id == product.id); 
-    let totalPrice = updatedList.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
-    return totalPrice
-    
-}
-
-
-// displays total price for all items in cart
-const totalPrice: () => void  = () => {
-    const listOfProducts = [...cartItems]
-    let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
-    
-    let element = document.getElementById("priceDiv")
+    // display total price for single product 
+    const totPricePerProduct = (product: Product)  => {
         
-        if(element)
-        element.textContent = amount.toString();
-    
+        const listOfProducts = [...cartItems]
 
-        return amount
-    
-}
+        let updatedList = listOfProducts.filter((item) => item.product.id == product.id); 
+        let totalPrice = updatedList.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
+        return totalPrice
+        
+    }
+
+
+    // displays total price for all items in cart
+    const totalPrice: () => void  = () => {
+        const listOfProducts = [...cartItems]
+        let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
+        
+        let element = document.getElementById("priceDiv")
+            
+            if(element)
+            element.textContent = amount.toString();
+        
+
+            return amount
+        
+    }
 
 
 
-useEffect(()=>{
-    calculateTotalQty(); 
-    
-    
+    useEffect(()=>{
+        calculateTotalQty();   
     }, [cartItems])
-       
+        
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems))
