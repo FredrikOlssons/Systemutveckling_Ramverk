@@ -131,15 +131,10 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 const totPricePerProduct = (product: Product)  => {
     
     const listOfProducts = [...cartItems]
-    console.log(listOfProducts)
 
-    let updatedList = listOfProducts.filter((item) => item.product.id !== product.id); 
-    if(updatedList) {
-
-        console.log(updatedList)
-    }
-    //let totalPrice = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
-    //return totalPrice
+    let updatedList = listOfProducts.filter((item) => item.product.id == product.id); 
+    let totalPrice = updatedList.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
+    return totalPrice
     
 }
 
