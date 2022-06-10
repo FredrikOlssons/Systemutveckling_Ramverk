@@ -31,7 +31,7 @@ const RenderProduct: FC<Props> = (props) => {
             </div>
                 </Link>
                 <Button variant="contained" onClick={() => addToCart(props.products)} color="primary">Köp</Button>
-                <Button variant="contained" onClick={() => removeProductFromCart(props.products)} color="primary">ta bort</Button>
+                
                
         </div>
 
