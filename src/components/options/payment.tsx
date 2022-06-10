@@ -81,7 +81,6 @@ const paymentBox: CSSProperties = {
     textAlign: "center",
     marginBottom: "10px",
     padding: "10px",
-    fontWeight: "bold",
     backgroundColor: "#d3d3d35e"
 }
 

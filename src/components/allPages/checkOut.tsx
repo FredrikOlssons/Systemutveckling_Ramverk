@@ -1,15 +1,13 @@
 
 import { Box, Button } from "@mui/material";
-import { height } from "@mui/system";
 import { FC, CSSProperties, useContext } from "react";
-import ValidationSchemaExample from '.././formField'
 import Delivery from "../options/delivery";
 import "../../style/hero.css"
 import { Payment } from '../options/payment'
-import Cartlist, {displayProductsInCart} from '../cartList'
-import { CartContext } from "../context/cartProvider";
+import Cartlist from '../cartList'
 import { Product, products } from '../../data/products'
 import { FormField } from '../formHook'
+import { CartContext } from "../context/cartProvider";
 
 
 
@@ -22,7 +20,7 @@ interface Props {
 
 const CheckOut: FC<Props> = (props) => {
     
-    const { removeFromCart, cartItems, totalPrice} = useContext(CartContext)
+    const { totalPrice } = useContext(CartContext)
 
     return (
         <>
@@ -33,6 +31,7 @@ const CheckOut: FC<Props> = (props) => {
                 <div>
                 <Box style={firstBox}>
                     <h2>Varukorg</h2>
+                    
                     <Cartlist/>
                     </Box>
                         
@@ -57,10 +56,10 @@ const CheckOut: FC<Props> = (props) => {
 
                 </Box>
                 </div>
-
+                {/* OBS! Detta behöver uppdateras  */}
                 <Box style={litleBox}>
                     <h2>Summa</h2>
-                    <h3>Totalsumma (inkl. moms): </h3>
+                    <h3>Totalsumma (inkl. moms): {totalPrice()} kr </h3>
                     <h3>Frakt: </h3>
                     <h3>Betalningssätt: </h3>
 
@@ -118,7 +117,7 @@ const title: CSSProperties = {
 }
 
 const litleBox: CSSProperties = {
-    width: "30%",
+    width: "40%",
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
