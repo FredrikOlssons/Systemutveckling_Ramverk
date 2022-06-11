@@ -6,8 +6,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-import DatePicker from "react-datepicker";  
-
 
 interface Props {}
 
@@ -15,16 +13,6 @@ export const Delivery: FC<Props> = (props) => {
 
     const [deliveryAlt, setDeliveryAlt] = useState<String | undefined>()
 
-    const choosenDelivery = (title: string) => {
-
-        if(deliveryAlt) {
-            return deliveryAlt
-        }
-    }
-
- 
-
-    choosenDelivery; 
     
     
     
@@ -41,29 +29,41 @@ export const Delivery: FC<Props> = (props) => {
 
     return (
         <FormControl>
+            <h2>{deliveryAlt}</h2>
             <FormLabel id="demo-radio-buttons-group-label">Våra fraktalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
-                defaultValue={deliveryList[0].title}
-                
                 
                 name="radio-buttons-group">
 
                 {
                 deliveryList.map((choosenDelivery) => {
                     return (
+                    <>
                     <div key={choosenDelivery.id} style={deliveryBox}>
-                        <FormControlLabel value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title}
-                         onChange = {() => getDeliveryDate(choosenDelivery.estimatedDelivery)} />
-                        <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
-                        <br />
+                        <div>
+
+                            <FormControlLabel value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title} 
+                            onChange={() => {setDeliveryAlt(choosenDelivery.title)}} />
+
+                            <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
+                            <br />
+                            
+                            
+                            <span key={choosenDelivery.description}>{choosenDelivery.description}</span>
+                        </div>
+
                         
-                        
-                        <span key={choosenDelivery.description}>{choosenDelivery.description}</span>
-                      
-                        <h4>Beräknad leveransdag: { getDeliveryDate(choosenDelivery.estimatedDelivery)}</h4>
-                        <span></span>
+                        <pre>
+                            {
+                                deliveryAlt == choosenDelivery.title ? <h4 style={deliveryBox}>Beräknad leveransdag: { getDeliveryDate(choosenDelivery.estimatedDelivery)}</h4> : undefined
+                            }
+
+                        </pre>
                     </div>
+                    
+                    
+                    </>
                     )
                 })
 
@@ -83,10 +83,11 @@ const deliveryBox: CSSProperties = {
     textAlign: "center",
     marginBottom: "10px",
     padding: "10px",
-    fontWeight: "bold",
     backgroundColor: "#d3d3d35e",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    flexDirection: "column",
+    
 }
 
 export default Delivery 

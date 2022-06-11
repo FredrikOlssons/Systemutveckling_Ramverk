@@ -1,8 +1,6 @@
 
 import React from 'react'; 
 
-import RenderProduct from "../productCard";
-
 import {products, Product} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC, useContext } from "react";
