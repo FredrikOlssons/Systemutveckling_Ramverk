@@ -13,6 +13,7 @@ import { CartContext } from "../context/cartProvider";
 
 
 
+
 interface Props {
     products: Product
     
@@ -58,8 +59,10 @@ const CheckOut: FC<Props> = (props) => {
                 </div>
                 {/* OBS! Detta behöver uppdateras  */}
                 <Box style={litleBox}>
+
                     <h2>Summa</h2>
                     <h3>Totalsumma (inkl. moms): {totalPrice()} kr </h3>
+
                     <h3>Frakt: </h3>
                     <h3>Betalningssätt: </h3>
 
