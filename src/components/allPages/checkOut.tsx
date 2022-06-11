@@ -15,6 +15,7 @@ import { FormField } from '../formHook'
 
 
 
+
 interface Props {
     products: Product
     
@@ -59,7 +60,7 @@ const CheckOut: FC<Props> = (props) => {
                 </div>
 
                 <Box style={litleBox}>
-                    <h2>Summa</h2>
+                    <h2>Summa: {totalPrice()}</h2>
                     <h3>Totalsumma (inkl. moms): </h3>
                     <h3>Frakt: </h3>
                     <h3>Betalningssätt: </h3>
