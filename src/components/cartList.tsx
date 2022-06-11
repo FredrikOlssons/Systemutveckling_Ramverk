@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -15,17 +14,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
-import { Title } from '@material-ui/icons';
-
 import { CSSProperties, useContext } from "react";
-
-
-import Potatoes from '../assets/potatis.jpg'
-import Valium from '../assets/619RlSBZL4L._SS500_.jpg'
-import Self from '../assets/man-with-question-mark.jpg'
-import { minWidth, textAlign } from '@material-ui/core/node_modules/@material-ui/system';
-
-import CartProvider from '../components/context/cartProvider'
 import { CartContext } from '../components/context/cartProvider';
 import {CartItem} from './cartItem'
 
@@ -91,23 +80,26 @@ export default function CartList() {
                       <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItem.product.description) : null} />
                     </div>
 
+                    {/* OBS! Får kolla upp detta med Victor */} 
                     <div style={{ ...cartPriceStyle }}> Pris: {totPricePerProduct(cartItem.product)}kr</div>
                   </>
 
+                    <div style={iconCart}>
 
-                    <IconButton edge="end" aria-label="delete"><AddIcon onClick={() => addToCart(cartItem.product)}/></IconButton>
-                    <p style={quantity}>Antal: {cartItem.quantity}</p>
-                    <IconButton edge="end" aria-label="delete"><RemoveIcon onClick={() => removeFromCart(cartItem.product)} /></IconButton>
-                    <IconButton edge="end" aria-label="delete"><DeleteIcon onClick={() => removeProductFromCart(cartItem.product)}/></IconButton>
-                
+                      <IconButton edge="end" aria-label="delete"><RemoveIcon onClick={() => removeFromCart(cartItem.product)} /></IconButton>
+                      <p style={quantity}>Antal: {cartItem.quantity}</p>
+                      <IconButton edge="end" aria-label="delete"><AddIcon onClick={() => addToCart(cartItem.product)}/></IconButton>
+                      <IconButton edge="end" aria-label="delete"><DeleteIcon onClick={() => removeProductFromCart(cartItem.product)}/></IconButton>
+                  
+                    </div>
                     
                 </ListItem>
               )
             })}
         </List>
-              
-                <div >
-                    <p id='totalPrice' onChange={() => {totalPrice()}}>Totalsumma: {totalPrice()} kr </p>
+                {/* OBS! Får kolla upp detta med Victor  */}
+                <div style={totalSum} >
+                    <p id='totalPrice'>Totalsumma: {totalPrice()} kr </p>
                 </div>
                
       </Grid>
@@ -164,4 +156,22 @@ const cartPriceStyle: CSSProperties = {
 
 const quantity: CSSProperties = {
   marginLeft: '10px'
+}
+
+const totalSum: CSSProperties = {
+  display: "flex",
+  justifyContent: "flex-end",
+  fontWeight: "bold",
+  margin: "15px",
+  gap: "20px"
+}
+
+const iconCart: CSSProperties = {
+  gap: "10px",
+  display: "flex",
+  textAlign: "center",
+  marginTop: "0",
+  alignItems: "center",
+  color: "silver",
+  marginBottom: "0"
 }

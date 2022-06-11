@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { CSSProperties } from 'react'
 import Form  from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import { Button } from 'react-bootstrap';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
@@ -75,9 +74,7 @@ export const FormField = () =>  {
         </Label>
 <Control type="text" placeholder="Stad"  {...register("Stad", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
         
-        <Button type="submit" >
-          Send
-        </Button>
+        <Button style={submitStyling} type="submit" variant="contained" color="primary">Fortsätt</Button>
       </Group>
       
      
@@ -86,3 +83,11 @@ export const FormField = () =>  {
 
 )}
 
+
+const submitStyling: CSSProperties = {
+  display: "flex",
+  justifyContent: "center",
+  backgroundColor: "#1976d2",
+  color: "white",
+  marginTop: "10px"
+}

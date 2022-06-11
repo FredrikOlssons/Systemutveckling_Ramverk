@@ -2,33 +2,24 @@ import { FC, CSSProperties, useContext } from "react";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { bodyContent } from "../style/common";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import { Colors } from '../data/colors';
 import { Link } from 'react-router-dom';
 
 import '../style/hero.css'
 import '../style/badge.css'
 
 import { Badge, IconButton } from "@mui/material";
-
-import CartFunctions from './functions/cartFunctions'
-
 import { CartContext } from '../components/context/cartProvider';
-import {CartItem} from './cartItem'
 
 
 
 
- interface Props {
-    /* cartQty: CartContextData */
-}
+ interface Props {}
  
 
 
 
 const Header: FC<Props> = (props) => {
-    const { calculateTotalQty, cartItems } = useContext(CartContext)
-
-
+    const { calculateTotalQty } = useContext(CartContext)
 
 
     return (
@@ -45,11 +36,10 @@ const Header: FC<Props> = (props) => {
                  
                 <IconButton style={cartIcon} aria-label="cart">
 
+                    {/* OBS! Får kolla upp detta med Victor  */}
                     <Badge style={styledBadge} className='styledBadge' color="secondary">
-                        <div id='styledbadge'>{calculateTotalQty()}</div> 
+                        <div style={styledBadge} id='styledbadge'>{calculateTotalQty()}</div> 
                         
-                       
-
                         <AddShoppingCartIcon />
                     </Badge>
                 </IconButton>
@@ -65,7 +55,7 @@ const Header: FC<Props> = (props) => {
 
 
 const headerStyle: CSSProperties = {
-    //backgroundColor: 'black',
+    
     display: 'flex',
     width: '100%', 
     color: "silver",
@@ -126,6 +116,7 @@ const adminIcon: CSSProperties = {
     top: "13",
     height: '2px',
     padding: '0 4px',
+    fontSize: "20px"
   
 } 
 
