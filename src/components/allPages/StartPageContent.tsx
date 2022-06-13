@@ -5,11 +5,17 @@ import Hero from "../Hero";
 import "../../style/hero.css";
 import { width } from "@mui/system";
 import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
-
+import {cartItems, CartItem} from '../cartItem'
 import  MiniCart from '../miniCart'
-import { Device, DeviceContext } from "../context/DeviceProvider";
 
-interface Props {}
+import { Device, DeviceContext } from "../context/DeviceProvider";
+import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
+
+
+
+interface Props {
+  cartItems: CartItem
+}
 
 
 const Content: FC<Props> = (props) => {
@@ -59,14 +65,16 @@ const Content: FC<Props> = (props) => {
         </div>
         <div style={cartDiv}>
 
-       
-          {/* <div style={cartContainer}>Cart<MiniCart/></div> */}
+
           
+
+          <div style={cartContainer}>Cart<MiniCart/></div>
+        
 
          
 
         </div>
-      </div>
+      
     </>
   );
 };

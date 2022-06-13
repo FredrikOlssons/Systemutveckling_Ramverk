@@ -14,6 +14,7 @@ import { CartContext } from "../context/cartProvider";
 
 
 
+
 interface Props {
     products: Product
     
@@ -54,7 +55,7 @@ const CheckOut: FC<Props> = (props) => {
                 <h3>Betalningsalternativ:</h3>
 
                 <Payment /> 
-
+              
                 </Box>
                 </div>
                 

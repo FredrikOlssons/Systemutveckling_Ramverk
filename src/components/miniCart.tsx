@@ -18,7 +18,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 interface Props {
-    cartItems: CartItem
+    
   }
   
   
@@ -79,7 +79,8 @@ const cartItemsStyle: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   columnGap: '5%',
-  marginRight: '70px'
+  marginRight: '70px',
+  flexWrap: 'wrap'
 }
 
 const cartItemStyle: CSSProperties = {
