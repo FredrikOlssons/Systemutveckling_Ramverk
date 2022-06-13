@@ -39,8 +39,7 @@ const Header: FC<Props> = (props) => {
                  
                 <IconButton style={cartIcon} aria-label="cart">
 
-                    <Badge style={styledBadge} badgeContent={calculateTotalQty()} color="secondary">
-                        
+                    <Badge style={styledBadge} badgeContent={calculateTotalQty()} color="secondary">               
                         
                         <AddShoppingCartIcon />
                     </Badge>
@@ -75,7 +74,7 @@ const companyLogo: (devices: Device) => CSSProperties = (devices) => {
     marginLeft: '2.5vw',
     color: 'silver',
     textDecoration: 'none',
-    fontSize: devices.isDesktop ? '2em' : devices.isTablet ? '30px' : devices.isMobile ? '20px' : "18px",
+    fontSize: devices.isDesktop ? '2em' : devices.isTablet ? '30px' : devices.isMobile ? '20px' : "11px",
     display: "flex",
     alignItems: "center",
     fontFamily: 'Frijole',
