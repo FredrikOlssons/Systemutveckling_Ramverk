@@ -7,7 +7,6 @@ import { width } from "@mui/system";
 import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
 import { CartItem} from '../cartItem'
 import MiniCartStartpage from '../minicartStartpage'
-
 import { Device, DeviceContext } from "../context/DeviceProvider";
 
 
@@ -44,15 +43,14 @@ const Content: FC<Props> = (props) => {
           <span style={span(devices)}><h2 style={{ ...i}}>i</h2></span>
           <span style={span(devices)}><h2 style={{ ...l2}}>l</h2></span>
           <span style={span(devices)}><h2 style={{ ...l3}}>l</h2></span>
-        </h1>
 
+        </h1>
         <h1 style={startpageheader(devices)}>Wholehearted Family Adventure</h1>
         
          <h2 style={startpagesubHeader}>Stärk familjebanden! WFA vill prioritera bort skärmarna
              och satsar helhjärtat på gammal hederlig familjeunderhållning där man faktiskt umgås och spenderar den lediga tiden tillsammans. 
              Gör familjetiden rolig med klassiska och nya brädspel och med roliga aktiviteter som passar för familjer i alla åldrar.</h2> 
       </div>
-
       <div style={bigContainer(devices)}>
         <div style={productDiv(devices)}>
           <div style={productContainer}>
@@ -64,7 +62,7 @@ const Content: FC<Props> = (props) => {
         <div style={cartDiv(devices)}>
           <div style={cartContainer}>Kundvagn<MiniCartStartpage/></div>
         </div>
-        </div>
+      </div>
     </>
   );
 };

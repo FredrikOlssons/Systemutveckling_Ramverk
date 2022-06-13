@@ -1,10 +1,14 @@
-import { FC, useState, CSSProperties} from "react"
+import { FC, useState, CSSProperties, useContext} from "react"
 import { paymentList } from '../../data/payment'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import MyCards from './paymentForm'
+import PaymentProvider, { PaymentContext } from '../context/paymentProvider'
+import ValidationInvoice from './invoice'
+import ValidationSwish from './swish'
 
 
 interface Props {}
@@ -12,11 +16,15 @@ interface Props {}
 export const Payment: FC<Props> = (props) => {
 
 
-    const [isChoosenPayment, setIsChoosenPayment] = useState("")
+    const [isChoosenPayment, setIsChoosenPayment] = useState<"Visakort" | "Swish" | 'Faktura'>("")
+
+    const { payments } = useContext(PaymentContext)
+
+
+
+
   
-
-    
-
+  
 
     return (
         <FormControl>
@@ -28,7 +36,7 @@ export const Payment: FC<Props> = (props) => {
 
                 {
                 paymentList.map((choosenPayment) => {
-            
+                    
 
                     return (
 
@@ -39,18 +47,37 @@ export const Payment: FC<Props> = (props) => {
                             setIsChoosenPayment(choosenPayment.title)
                         }} label={choosenPayment.title} />
                             
-                            
-                            
+                       
+                         
                             <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
                             <br />
                             <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
                             <br />
                             <span key={choosenPayment.description}>{choosenPayment.description}</span>
+                          <div>
+
+                              
+                               
+                        {
+                            isChoosenPayment == choosenPayment.title && choosenPayment.title == "Visakort" ? <MyCards/> : undefined
+                        }{
+                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Swish" ?< ValidationSwish />: undefined
+                            
+                        }
+                        {
+                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Faktura" ? <ValidationInvoice/ >  : undefined
+                            
+                        }
+                
+                        </div>
 
                             {
-                                isChoosenPayment == choosenPayment.title ? <h1>{choosenPayment.title} VALD</h1> : undefined
+                            payments.swish == true ? <MyCards /> : undefined
+
                             }
                             
+                            
+                          
                         </div>
 
                 
