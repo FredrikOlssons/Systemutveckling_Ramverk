@@ -15,6 +15,7 @@ export const Payment: FC<Props> = (props) => {
     const [isChoosenPayment, setIsChoosenPayment] = useState("")
   
 
+    
 
 
     return (

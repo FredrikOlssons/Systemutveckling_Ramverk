@@ -16,9 +16,9 @@ export interface CartContextData {
     removeProductFromCart: (product: Product) => void
     cartItems: CartItem[],
     addToCart: (product: Product) => void
-    totalPrice: () => void
-    calculateTotalQty: () => void
-    totPricePerProduct: (product: Product) => void
+    totalPrice: () => number
+    calculateTotalQty: () => number
+    totPricePerProduct: (product: Product) => number
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -27,9 +27,9 @@ export const CartContext = React.createContext<CartContextData>({
     removeProductFromCart: (product) => {},
     cartItems: [],
     addToCart: (product) => {},
-    totalPrice: () => {},
-    calculateTotalQty: () => {},
-    totPricePerProduct: (product) => {}
+    totalPrice: () => 0,
+    calculateTotalQty: () => 0,
+    totPricePerProduct: (product) => 0
 }
 
 )
@@ -111,7 +111,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     }
     
 
-    const calculateTotalQty: () => void = () => {
+    const calculateTotalQty: () => number = () => {
         let total: number = 0
         const listOfProducts = [...cartItems]
         listOfProducts.forEach((item) => {
@@ -129,7 +129,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     }
 
     // display total price for single product 
-    const totPricePerProduct = (product: Product)  => {
+    const totPricePerProduct = (product: Product) => {
         
         const listOfProducts = [...cartItems]
 
@@ -141,18 +141,11 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     // displays total price for all items in cart
-    const totalPrice: () => void  = () => {
+    const totalPrice: () => number  = () => {
         const listOfProducts = [...cartItems]
         let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
         
-        let element = document.getElementById("priceDiv")
-            
-            if(element)
-            element.textContent = amount.toString();
-        
-
-            return amount
-        
+        return amount
     }
 
 

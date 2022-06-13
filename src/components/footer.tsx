@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useContext } from "react"
 import { CSSProperties } from "react"
 import { Colors } from '../data/colors'
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
@@ -9,11 +9,16 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import '../style/hero.css'
+import { Device, DeviceContext } from "./context/DeviceProvider";
 
+interface Props {}
 
-const Footer: FC = () => {
+const Footer: FC<Props> = (props) => {
+
+    const { devices } = useContext(DeviceContext)
+
     return (
-        <div style={{...footerStyle}}>
+        <div style={footerStyle(devices)}>
             <div style={socialMedia}>
                 <div style={footerLayout}>
                 <h4>Kontakta oss</h4>
@@ -49,16 +54,17 @@ const Footer: FC = () => {
 
 }
 
-const footerStyle: CSSProperties = {
+const footerStyle: (devices: Device) => CSSProperties = (devices) => {
+    return {
     position: 'relative',
     left: '0',
     bottom: '0',
     width: '100%',
     background: Colors.secondary,
     color: 'silver',
-    height: '240px',
     
-  
+    
+    }
 }
 
 const line: CSSProperties = {
@@ -84,7 +90,10 @@ const socialMedia: CSSProperties = {
     marginBottom: '2%',
     height: '70%',
     color: "white",
-    fontSize: "15px"
+    fontSize: "15px",
+    flexWrap: "wrap",
+    rowGap: "20px",
+    paddingTop: "20px"
 }
 
 const footerLayout: CSSProperties = {
