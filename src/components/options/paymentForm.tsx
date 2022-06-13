@@ -1,27 +1,26 @@
-import { CardForm } from 'react-payment';
- 
-onSubmit: (card) => {
-  const { number, exp_month, exp_year, cvc, name, zip } = card;
-  Stripe.card.createToken({
-    number,
-    exp_month,
-    exp_year,
-    cvc,
-    name,
-    address_zip: zip
-  }, (status, response) => {
-    if (response.error) {
-      alert('Adding card failed with error: ' + response.error.message);
-    } else {
-      const cardToken = response.id;
-      // send cardToken to server to be saved under the current user
-      // show success message and navigate away from form
-    }
-  });
+import React from 'react';
+import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs';
+import images from 'react-payment-inputs/images';
+
+export default function MyCards() {
+  const {
+    wrapperProps,
+    getCardImageProps,
+    getCardNumberProps,
+    getExpiryDateProps,
+    getCVCProps
+  } = usePaymentInputs();
+
+  return (
+    <PaymentInputsWrapper {...wrapperProps}>
+      <svg {...getCardImageProps({ images })} />
+      <input {...getCardNumberProps()} />
+      <input {...getExpiryDateProps()} />
+      <input {...getCVCProps()} />
+	 
+
+
+	  <button type='submit' onClick={() => console.log()}>Submit</button>
+    </PaymentInputsWrapper>
+  );
 }
- 
-<CardForm
-  onSubmit={this.onSubmit}
-  getName={true}
-  getZip={true}
-/>
