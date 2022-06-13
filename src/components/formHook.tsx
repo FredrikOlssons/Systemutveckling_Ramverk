@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useEffect, useState} from 'react'
 import Form  from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container'
 import { Button } from 'react-bootstrap';
@@ -16,10 +16,24 @@ export const FormField = () =>  {
   const { register, handleSubmit } = useForm();
   //cnonst  {formState:{errors, ...formState}} = useForm();
   const onSubmit =( data: any )=> console.log(data);
-  
 
+  const [fname, setFName] = useState("");
+  const [lname, setLName] = useState("");
+  const [email, setEmail] = useState("");
+  const [mobile, setLMobile] = useState("");
+  const [postCode, setPostCode] = useState("");
+  const [adress, setAdress] = useState("");
+  const [city, setCity] = useState("");
+ 
   
-
+  const validate = () => {
+    return onSubmit;
+   } //lname.length, email.length, mobile.length, postCode.length, adress.length, city.length
+  
+  
+  useEffect(() => {
+  },[validate])
+ 
   return (
  
 
@@ -31,16 +45,12 @@ export const FormField = () =>  {
           Förnamn
         </Label>
      
-        <Control type="text" placeholder="First name" {...register("First name", {
-          required: {
-            value: true,
-            message: "You must specify your first name before moving forward"
-        }, 
-        pattern: {
-          value: /^[a-zA-Z]+$/,
-          message: "That's not a valid name where I come from..."
-        }
-        })} />
+        <Control type="text" placeholder="First name" value={fname}
+        onChange={(e) => setFName(e.target.value) }
+        
+        
+        
+         />
    
         <Label>
           Efternamn
@@ -74,7 +84,7 @@ export const FormField = () =>  {
         </Label>
 <Control type="text" placeholder="Stad"  {...register("Stad", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
         
-        <Button style={submitStyling} type="submit" variant="contained" color="primary">Fortsätt</Button>
+        <Button style={submitStyling}  disabled={!validate()} type="submit" variant="contained" color="primary">Fortsätt</Button>
       </Group>
       
      

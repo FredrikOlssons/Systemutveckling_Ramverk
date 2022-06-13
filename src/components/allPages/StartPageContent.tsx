@@ -5,7 +5,9 @@ import Hero from "../Hero";
 import "../../style/hero.css";
 import { width } from "@mui/system";
 import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
+
 import { CartItem} from '../cartItem'
+
 import  MiniCart from '../miniCart'
 import MiniCartStartpage from '../minicartStartpage'
 
@@ -74,7 +76,7 @@ const Content: FC<Props> = (props) => {
          
 
         </div>
-      
+      </div>
     </>
   );
 };
