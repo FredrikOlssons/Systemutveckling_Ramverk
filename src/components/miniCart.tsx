@@ -65,7 +65,7 @@ interface Props {
         </List>
               
                 <div >
-                    <p id='totalPrice' onChange={() => {totalPrice()}}>Totalsumma: {totalPrice()} kr </p>
+                    <p id='totalPrice' onChange={() => {totalPrice()}}> Totalsumma: {totalPrice()} kr </p>
                 </div>
                
       </Grid>

@@ -5,11 +5,11 @@ import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Link } from 'react-router-dom';
 
 import '../style/hero.css'
-import '../style/badge.css'
+
 
 import { Badge, IconButton } from "@mui/material";
 import { CartContext } from '../components/context/cartProvider';
-
+import { Device, DeviceContext } from './context/DeviceProvider'
 
 
 
@@ -19,6 +19,9 @@ import { CartContext } from '../components/context/cartProvider';
 
 
 const Header: FC<Props> = (props) => {
+
+    const { devices } = useContext(DeviceContext)
+
     const { calculateTotalQty } = useContext(CartContext)
 
 
@@ -26,7 +29,7 @@ const Header: FC<Props> = (props) => {
         <>
         <div style={{...headerStyle, ...bodyContent}}>
             
-             <Link to={"/"} style={{...companyLogo}}> Wholehearted Family Adventure</Link>
+             <Link to={"/"} style={companyLogo(devices)}> Wholehearted Family Adventure</Link>
             <div style={{...cartDiv}}> 
                 <Link to={"/admin"}>
                 < SupervisorAccountIcon style={adminIcon}/>
@@ -36,9 +39,8 @@ const Header: FC<Props> = (props) => {
                  
                 <IconButton style={cartIcon} aria-label="cart">
 
-                    {/* OBS! Får kolla upp detta med Victor  */}
-                    <Badge style={styledBadge} className='styledBadge' color="secondary">
-                        <div style={styledBadge} id='styledbadge'>{calculateTotalQty()}</div> 
+                    <Badge style={styledBadge} badgeContent={calculateTotalQty()} color="secondary">
+                        
                         
                         <AddShoppingCartIcon />
                     </Badge>
@@ -67,17 +69,18 @@ const headerStyle: CSSProperties = {
     
 }
 
-const companyLogo: CSSProperties = {
-    
+const companyLogo: (devices: Device) => CSSProperties = (devices) => {
+    return {
     cursor: 'pointer',
     marginLeft: '2.5vw',
     color: 'silver',
     textDecoration: 'none',
-    fontSize: '2em',
+    fontSize: devices.isDesktop ? '2em' : devices.isTablet ? '30px' : devices.isMobile ? '20px' : "18px",
     display: "flex",
     alignItems: "center",
-    fontFamily: 'Frijole'
+    fontFamily: 'Frijole',
 
+    }
 
 }
 

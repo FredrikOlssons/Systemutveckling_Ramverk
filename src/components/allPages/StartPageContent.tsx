@@ -1,4 +1,4 @@
-import { FC, CSSProperties } from "react";
+import { FC, CSSProperties, useContext } from "react";
 import RenderProduct from "../productCard";
 import { products } from "../../data/products";
 import Hero from "../Hero";
@@ -7,37 +7,46 @@ import { width } from "@mui/system";
 import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
 import {cartItems, CartItem} from '../cartItem'
 import  MiniCart from '../miniCart'
+
+import { Device, DeviceContext } from "../context/DeviceProvider";
 import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
+
+
 
 interface Props {
   cartItems: CartItem
 }
 
-const Content: FC = (props) => {
+
+const Content: FC<Props> = (props) => {
+
+  const { devices } = useContext(DeviceContext)
+
   return (
     <>
      {/* <Hero /> */}
       <div style={productHeader}>
-        <h1 style={startpageheader}>
-          <span style={{ ...V, ...span }}>V</span>
-          <span style={{ ...ä, ...span }}>ä</span>
-          <span style={{ ...l1, ...span }}>l</span>
-          <span style={{ ...k, ...span }}>k</span>
-          <span style={{ ...o, ...span }}>o</span>
-          <span style={{ ...m1, ...span }}>m</span>
-          <span style={{ ...m2, ...span }}>m</span>
-          <span style={{ ...e, ...span }}>e</span>
-          <span style={{ ...n, ...span }}>n</span>
-          <span style={{ ...space, ...span }}>
-            <pre> </pre>
+        <h1 style={startpageheader(devices)}>
+          
+          <span style={span(devices)}><h2 style={{...V}}>V</h2></span>
+          <span style={span(devices)}><h2 style={{ ...ä}}>ä</h2></span>
+          <span style={span(devices)}><h2 style={{ ...l1}}>l</h2></span>
+          <span style={span(devices)}><h2 style={{ ...k}}>k</h2></span>
+          <span style={span(devices)}><h2 style={{ ...o}}>o</h2></span>
+          <span style={span(devices)}><h2 style={{ ...m1}}>m</h2></span>
+          <span style={span(devices)}><h2 style={{ ...m2}}>m</h2></span>
+          <span style={span(devices)}><h2 style={{ ...e}}>e</h2></span>
+          <span style={span(devices)}><h2 style={{ ...n}}>n</h2></span>
+          <span style={{ ...space}}>
+            
           </span>
-          <span style={{ ...t, ...span }}>t</span>
-          <span style={{ ...i, ...span }}>i</span>
-          <span style={{ ...l2, ...span }}>l</span>
-          <span style={{ ...l3, ...span }}>l</span>
+          <span style={span(devices)}><h2 style={{ ...t}}>t</h2></span>
+          <span style={span(devices)}><h2 style={{ ...i}}>i</h2></span>
+          <span style={span(devices)}><h2 style={{ ...l2}}>l</h2></span>
+          <span style={span(devices)}><h2 style={{ ...l3}}>l</h2></span>
         </h1>
 
-        <h1 style={startpageheader}>Wholehearted Family Adventure</h1>
+        <h1 style={startpageheader(devices)}>Wholehearted Family Adventure</h1>
         
         {/* <h2 style={startpagesubHeader}>Tjatar ungarna på att de har tråkigt på helgerna? Brukar släktmiddagarna bara bli artiga och 
             stela, eller har familjen fastnat i en loop av rutiner med sina skärmar på fredagskvällarna? Lösningen är sällskapsspel! 
@@ -56,10 +65,13 @@ const Content: FC = (props) => {
         </div>
         <div style={cartDiv}>
 
+
+          
+
           <div style={cartContainer}>Cart<MiniCart/></div>
         
 
-         </div>
+         
 
         </div>
       
@@ -69,7 +81,7 @@ const Content: FC = (props) => {
 
 const V: CSSProperties = {
   transform: "translate(20px, 30px) rotate(-22deg)",
-  fontSize: "40px",
+  
 };
 
 const ä: CSSProperties = {
@@ -106,6 +118,7 @@ const n: CSSProperties = {
 
 const space: CSSProperties = {
   transform: "translate(-2px, 10px) rotate(6deg)",
+  marginLeft: "0.5em"
 };
 
 const t: CSSProperties = {
@@ -124,12 +137,17 @@ const l3: CSSProperties = {
   transform: "translate(-20px, 30px) rotate(22deg)",
 };
 
-const span: CSSProperties = {
+const span: (devices: Device) => CSSProperties = (devices) => {
+  return {
   display: "inline-block",
   margin: "1px",
-  fontSize: "60px",
+  fontSize: "80px",
   marginBottom: "40px",
+
+  }
 };
+
+
 
 const productHeader: CSSProperties = {
   textAlign: "center",
@@ -143,9 +161,13 @@ const productHeader: CSSProperties = {
   flexDirection: 'column',
 };
 
-const startpageheader: CSSProperties = {
+const startpageheader: (devices: Device) => CSSProperties = (devices) => {
+  return {
   fontFamily: "Frijole, cursive",
   margin: "0",
+  fontSize: devices.isDesktop ? '2em' : devices.isTablet ? '30px' : devices.isMobile ? '20px' : "18px",
+
+  }
 };
 
 const startpagesubHeader: CSSProperties = {

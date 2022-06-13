@@ -58,14 +58,14 @@ const CheckOut: FC<Props> = (props) => {
               
                 </Box>
                 </div>
-                {/* OBS! Detta behöver uppdateras  */}
+                
                 <Box style={litleBox}>
 
-                    <h2>Summa</h2>
-                    <h3>Totalsumma (inkl. moms): {totalPrice()} kr </h3>
+                    <h1>Översikt</h1>
 
                     <h3>Frakt: </h3>
                     <h3>Betalningssätt: </h3>
+                    <h3>Totalsumma (inkl. moms):  kr </h3>
 
                     <div style={buttonStyle}>
                     <Button variant="contained" color="primary">Slutför köp</Button>
@@ -117,6 +117,7 @@ const title: CSSProperties = {
     margin: "40px",
     color: "silver",
     fontFamily: "Frijole, cursive",
+    textAlign: "center"
 
 }
 
