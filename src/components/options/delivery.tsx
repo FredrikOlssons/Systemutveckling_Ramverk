@@ -39,7 +39,7 @@ export const Delivery: FC<Props> = (props) => {
                 {
                 deliveryList.map((choosenDelivery) => {
                     return (
-                    <>
+                    
                     <div key={choosenDelivery.id} style={deliveryBox}>
                         <div>
 
@@ -63,7 +63,7 @@ export const Delivery: FC<Props> = (props) => {
                     </div>
                     
                     
-                    </>
+                    
                     )
                 })
 
