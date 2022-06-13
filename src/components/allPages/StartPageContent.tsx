@@ -5,11 +5,14 @@ import Hero from "../Hero";
 import "../../style/hero.css";
 import { width } from "@mui/system";
 import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
-import {CartItem} from '../cartItem'
+
+import { CartItem} from '../cartItem'
+
 import  MiniCart from '../miniCart'
+import MiniCartStartpage from '../minicartStartpage'
 
 import { Device, DeviceContext } from "../context/DeviceProvider";
-import { unstable_createMuiStrictModeTheme } from "@material-ui/core";
+
 
 
 
@@ -66,9 +69,8 @@ const Content: FC<Props> = (props) => {
         <div style={cartDiv}>
 
 
-          
-
-          <div style={cartContainer}>Cart<MiniCart/></div>
+       
+          <div style={cartContainer}>Cart<MiniCartStartpage/></div>
         
 
          
@@ -222,9 +224,8 @@ const cartContainer: CSSProperties = {
   justifyContent: "center",
   textAlign: "center",
   columnGap: "20px",
-  padding: "20px",
-  paddingTop: "50px",
-  paddingBottom: "50px",
+  paddingTop: "30px",
+  paddingBottom: "20px",
   borderRadius: "15px",
   border: "solid",
   borderColor: "black",
@@ -235,8 +236,9 @@ const cartContainer: CSSProperties = {
 
 const cartDiv: CSSProperties = {
   width: "18%",
-  paddingTop: "50px",
-  paddingBottom: "50px",
+  minWidth: '200px'
+  /* paddingTop: "50px",
+  paddingBottom: "50px", */
 };
 
 export default Content;
