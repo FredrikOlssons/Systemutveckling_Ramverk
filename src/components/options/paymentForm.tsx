@@ -1,58 +1,27 @@
-
-import React, { useState } from "react";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
-
-const MyCards = () => {
-	const [data, setData] = useState({
-		cvc: "",
-		expiry: "",
-		name: "",
-		number: ""
-	});
-	const handleInputChange = (e: { target: { name: any; value: any; }; }) => {
-		setData({
-			...data,
-			[e.target.name]: e.target.value
-		});
-	};
-
-	return (
-		<div id="PaymentForm">
-			<Cards
-				cvc={data.cvc}
-				expiry={data.expiry}
-				name={data.name}
-				number={data.number}
-			/>
-			<form action="">
-				<input
-					type="number"
-					name="cvc"
-					placeholder="CVC"
-					onChange={handleInputChange}
-				/>
-				<input
-					type="date"
-					name="expiry"
-					placeholder="Expire Date"
-					onChange={handleInputChange}
-				/>
-				<input
-					type="text"
-					name="name"
-					placeholder="Your Name"
-					onChange={handleInputChange}
-				/>
-				<input
-					type="number"
-					name="number"
-					placeholder="Card Number"
-					onChange={handleInputChange}
-				/>
-			</form>
-		</div>
-	);
-};
-
-export default MyCards;
+import { CardForm } from 'react-payment';
+ 
+onSubmit: (card) => {
+  const { number, exp_month, exp_year, cvc, name, zip } = card;
+  Stripe.card.createToken({
+    number,
+    exp_month,
+    exp_year,
+    cvc,
+    name,
+    address_zip: zip
+  }, (status, response) => {
+    if (response.error) {
+      alert('Adding card failed with error: ' + response.error.message);
+    } else {
+      const cardToken = response.id;
+      // send cardToken to server to be saved under the current user
+      // show success message and navigate away from form
+    }
+  });
+}
+ 
+<CardForm
+  onSubmit={this.onSubmit}
+  getName={true}
+  getZip={true}
+/>

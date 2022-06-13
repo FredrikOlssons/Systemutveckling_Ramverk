@@ -5,6 +5,10 @@ import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
 
 
+
+
+
+
     const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
      .min(2, 'Too Short!')
@@ -62,13 +66,14 @@ import { Button } from "@mui/material";
               console.log(values);
             }}
           >
+         
             {({ errors, touched }) => (
               <>
               <Form>
                 <Grid style={gridContainer}>
                     <Grid style={grid} item xs={12} sm={6}>
                       Förnamn:
-                      <Field name="firstName" />
+                      <Field name="firstName" id='fname'/>
                       {errors.firstName && touched.firstName ? (
                         <div>{errors.firstName}</div>
                         ) : null}
