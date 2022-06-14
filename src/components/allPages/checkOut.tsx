@@ -15,7 +15,6 @@ import ValidationSchemaExample from "../formField";
 
 
 
-
 interface Props {
     products: Product
     
@@ -59,6 +58,7 @@ const CheckOut: FC<Props> = (props) => {
                         <br />
                         <Delivery />
 
+
                     </Box>
                     
                     
@@ -70,19 +70,27 @@ const CheckOut: FC<Props> = (props) => {
                         <Payment /> 
                     
                     </Box>
+
+
+                </Box>
+
                 </div>
                 
                 <Box style={litleBox}>
 
+
                     <h1 style={{textAlign: "center"}}>Översikt</h1>
                     <hr style={{width: "80%", margin: "auto"}} />
                     <br />
+
                     <h3>Frakt: </h3>
                     
                     <h3>Betalningssätt: </h3>
+
     
                     <h3 style={{margin: "0"}}>Totalsumma: {totalPriceAllProduct()} kr </h3>
                     <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
+
 
                     <div style={buttonStyle}>
                         <Button variant="contained" color="primary">Slutför köp</Button>
@@ -97,7 +105,6 @@ const CheckOut: FC<Props> = (props) => {
 
 
 const firstBox: CSSProperties = {
-    //width: "60%",
     height: 'fit-content',
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
@@ -111,7 +118,6 @@ const firstBox: CSSProperties = {
 
 
 const secondBox: CSSProperties = {
-    //width: "60%",
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
@@ -125,17 +131,12 @@ const secondBox: CSSProperties = {
     flexWrap: 'wrap',
 }
 
-
-
-
 const title: CSSProperties = {
     display: "flex", 
     justifyContent: "center",
     margin: "40px",
     color: "silver",
     fontFamily: "Frijole, cursive",
-    textAlign: "center"
-
 }
 
 const litleBox: CSSProperties = {
@@ -150,7 +151,6 @@ const litleBox: CSSProperties = {
     marginBottom: '60px',
 }
 
-
 const Container: CSSProperties = {
     display: "flex",
     flexDirection: "row",
@@ -158,9 +158,6 @@ const Container: CSSProperties = {
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
 }
-
-
-
 
 const buttonStyle: CSSProperties = {
     display: "flex", 

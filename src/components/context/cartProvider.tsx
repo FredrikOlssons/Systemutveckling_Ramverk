@@ -50,6 +50,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const [cartItems, setCart] = useState<CartItem[]> ([])
     
+
     const [customer, setCustomer] = useState<Customer | undefined> ()
 
     const [shipper, setShipper] = useState<Delivery | undefined> ()
@@ -58,19 +59,14 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
      
     
 
- 
-    const addToCart = (product: Product) => {
-    
-        const updatedCart = [...cartItems]
-        
-        const found = updatedCart.findIndex((item) => item.product.id == product.id)
-        
-        
+  const addToCart = (product: Product) => {
+    const updatedCart = [...cartItems]
+    const found = updatedCart.findIndex((item) => item.product.id == product.id)
+
         if(found == -1){
-            
             updatedCart.push({product, quantity: 1 });
-            
         }else{
+
             
             updatedCart[found].quantity++ 
             
@@ -81,7 +77,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     }
 
-    
+
     // removes one product at a time
     const removeFromCart = (product: Product) => {
 

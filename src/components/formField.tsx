@@ -6,6 +6,10 @@ import { Button } from "@mui/material";
 import {Customer } from './customer';
 import { CartContext } from './context/cartProvider';
 
+
+
+
+
     const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
      .min(2, 'Too Short!')
@@ -69,12 +73,14 @@ import { CartContext } from './context/cartProvider';
               console.log(values);
             }}
           >
+         
             {({ errors, touched }) => (
               <>
               <Form>
                 <Grid style={gridContainer}>
                     <Grid style={grid} item xs={12} sm={6}>
                       Förnamn:
+
                       <div style={inputForm}>
 
                         <Field name="firstName" />
@@ -87,9 +93,6 @@ import { CartContext } from './context/cartProvider';
                       </div>
                       </Grid>
                       
-                        
-
-                       
                       
 
                     <Grid style={grid} item xs={12} sm={6}>
