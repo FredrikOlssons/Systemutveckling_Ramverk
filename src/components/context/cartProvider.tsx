@@ -56,6 +56,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const [payment, setPayment] = useState<Payment | undefined> ()
      
     
+   
 
   const addToCart = (product: Product) => {
     const updatedCart = [...cartItems]
@@ -147,11 +148,16 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
         let totPrice: number = 0
 
-        const delivery = [shipper]
-        const payments = [payment]
+        //const delivery = [shipper]
+        //const payments = [payment]
 
         
-
+        if(shipper) {
+            totPrice += shipper.price
+    
+        }
+        
+        console.log(totPrice)
         // Lägga till funktionen ovan och inkludera nya variabler som tar in pris för frakt/betalning
 
 

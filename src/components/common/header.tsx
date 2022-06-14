@@ -84,7 +84,7 @@ const cartDiv: CSSProperties = {
     display: 'flex',
     justifyContent: 'flex-end',
     justifyItems: 'flex-end',
-    gap: "15px"
+    gap: "5px"
   
 
     
