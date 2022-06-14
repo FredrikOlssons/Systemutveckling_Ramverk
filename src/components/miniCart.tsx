@@ -23,7 +23,7 @@ interface Props {
   
   
   const MiniCart: FC<Props> = (props) => {
-    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPrice, totPricePerProduct} = useContext(CartContext)
+    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPriceAllProduct, totPricePerProduct} = useContext(CartContext)
     const [secondary, setSecondary] = React.useState(false);
   
   
@@ -65,7 +65,7 @@ interface Props {
         </List>
               
                 <div >
-                    <p id='totalPrice' onChange={() => {totalPrice()}}> Totalsumma: {totalPrice()} kr </p>
+                    <p id='totalPrice' onChange={() => {totalPriceAllProduct()}}> Totalsumma: {totalPriceAllProduct()} kr </p>
                 </div>
                
       </Grid>

@@ -3,8 +3,13 @@ import { CartItem } from '../cartItem'
 import {products, Product} from "../../data/products"
 
 
-import { UpdateSharp } from "@material-ui/icons";
+
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
+import { Payment } from '../../data/payment';
+import { Delivery } from '../../data/delivery';
+import { Customer } from '../customer';
+
+
 
 
 interface Props {}
@@ -15,10 +20,15 @@ export interface CartContextData {
     removeFromCart: (product: Product) => void
     removeProductFromCart: (product: Product) => void
     cartItems: CartItem[],
+    customer?: Customer,
+    shipper?: Delivery,
+    payment?: Payment,
+
     addToCart: (product: Product) => void
-    totalPrice: () => number
+    totalPriceAllProduct: () => number
     calculateTotalQty: () => number
     totPricePerProduct: (product: Product) => number
+    totalPrice: () => number
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -27,9 +37,11 @@ export const CartContext = React.createContext<CartContextData>({
     removeProductFromCart: (product) => {},
     cartItems: [],
     addToCart: (product) => {},
-    totalPrice: () => 0,
+    totalPriceAllProduct: () => 0,
     calculateTotalQty: () => 0,
-    totPricePerProduct: (product) => 0
+    totPricePerProduct: (product) => 0,
+    totalPrice: () => 0
+   
 }
 
 )
@@ -38,16 +50,19 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const [cartItems, setCart] = useState<CartItem[]> ([])
     
-  
-    
+    const [customer, setCustomer] = useState<Customer | undefined> ()
+
+    const [shipper, setShipper] = useState<Delivery | undefined> ()
+
+    const [payment, setPayment] = useState<Payment | undefined> ()
      
     
 
  
-     const addToCart = (product: Product) => {
-        
+    const addToCart = (product: Product) => {
+    
         const updatedCart = [...cartItems]
-       
+        
         const found = updatedCart.findIndex((item) => item.product.id == product.id)
         
         
@@ -57,26 +72,14 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             
         }else{
             
-            updatedCart[found].quantity++
+            updatedCart[found].quantity++ 
             
-           
-            
-            
-        }
-
-        
+        }   
 
         setCart(updatedCart)
         console.log(updatedCart)
-      
 
-    
     }
-
-
-
-    
-
 
     
     // removes one product at a time
@@ -99,6 +102,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
        
     }
+
 
     // removes the entire product regardless how many in cart 
     const removeProductFromCart = (product: Product) =>  {
@@ -128,6 +132,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
     }
 
+
     // display total price for single product 
     const totPricePerProduct = (product: Product) => {
         
@@ -141,13 +146,24 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     // displays total price for all items in cart
-    const totalPrice: () => number  = () => {
+    const totalPriceAllProduct: () => number  = () => {
         const listOfProducts = [...cartItems]
         let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
         
         return amount
     }
 
+    // display total price incl. payment/delivery
+
+    const totalPrice: () => number = () => {
+        
+        let totPrice: number = 0
+
+        // Lägga till funktionen ovan och inkludera nya variabler som tar in pris för frakt/betalning
+
+
+        return totPrice
+    } 
 
 
     useEffect(()=>{
@@ -183,7 +199,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     return (
-        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPrice, calculateTotalQty, totPricePerProduct}}>
+        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPriceAllProduct, calculateTotalQty, totPricePerProduct, customer, shipper, payment, totalPrice}}>
             {props.children}
         </CartContext.Provider>
     )   

@@ -1,9 +1,10 @@
-import { FC, CSSProperties } from 'react'; 
+import { FC, CSSProperties, useContext } from 'react'; 
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
-
+import {Customer } from './customer';
+import { CartContext } from './context/cartProvider';
 
     const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -34,15 +35,19 @@ import { Button } from "@mui/material";
    .max(50, 'Too Long!')
    .required('Required'),
    phoneNumber: Yup.number()
-   .min(9, 'Too Short!')
-   .max(12, 'Too Long!')
-   .required('Required'),
+   .min(2, 'Too Short!')
+   .max(50, 'Too Long!')
+   .required('Required')
+   .typeError("Must be a number")
+  }); 
+  
+  export const ValidationSchemaExample = () => {
+    
+    const { setCustomer } = useContext(CartContext)
 
-    }); 
- 
-    export const ValidationSchemaExample = () => (
+      return ( 
         <div style={formStyling}>
-          
+
           <Formik
             initialValues={{
               firstName: '',
@@ -57,8 +62,10 @@ import { Button } from "@mui/material";
             }}
             validationSchema={SignupSchema}
             onSubmit={values => {
+
               // same shape as initial values
-              // DO SOMETHING HERE FOR SUBMIT :)))))))))))
+
+              setCustomer(values as Customer)
               console.log(values);
             }}
           >
@@ -68,34 +75,50 @@ import { Button } from "@mui/material";
                 <Grid style={gridContainer}>
                     <Grid style={grid} item xs={12} sm={6}>
                       Förnamn:
-                      <Field name="firstName" />
-                      {errors.firstName && touched.firstName ? (
-                        <div>{errors.firstName}</div>
-                        ) : null}
+                      <div style={inputForm}>
+
+                        <Field name="firstName" />
+                        
+                        {errors.firstName && touched.firstName ? (
+                          <div>{errors.firstName}</div>
+                          ) : null}
+                        
+                        
+                      </div>
+                      </Grid>
                       
-                    </Grid>
+                        
+
+                       
+                      
 
                     <Grid style={grid} item xs={12} sm={6}>
                     Efternamn:
+                    <div style={inputForm}>
                       <Field name="lastName" />
                       {errors.lastName && touched.lastName ? (
                         <div>{errors.lastName}</div>
                       ) : null}
+                    </div>
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
                       E-post:
+                    <div style={inputForm}>
                       <Field name="email" type="email" />
                       {errors.email && touched.email ? <div>{errors.email}</div> 
                       : null}
+                    </div>
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
                     Address:
+                    <div style={inputForm}>
                     <Field name="streetAdress" />
                     {errors.streetAdress && touched.streetAdress ? (
                       <div>{errors.streetAdress}</div>
                     ) : null}
+                    </div>
                     </Grid>
                   </Grid>
                 </Form>
@@ -104,36 +127,45 @@ import { Button } from "@mui/material";
                     <Grid style={gridContainer}>
                     <Grid style={grid} item xs={12} sm={6}>
                     Postnummer:
+                    <div style={inputForm}>
                     <Field name="postalCode" />
                     {errors.postalCode && touched.postalCode ? (
                       <div>{errors.postalCode}</div>
                     ) : null}
+                    </div>
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
                     Stad:
+                    <div style={inputForm}>
                     <Field name="town" />
                     {errors.town && touched.town ? (
                       <div>{errors.town}</div>
                     ) : null}
+                    </div>
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
                     Land:
+                    <div style={inputForm}>
                     <Field name="country" />
                     {errors.country && touched.country ? (
                       <div>{errors.country}</div>
                     ) : null}
+                    </div>
                     </Grid>
 
                     <Grid style={grid} item xs={12} sm={6}>
                     Tel.nummer:
+                    <div style={inputForm}>
                     <Field name="phoneNumber" />
                     {errors.phoneNumber && touched.phoneNumber ? (
-                      <div></div>
+                      <div>{errors.phoneNumber}</div>
                     ) : null}
+                    </div>
                     </Grid>
                     <Grid style={submitStyling} item xs={12} sm={6}>
+
                     <Button type="submit" variant="contained" color="primary">Vidare</Button>
                     
                     </Grid>
@@ -144,8 +176,8 @@ import { Button } from "@mui/material";
             )}
           </Formik>
         </div>
-                  
-      );
+      )
+  };
 
 
  const formStyling: CSSProperties = {
@@ -173,6 +205,11 @@ const grid: CSSProperties = {
 const submitStyling: CSSProperties = {
   display: "flex",
   justifyContent: "center"
+}
+
+const inputForm: CSSProperties = {
+  display: "flex",
+  flexDirection: "column"
 }
 
 

@@ -14,13 +14,12 @@ export const Payment: FC<Props> = (props) => {
 
     const [isChoosenPayment, setIsChoosenPayment] = useState("")
   
-
     
 
 
     return (
         <FormControl>
-            <h2>{isChoosenPayment}</h2>
+            <h3>{isChoosenPayment}</h3>
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"

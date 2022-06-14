@@ -12,7 +12,8 @@ import { minWidth } from '@material-ui/core/node_modules/@material-ui/system';
 import "../../style/hero.css";
 
 import { CartContext } from '../context/cartProvider';
-
+import { Alert, Snackbar, Stack } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
 
 interface Props {
     products: Product
@@ -30,8 +31,29 @@ const SinglePage: FC<Props> = (props) => {
         return <Navigate to="/" />
     }
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     return (
+        <>
+        <div style={{...breadcrumbs}}>
+            <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
+            <Link to={"/"} style={{...breadcrumbs}}>
+            Startsida
+            </Link>
+
+        </div>
         
         <span style={singleProductContainer}>
             <span style={imgDiv}>
@@ -45,10 +67,24 @@ const SinglePage: FC<Props> = (props) => {
                 
                 <div style={priceDiv}>
                     <h3>Pris: {foundProduct.price} kr</h3>
-                    <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
+
+                    <Stack spacing={2} sx={{ width: '100%' }}>
+                        <div onClick={handleClick} >
+                        <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
+                        </div>
+
+                        <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                                Produkten har lagts i kundkorgen!
+                            </Alert>
+                        </Snackbar>
+                        </Stack>
+
+                
                 </div>
             </div>
         </span>
+        </>
     )
 }
 
@@ -67,6 +103,12 @@ const singleProductContainer: CSSProperties = {
     //gap: "40px",
     minWidth: '300px'
    
+}
+
+const breadcrumbs: CSSProperties = {
+    color: "white",
+    
+
 }
 
 const imgDiv: CSSProperties = {

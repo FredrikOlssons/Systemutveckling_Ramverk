@@ -21,8 +21,6 @@ import {CartItem} from './cartItem'
 
 
 
-
-
 export function displayProductsInCart() {
   const { cartItems } = useContext(CartContext)
   console.log(cartItems)
@@ -32,16 +30,13 @@ export function displayProductsInCart() {
 
 
 
-
-
-
 interface Props {
   cartItems: CartItem
 }
 
 
 export default function CartList() {
-  const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPrice, totPricePerProduct} = useContext(CartContext)
+  const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPriceAllProduct, totPricePerProduct} = useContext(CartContext)
   const [secondary, setSecondary] = React.useState(false);
 
   const getShortTextVersion: (text: string) => string = (text) => {
@@ -51,19 +46,22 @@ export default function CartList() {
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
-      <FormGroup row>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={secondary}
-              onChange={(event) => setSecondary(event.target.checked)}
-            />
-          }
-          label="Visa produktbeskrivning"
-        />
-        
-      </FormGroup>
-
+      {
+        cartItems.length > 0 ? 
+      
+        <FormGroup row>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={secondary}
+                onChange={(event) => setSecondary(event.target.checked)}
+              />
+            }
+            label="Visa produktbeskrivning"
+          />
+          
+        </FormGroup> : undefined
+      }
       <Grid>
         <List style={cartItemsStyle}>
         
@@ -80,7 +78,7 @@ export default function CartList() {
                       <ListItemText style={column} secondary={secondary ? getShortTextVersion(cartItem.product.description) : null} />
                     </div>
 
-                    {/* OBS! Får kolla upp detta med Victor */} 
+                    
                     <div style={{ ...cartPriceStyle }}> Pris: {totPricePerProduct(cartItem.product)}kr</div>
                   </>
 
@@ -97,9 +95,9 @@ export default function CartList() {
               )
             })}
         </List>
-                {/* OBS! Får kolla upp detta med Victor  */}
+
                 <div style={totalSum} >
-                    <p id='totalPrice'>Totalsumma: {totalPrice()} kr </p>
+                    <p id='totalPrice'>Totalsumma: {totalPriceAllProduct()} kr </p>
                 </div>
                
       </Grid>
