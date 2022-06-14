@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
-import {Customer } from './customer';
+import {Customer } from './interfaces/customer';
 import { CartContext } from './context/cartProvider';
 
 
@@ -47,7 +47,7 @@ import { CartContext } from './context/cartProvider';
   
   export const ValidationSchemaExample = () => {
     
-    const { setCustomer } = useContext(CartContext)
+    //const { setCustomer } = useContext(CartContext)
 
       return ( 
         <div style={formStyling}>
@@ -69,7 +69,7 @@ import { CartContext } from './context/cartProvider';
 
               // same shape as initial values
 
-              setCustomer(values as Customer)
+              //setCustomer(values as Customer)
               console.log(values);
             }}
           >

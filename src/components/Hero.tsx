@@ -2,10 +2,7 @@ import { Container, Box } from "@mui/material";
 import React, { CSSProperties, useContext } from "react";
 import { FC } from "react";
 import { CssBaseline } from "@material-ui/core";
-import { Colors } from '../data/colors';
 import lady from '../assets/lady.jpg'
-import { width } from "@mui/system";
-import { fontSize, fontStyle } from "@material-ui/core/node_modules/@material-ui/system";
 import '../style/hero.css'
 import { Device, DeviceContext } from "./context/DeviceProvider";
 

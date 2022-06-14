@@ -1,6 +1,6 @@
 
 import React, {useContext, CSSProperties, FC} from 'react'
-import { CartContext } from './context/cartProvider'
+import { CartContext } from '../context/cartProvider'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -18,10 +18,10 @@ interface Props {
   
   
   const MiniCartStartpage: FC<Props> = (props) => {
-    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPrice, totPricePerProduct} = useContext(CartContext)
-    const [secondary, setSecondary] = React.useState(false);
-  
-  
+    
+    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPriceAllProduct } = useContext(CartContext)
+    
+
 
   return (
     <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
@@ -52,13 +52,14 @@ interface Props {
                     </div>
                     
                 </div>
+                
                 </ListItem>
               )
             })}
         </List>
               
                 <div >
-                    <p id='totalPrice' onChange={() => {totalPrice()}}>Totalsumma: {totalPrice()} kr </p>
+                    <p id='totalPrice' onChange={() => {totalPriceAllProduct()}}>Totalsumma: {totalPriceAllProduct()} kr </p>
                 </div>
                
       </Grid>
