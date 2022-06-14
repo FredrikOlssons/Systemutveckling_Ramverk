@@ -4,14 +4,10 @@ import { FC, CSSProperties, useContext } from "react";
 import Delivery from "../options/delivery";
 import "../../style/hero.css"
 import { Payment } from '../options/payment'
-import Cartlist from '../cartList'
+import Cartlist from '../functions/cartList'
 import { Product, products } from '../../data/products'
-import { FormField } from '../formHook'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
-
-
-
 
 
 
@@ -33,10 +29,10 @@ const CheckOut: FC<Props> = (props) => {
                 <div>
                     <Box style={firstBox}>
                         <h2 style={{textAlign: "center"}}>Varukorg</h2>
-                        <hr style={{width: "80%", margin: "auto"}} />
+                        <hr style={{width: "85%", margin: "auto"}} />
                         <br />
                         {
-                        cartItems.length == 0 ? <h3>Kundvagnen är tom</h3> : undefined
+                        cartItems.length == 0 ? <h3>Kundvagnen är tom 😵</h3> : undefined
                         }
                         <Cartlist/>
 
@@ -44,7 +40,7 @@ const CheckOut: FC<Props> = (props) => {
                             
                     <Box style={secondBox}>
                     <h3 style={{textAlign: "center"}}>Fyll i dina kontaktuppgifter</h3>
-                    <hr style={{width: "80%", margin: "auto"}} />
+                    <hr style={{width: "85%", margin: "auto"}} />
                     <br />
                     <div style={contactForm}>
                         <ValidationSchemaExample/>
@@ -54,7 +50,7 @@ const CheckOut: FC<Props> = (props) => {
 
                     <Box style={secondBox}>
                         <h3 style={{textAlign: "center"}}>Fraktalternativ</h3>
-                        <hr style={{width: "80%", margin: "auto"}} />
+                        <hr style={{width: "85%", margin: "auto"}} />
                         <br />
                         <Delivery />
 
@@ -65,14 +61,14 @@ const CheckOut: FC<Props> = (props) => {
                     <Box style={secondBox}>
 
                         <h3 style={{textAlign: "center"}}>Betalningsalternativ</h3>
-                        <hr style={{width: "80%", margin: "auto"}} />
+                        <hr style={{width: "85%", margin: "auto"}} />
                         <br />
                         <Payment /> 
                     
                     </Box>
 
 
-                </Box>
+                
 
                 </div>
                 
@@ -111,7 +107,7 @@ const firstBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px",
+    padding: "20px",
     backgroundColor: "white",
     minWidth: '300px',
 }
@@ -123,7 +119,7 @@ const secondBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "10px",
+    padding: "20px",
     backgroundColor: "white",
     display: "flex",
     flexDirection: "column",
@@ -137,6 +133,7 @@ const title: CSSProperties = {
     margin: "40px",
     color: "silver",
     fontFamily: "Frijole, cursive",
+    textAlign: "center"
 }
 
 const litleBox: CSSProperties = {
@@ -144,7 +141,7 @@ const litleBox: CSSProperties = {
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
-    padding: "10px",
+    padding: "20px",
     backgroundColor: "white",
     minWidth: '300px',
     height: 'fit-content',

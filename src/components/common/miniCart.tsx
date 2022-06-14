@@ -1,7 +1,7 @@
 
 import React, {useContext, CSSProperties, FC} from 'react'
-import { CartContext } from './context/cartProvider'
-import { CartItem } from './cartItem'
+import { CartContext } from '../context/cartProvider'
+import { CartItem } from '../interfaces/cartItem'
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -9,9 +9,6 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -23,8 +20,9 @@ interface Props {
   
   
   const MiniCart: FC<Props> = (props) => {
-    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPriceAllProduct, totPricePerProduct} = useContext(CartContext)
-    const [secondary, setSecondary] = React.useState(false);
+
+    const {cartItems, addToCart, removeFromCart, removeProductFromCart, totalPriceAllProduct } = useContext(CartContext)
+    
   
   
 
@@ -72,7 +70,7 @@ interface Props {
     </Box >
     )
   
-          }
+  }
 
 const cartItemsStyle: CSSProperties = {
   width: "100%",

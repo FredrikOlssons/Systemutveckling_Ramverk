@@ -1,13 +1,11 @@
-import { CartItem } from '../cartItem'
+import { CartItem } from '../interfaces/cartItem'
 
 import {products, Product} from "../../data/products"
-
-
 
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
 import { Payment } from '../../data/payment';
 import { Delivery } from '../../data/delivery';
-import { Customer } from '../customer';
+import { Customer } from '../interfaces/customer';
 
 
 
@@ -117,12 +115,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         listOfProducts.forEach((item) => {
             total += item.quantity
         })
-       
-        let element = document.getElementById("styledBadge")
-        
-
-        if(element)
-        element.textContent = total.toString();
 
         return total 
         
@@ -149,11 +141,16 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         return amount
     }
 
-    // display total price incl. payment/delivery
+    // display total price inkl. payment/delivery
 
     const totalPrice: () => number = () => {
         
         let totPrice: number = 0
+
+        const delivery = [shipper]
+        const payments = [payment]
+
+        
 
         // Lägga till funktionen ovan och inkludera nya variabler som tar in pris för frakt/betalning
 

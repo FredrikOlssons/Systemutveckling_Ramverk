@@ -1,15 +1,11 @@
 import { FC, CSSProperties, useContext } from "react";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import { bodyContent } from "../style/common";
+import { bodyContent } from "../../style/common";
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import { Link } from 'react-router-dom';
-
-import '../style/hero.css'
-
-
 import { Badge, IconButton } from "@mui/material";
-import { CartContext } from '../components/context/cartProvider';
-import { Device, DeviceContext } from './context/DeviceProvider'
+import { CartContext } from '../context/cartProvider';
+import { Device, DeviceContext } from '../context/DeviceProvider'
 
 
 

@@ -3,10 +3,8 @@ import RenderProduct from "../productCard";
 import { products } from "../../data/products";
 import Hero from "../Hero";
 import "../../style/hero.css";
-import { width } from "@mui/system";
-import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
-import { CartItem} from '../cartItem'
-import MiniCartStartpage from '../minicartStartpage'
+import { CartItem} from '../interfaces/cartItem'
+import MiniCartStartpage from '../common/minicartStartpage'
 import { Device, DeviceContext } from "../context/DeviceProvider";
 
 
@@ -128,7 +126,7 @@ const span: (devices: Device) => CSSProperties = (devices) => {
   return {
   display: "inline-block",
   margin: "1px",
-  fontSize: "80px",
+  fontSize: "100%",
   marginBottom: "40px",
   }
 };

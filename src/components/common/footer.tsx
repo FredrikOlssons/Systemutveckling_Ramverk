@@ -1,15 +1,14 @@
 import { FC, useContext } from "react"
 import { CSSProperties } from "react"
-import { Colors } from '../data/colors'
+import { Colors } from '../../data/colors'
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { minWidth, textAlign } from "@mui/system";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import '../style/hero.css'
-import { Device, DeviceContext } from "./context/DeviceProvider";
+
+import { Device, DeviceContext } from "../context/DeviceProvider";
 
 interface Props {}
 
@@ -110,7 +109,7 @@ const footerLayout: CSSProperties = {
 const footerLogo: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '10px',
+    /* rowGap: '10px', */
     minWidth: '200px',
     textAlign: 'center',
     alignItems: 'center',
@@ -121,13 +120,15 @@ const footerLogo: CSSProperties = {
 const footerRow: CSSProperties = {
     display: 'flex',
     gap: '10px',
+    alignItems: "center"
 }
 
 const footerRow2: CSSProperties = {
     display: 'flex',
     gap: '10px',
     textAlign: 'center',
-    marginLeft: '30%'
+    marginLeft: '30%',
+    alignItems: "center"
 }
 
 const footerTag: CSSProperties = {

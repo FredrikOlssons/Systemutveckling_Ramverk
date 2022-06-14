@@ -6,14 +6,12 @@ import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC, useContext } from "react";
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'; 
-import { BorderColor } from '@material-ui/icons';
-import { borderColor, height, width } from '@mui/system';
-import { minWidth } from '@material-ui/core/node_modules/@material-ui/system';
+
 import "../../style/hero.css";
 
 import { CartContext } from '../context/cartProvider';
 import { Alert, Snackbar, Stack } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 interface Props {
     products: Product
@@ -48,9 +46,9 @@ const SinglePage: FC<Props> = (props) => {
     return (
         <>
         <div style={{...breadcrumbs}}>
-            <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-            <Link to={"/"} style={{...breadcrumbs}}>
-            Startsida
+            <KeyboardDoubleArrowLeftIcon sx={{ mr: 0.5 }} fontSize="inherit" style={{fontSize: "20px"}}/>
+            <Link to={"/"} style={{color: "silver", textDecoration: "none"}}>
+            Fortsätt handla
             </Link>
 
         </div>
@@ -66,9 +64,9 @@ const SinglePage: FC<Props> = (props) => {
                 <h3 style={description}>{foundProduct.description}</h3>
                 
                 <div style={priceDiv}>
-                    <h3>Pris: {foundProduct.price} kr</h3>
 
-                    <Stack spacing={2} sx={{ width: '100%' }}>
+                    <Stack spacing={2} sx={{ width: '100%' }} style={priceBox}>
+                    <h3>Pris: {foundProduct.price} kr</h3>
                         <div onClick={handleClick} >
                         <Button onClick={() => addToCart(foundProduct)} variant="contained" color="primary" id='purchaseButton'>Lägg i kundvagn</Button>
                         </div>
@@ -96,7 +94,7 @@ const singleProductContainer: CSSProperties = {
     flexDirection: "row",
     //justifyContent: "center",
     paddingBottom: "10vh",
-    paddingTop: "5vh", 
+    paddingTop: "2vh", 
     margin: "auto",
     flexWrap: "wrap",
     alignItems: "center",
@@ -106,8 +104,13 @@ const singleProductContainer: CSSProperties = {
 }
 
 const breadcrumbs: CSSProperties = {
-    color: "white",
-    
+    color: "silver",
+    paddingTop: "40px",
+    display: "flex",
+    flexDirection: "row",
+    paddingLeft: "16%",
+    fontFamily: "Aclonica, sans-serif"
+
 
 }
 
@@ -131,11 +134,11 @@ const cover: CSSProperties = {
     width: '100%',
     display: 'flex', 
     justifyContent: 'center',
-        height: '100%',
-        borderTopLeftRadius: "30px",
-        borderTopRightRadius: "30px",
-        marginBottom: '-3px',
-        backgroundColor: 'black',
+    height: '100%',
+    borderTopLeftRadius: "30px",
+    borderTopRightRadius: "30px",
+    marginBottom: '-3px',
+    backgroundColor: 'black',
     }
     
 const imageStyle: CSSProperties = {
@@ -161,13 +164,13 @@ const productInfo: CSSProperties = {
     border: 'solid',
     borderColor: 'silver',
     color: 'silver',
-    width: '80%',
+    /* width: '80%', */
     fontStretch: 'expanded',
     //borderTopRightRadius: "30px",
     borderBottomLeftRadius: "30px",
     borderBottomRightRadius: "30px",
     borderTopRightRadius: '30px',
-    minWidth: '300px',
+    /* minWidth: '300px', */
 }
 
 const productHeader: CSSProperties = {
@@ -181,7 +184,8 @@ const priceDiv: CSSProperties = {
     gap: "30px",
     marginTop: "25px",
     flexWrap: "wrap",
-    color: 'silver'
+    color: 'silver',
+    
 }
 
 const description: CSSProperties = {
@@ -192,11 +196,14 @@ const description: CSSProperties = {
     fontSize: '14px',
 }
 
-
+const priceBox: CSSProperties = {
+    display: "flex",
+    flexDirection: "row",
+    gap: "inherit",
+    justifyContent: "end",
+    
+}
 
 
 export default SinglePage 
 
-function setItemsInCart(): void {
-    throw new Error('Function not implemented.');
-}
