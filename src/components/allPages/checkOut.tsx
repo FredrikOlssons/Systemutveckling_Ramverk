@@ -32,7 +32,7 @@ const CheckOut: FC<Props> = (props) => {
                         <hr style={{width: "85%", margin: "auto"}} />
                         <br />
                         {
-                        cartItems.length == 0 ? <h3>Kundvagnen är tom 😵</h3> : undefined
+                        cartItems.length == 0 ? <h4>Kundvagnen är tom 🤷 </h4> : undefined
                         }
                         <Cartlist/>
 
@@ -49,7 +49,7 @@ const CheckOut: FC<Props> = (props) => {
                     </Box>
 
                     <Box style={secondBox}>
-                        <h3 style={{textAlign: "center"}}>Fraktalternativ</h3>
+                        <h3 style={{textAlign: "center"}}>Fraktalternativ 📦 💨</h3>
                         <hr style={{width: "85%", margin: "auto"}} />
                         <br />
                         <Delivery />
@@ -79,12 +79,12 @@ const CheckOut: FC<Props> = (props) => {
                     <hr style={{width: "80%", margin: "auto"}} />
                     <br />
 
-                    <h3>Frakt: </h3>
+                    <h4>Frakt: </h4>
                     
-                    <h3>Betalningssätt: </h3>
+                    <h4>Betalningssätt: </h4>
 
     
-                    <h3 style={{margin: "0"}}>Totalsumma: {totalPriceAllProduct()} kr </h3>
+                    <h4 style={{margin: "0"}}>Totalsumma: {totalPriceAllProduct()} kr </h4>
                     <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
 
 
@@ -107,7 +107,7 @@ const firstBox: CSSProperties = {
     borderRadius: "15px",
     marginBottom: "20px",
     marginLeft: "10px",
-    padding: "20px",
+    padding: "30px",
     backgroundColor: "white",
     minWidth: '300px',
 }
@@ -141,7 +141,7 @@ const litleBox: CSSProperties = {
     border: "1px solid black",
     boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
     borderRadius: "15px",
-    padding: "20px",
+    padding: "40px",
     backgroundColor: "white",
     minWidth: '300px',
     height: 'fit-content',

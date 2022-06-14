@@ -13,6 +13,10 @@ I den här laborationen ska vi i grupp om tre skapa en hemsida i React och Types
 
 Vi ska skapa en e-handel sida som presenterar ett antal olika produkter. Vilka typer av produkter som säljs är valfritt men det ska vara seriöst och välgjort. 
 
+Installation & köra igång projektet: 
+ - Projketet körs via Vite -> npm i -> npm run dev
+
+
 * G-Krav: 
 
 - Det ska vara möjligt att klicka på en produkt för att kunna läsa mer om den.  ✅ 
@@ -50,10 +54,6 @@ Vi ska skapa en e-handel sida som presenterar ett antal olika produkter. Vilka t
 - Vid genomfört köp skall en bekräftelse visas på köpet. Tänk på att det inte ska gå att placera ordern två gånger, även om man navigerar tillbaka på sidan!  ✅ ❌
 
 
-* Adminsidan (VG)
-Designen på denna sida är valfri men skall utgå ifrån designsystemet ni använder er av. Det skall finnas en knapp på startsidan som tar användaren till adminsidan. På adminsidan skall ni lista alla produkter samt ge användaren möjlighet att ta bort, lägga till eller ändra samtliga produkter (CRUD). Om ni väljer att ha en separat sida, modal eller accordion för ändring/tilläggning av en produkt är valfritt. Samtliga produkter skall vara sparade i localstorage, detta betyder att om localstorage är tomt vid inladdning av sidan behöver samtliga fördefinierade produkter sparas till localstorage. Använd en URL för bilder så det enkelt kan sparas i localstorage.  ❌
-
-
 * Krav för godkänt:
 
 1.Git & GitHub har använts  ✅ 
@@ -75,10 +75,3 @@ Designen på denna sida är valfri men skall utgå ifrån designsystemet ni anv�
 9.Mockade produkter ska ligga i en egen fil och vara typade med ett TS interface  ✅ 
 
 
-* Krav för väl godkänt:
-
-1.Alla punkter för godkänt är uppfyllda  ❌
-
-2.Det finns en admin-sida där man kan ändra, lägga till eller ta bort produkter på sidan ❌
-
-3.Samtliga produkter skall vara sparade i localstorage (om localstorage är tom då sidan läses in behöver samtliga fördefinierade produkter sparas där) ❌
