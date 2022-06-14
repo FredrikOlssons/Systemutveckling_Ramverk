@@ -4,6 +4,8 @@ import { products, Product } from "../data/products";
 import Button from '@material-ui/core/Button'; 
 import { Link } from 'react-router-dom';
 import { CartContext } from "./context/cartProvider";
+import { Alert, AlertTitle, Snackbar, Stack } from "@mui/material";
+import React from "react";
 
 
 
@@ -16,6 +18,22 @@ interface Props {
 const RenderProduct: FC<Props> = (props) => {
 
     const { addToCart } = useContext(CartContext)
+
+  
+    const [open, setOpen] = React.useState(false);
+
+    const handleClick = () => {
+        setOpen(true);
+    };
+
+    const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpen(false);
+    };
+
      
     return(
         
@@ -30,8 +48,18 @@ const RenderProduct: FC<Props> = (props) => {
                 <h3>{props.products.price} kr</h3>
             </div>
                 </Link>
-                <Button variant="contained" onClick={() => addToCart(props.products)} color="primary">Köp</Button>
+                <Stack spacing={2} sx={{ width: '100%' }}>
+                <div onClick={handleClick} >
+
+                <Button variant="contained"  onClick={() => addToCart(props.products)} color="primary">Köp</Button>
+                </div>
                 
+                <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Produkten har lagts i kundkorgen!
+                    </Alert>
+                </Snackbar>
+                </Stack>
                
         </div>
 

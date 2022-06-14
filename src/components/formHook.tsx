@@ -55,34 +55,34 @@ export const FormField = () =>  {
         <Label>
           Efternamn
         </Label>
-<Control  type="text" placeholder="Last name" {...register("Last name", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
+        <Control  type="text" placeholder="Last name" {...register("Last name", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
  
 
         <Label>
           Email
         </Label>
-<Control type="text" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} />
+        <Control type="text" placeholder="Email" {...register("Email", {required: true, pattern: /^\S+@\S+$/i})} />
 
         <Label>
           Telefonnummer (endast siffror)
         </Label>
-<Control  type="tel" placeholder="Mobil nummer" {...register("Mobile number", {required: true, pattern:/^[0-9+-]+$/, minLength: 6, maxLength: 12})} />
+        <Control  type="tel" placeholder="Mobil nummer" {...register("Mobile number", {required: true, pattern:/^[0-9+-]+$/, minLength: 6, maxLength: 12})} />
       
 
         <Label>
           Postkod (endast siffror)
         </Label>
-<Control type="text" placeholder="Postkod"  {...register("Postkod", {required: true, pattern:/^[0-9+-]+$/, minLength: 6, maxLength: 12})} />
+        <Control type="text" placeholder="Postkod"  {...register("Postkod", {required: true, pattern:/^[0-9+-]+$/, minLength: 6, maxLength: 12})} />
           
-          <Label>
+        <Label>
           Adress
         </Label>
-<Control type="text" placeholder="Adress"  {...register("Adress", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
+        <Control type="text" placeholder="Adress"  {...register("Adress", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
         
-<Label>
+        <Label>
           Stad
         </Label>
-<Control type="text" placeholder="Stad"  {...register("Stad", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
+        <Control type="text" placeholder="Stad"  {...register("Stad", {required: true, pattern: /^[a-zA-Z]+$/, maxLength: 100})} />
         
         <Button style={submitStyling}  disabled={!validate()} type="submit" variant="contained" color="primary">Fortsätt</Button>
       </Group>
