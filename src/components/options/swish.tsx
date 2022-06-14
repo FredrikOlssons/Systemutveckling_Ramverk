@@ -7,11 +7,12 @@ import { Button } from "@mui/material";
 
     const SignupSchema = Yup.object().shape({
    phoneNumber: Yup.number()
-   .min(9, 'Too Short!')
-   .max(12, 'Too Long!')
-   .required('Required'),
+   .min(2, 'Too Short!')
+   .max(50, 'Too Long!')
+   .required('Required')
+   .typeError("Must be a number"),
 
-    }); 
+  }); 
 
 
      
@@ -37,11 +38,13 @@ import { Button } from "@mui/material";
               <Grid style={gridContainer}>
                   <Grid style={grid} item xs={12} sm={6}>
             
-                  Tel.nummer:
-                  <Field name="phoneNumber" />
-                  {errors.phoneNumber && touched.phoneNumber ? (
-                    <div></div>
-                  ) : null}
+                    Tel.nummer:
+                    <div style={inputForm}>
+                      <Field name="phoneNumber" />
+                      {errors.phoneNumber && touched.phoneNumber ? (
+                        <div>{errors.phoneNumber}</div>
+                      ) : null}
+                    </div>
                   </Grid>
                   <Grid style={submitStyling} item xs={12} sm={6}>
                   <Button type="submit" variant="contained" color="primary">Vidare</Button>
@@ -59,9 +62,10 @@ import { Button } from "@mui/material";
   
   
   const formStyling: CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  flexWrap: "wrap"
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    color: 'darkgray',
   }
   
   const gridContainer: CSSProperties = {
@@ -85,7 +89,10 @@ import { Button } from "@mui/material";
   justifyContent: "center"
   }
   
-  
+  const inputForm: CSSProperties = {
+    display: "flex",
+    flexDirection: "column"
+  }
   
   
    export default validationSwish;

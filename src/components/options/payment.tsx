@@ -15,10 +15,12 @@ interface Props {}
 
 export const Payment: FC<Props> = (props) => {
 
+    
 
-    const [isChoosenPayment, setIsChoosenPayment] = useState<"Visakort" | "Swish" | 'Faktura'>("")
+    const [isChoosenPayment, setIsChoosenPayment] = useState("")
 
     const { payments } = useContext(PaymentContext)
+
 
 
 
@@ -28,7 +30,7 @@ export const Payment: FC<Props> = (props) => {
 
     return (
         <FormControl>
-            <h2>{isChoosenPayment}</h2>
+            <h3>{isChoosenPayment}</h3>
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -43,40 +45,34 @@ export const Payment: FC<Props> = (props) => {
                     
                         <div key={choosenPayment.id} style={paymentBox}>
                             
-                        <FormControlLabel value={choosenPayment.title} control={<Radio />} onChange={() => {
-                            setIsChoosenPayment(choosenPayment.title)
-                        }} label={choosenPayment.title} />
-                            
-                       
-                         
-                            <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
-                            <br />
-                            <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
-                            <br />
-                            <span key={choosenPayment.description}>{choosenPayment.description}</span>
-                          <div>
-
-                              
-                               
-                        {
-                            isChoosenPayment == choosenPayment.title && choosenPayment.title == "Visakort" ? <MyCards/> : undefined
-                        }{
-                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Swish" ?< ValidationSwish />: undefined
-                            
-                        }
-                        {
-                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Faktura" ? <ValidationInvoice/ >  : undefined
-                            
-                        }
+                            <FormControlLabel value={choosenPayment.title} control={<Radio />} onChange={() => {
+                                setIsChoosenPayment(choosenPayment.title)
+                                }} label={choosenPayment.title} />
+                                
                 
-                        </div>
+                                <span key={choosenPayment.price}>Pris: {choosenPayment.price} kr</span>
+                                <br />
+                                <img style={paymentImg} src={choosenPayment.image} key={choosenPayment.image}/>
+                                <br />
+                                <span key={choosenPayment.description}>{choosenPayment.description}</span>
+                                <pre />
 
-                            {
-                            payments.swish == true ? <MyCards /> : undefined
+                            <div>
+                                        
+                                    {
+                                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Visakort" ? <MyCards/> : undefined
+                                    }{
+                                    isChoosenPayment == choosenPayment.title && choosenPayment.title == "Swish" ?< ValidationSwish />: undefined
+                                        
+                                    }
+                                    {
+                                    isChoosenPayment == choosenPayment.title && choosenPayment.title == "Faktura" ? <ValidationInvoice/ >  : undefined
+                                        
+                                    }
+                
+                            </div>
 
-                            }
-                            
-                            
+                             
                           
                         </div>
 

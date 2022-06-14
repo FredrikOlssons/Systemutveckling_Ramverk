@@ -8,13 +8,15 @@ export interface DeviceContextData {
 export interface Device {
     isDesktop: boolean,
     isTablet: boolean,
-    isMobile: boolean
+    isMobile: boolean,
+    isSmallerMobile: boolean,
 }
 
 const DefaultContextData: Device = {
     isDesktop: true,
     isTablet: false,
-    isMobile: false 
+    isMobile: false,
+    isSmallerMobile: false,
 }
 
 export const DeviceContext = React.createContext<DeviceContextData>({
@@ -31,11 +33,13 @@ const DeviceProvider: FC<PropsWithChildren<Props>> = (props) => {
     useEffect(() => {
         const onWindowChange = () => {
             if((window.innerWidth > 1250)) {
-                setDevices({ isDesktop: true, isTablet: false, isMobile: false })
+                setDevices({ isDesktop: true, isTablet: false, isMobile: false, isSmallerMobile: false, })
             } else if((window.innerWidth <= 1250 && window.innerWidth > 820)) {
-                setDevices({ isDesktop: false, isTablet: true, isMobile: false })
-            } else if((window.innerWidth <= 820)) {
-                setDevices({ isDesktop: false, isTablet: false, isMobile: true} )
+                setDevices({ isDesktop: false, isTablet: true, isMobile: false, isSmallerMobile: false, })
+            } else if((window.innerWidth <= 820 && window.innerWidth > 530)) {
+                setDevices({ isDesktop: false, isTablet: false, isMobile: true, isSmallerMobile: false,} )
+            } else if((window.innerWidth <= 530)) {
+                setDevices({ isDesktop: false, isTablet: false, isMobile: false, isSmallerMobile: true,} )
             }
         }
 

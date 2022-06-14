@@ -3,14 +3,8 @@ import RenderProduct from "../productCard";
 import { products } from "../../data/products";
 import Hero from "../Hero";
 import "../../style/hero.css";
-import { width } from "@mui/system";
-import {borderColor, borderRadius, fontSize, margin,} from "@material-ui/core/node_modules/@material-ui/system";
-
-import { CartItem} from '../cartItem'
-
-import  MiniCart from '../miniCart'
-import MiniCartStartpage from '../minicartStartpage'
-
+import { CartItem} from '../interfaces/cartItem'
+import MiniCartStartpage from '../common/minicartStartpage'
 import { Device, DeviceContext } from "../context/DeviceProvider";
 
 
@@ -27,7 +21,7 @@ const Content: FC<Props> = (props) => {
 
   return (
     <>
-     {/* <Hero /> */}
+     <Hero />
       <div style={productHeader}>
         <h1 style={startpageheader(devices)}>
           
@@ -40,41 +34,31 @@ const Content: FC<Props> = (props) => {
           <span style={span(devices)}><h2 style={{ ...m2}}>m</h2></span>
           <span style={span(devices)}><h2 style={{ ...e}}>e</h2></span>
           <span style={span(devices)}><h2 style={{ ...n}}>n</h2></span>
-          <span style={{ ...space}}>
-            
-          </span>
+
+          <span style={{ ...space}}></span>
+
           <span style={span(devices)}><h2 style={{ ...t}}>t</h2></span>
           <span style={span(devices)}><h2 style={{ ...i}}>i</h2></span>
           <span style={span(devices)}><h2 style={{ ...l2}}>l</h2></span>
           <span style={span(devices)}><h2 style={{ ...l3}}>l</h2></span>
-        </h1>
 
+        </h1>
         <h1 style={startpageheader(devices)}>Wholehearted Family Adventure</h1>
         
-        {/* <h2 style={startpagesubHeader}>Tjatar ungarna på att de har tråkigt på helgerna? Brukar släktmiddagarna bara bli artiga och 
-            stela, eller har familjen fastnat i en loop av rutiner med sina skärmar på fredagskvällarna? Lösningen är sällskapsspel! 
-            Spelkvällar med familjen har inte längre samma status. Stärk familjebanden och med WFA:s hjälp, vill prioritera bort skärmarna
+         <h2 style={startpagesubHeader}>Stärk familjebanden! WFA vill prioritera bort skärmarna
              och satsar helhjärtat på gammal hederlig familjeunderhållning där man faktiskt umgås och spenderar den lediga tiden tillsammans. 
-             Gör familjetiden rolig med klassiska och nya brädspel och med roliga aktiviteter som passar för familjer i alla åldrar.</h2> */}
+             Gör familjetiden rolig med klassiska och nya brädspel och med roliga aktiviteter som passar för familjer i alla åldrar.</h2> 
       </div>
-
-      <div style={bigContainer}>
-        <div style={productDiv}>
+      <div style={bigContainer(devices)}>
+        <div style={productDiv(devices)}>
           <div style={productContainer}>
             {products.map((product) => (
               <RenderProduct key={product.id} products={product} />
             ))}
           </div>
         </div>
-        <div style={cartDiv}>
-
-
-       
-          <div style={cartContainer}>Cart<MiniCartStartpage/></div>
-        
-
-         
-
+        <div style={cartDiv(devices)}>
+          <div style={cartContainer}>Kundvagn<MiniCartStartpage/></div>
         </div>
       </div>
     </>
@@ -82,8 +66,7 @@ const Content: FC<Props> = (props) => {
 };
 
 const V: CSSProperties = {
-  transform: "translate(20px, 30px) rotate(-22deg)",
-  
+  transform: "translate(20px, 30px) rotate(-22deg)",  
 };
 
 const ä: CSSProperties = {
@@ -143,20 +126,16 @@ const span: (devices: Device) => CSSProperties = (devices) => {
   return {
   display: "inline-block",
   margin: "1px",
-  fontSize: "80px",
+  fontSize: "100%",
   marginBottom: "40px",
-
   }
 };
-
-
 
 const productHeader: CSSProperties = {
   textAlign: "center",
   margin: "0",
   paddingBottom: "50px",
   color: "silver",
-  // font-family: 'Frijole', cursive;
   display: 'flex',
   justifyContent: 'center',
   rowGap: '15%',
@@ -168,7 +147,11 @@ const startpageheader: (devices: Device) => CSSProperties = (devices) => {
   fontFamily: "Frijole, cursive",
   margin: "0",
   fontSize: devices.isDesktop ? '2em' : devices.isTablet ? '30px' : devices.isMobile ? '20px' : "18px",
-
+  textAlign: "center",
+  paddingBottom: "20px",
+  display: 'flex',
+  justifyContent: 'center',
+  rowGap: '15%',
   }
 };
 
@@ -180,26 +163,6 @@ const startpagesubHeader: CSSProperties = {
   marginRight: '10%',
   fontFamily: 'Aclonica, sans-serif',
 };
-
-
-const bigContainer: CSSProperties = {
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: 'wrap',
-  marginBottom: "100px",
-  gap: "2%",
-};
-
-const productDiv: CSSProperties = {
-  width: "78%",
-  display: "flex",
-  flexDirection: "row",
-  flexWrap: "wrap",
-};
-
-//// padding i productcontainer
-// responsiviteten
-//Knappar % margin bottom istället för top
 
 const productContainer: CSSProperties = {
   display: "flex",
@@ -218,7 +181,7 @@ const productContainer: CSSProperties = {
   borderRadius: "30px",
 };
 
-const cartContainer: CSSProperties = {
+ const cartContainer: CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -234,11 +197,42 @@ const cartContainer: CSSProperties = {
   backgroundColor: "white",
 };
 
-const cartDiv: CSSProperties = {
-  width: "18%",
-  minWidth: '200px'
-  /* paddingTop: "50px",
-  paddingBottom: "50px", */
+const bigContainer: (devices: Device) => CSSProperties = (devices) => {
+  return {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: 'wrap',
+  marginBottom: "100px",
+  gap: "2%",
+  jusifyContent: devices.isTablet ? 'center' : devices.isMobile ? 'center' : 'center',
+  justifyContent: 'center',
 };
+}
+
+
+const cartDiv: (devices: Device) => CSSProperties = (devices) => {
+  return {
+    width: devices.isTablet ? '50%' : devices.isMobile ? '70%' : undefined,
+    marginTop: devices.isTablet ? '60px' : devices.isMobile ? '40px' : devices.isSmallerMobile ? '30px' : undefined,
+    display: "flex",
+    flexDirection: "column",
+    borderRadius: '30px',
+    backgroundColor: "white",
+    minWidth: '230px',
+    height: 'fit-content',
+  };
+
+  }
+
+  const productDiv: (devices: Device) => CSSProperties = (devices) => {
+    return {
+      width: devices.isTablet ? '80vw' : devices.isMobile ? '90vw' : '78%',
+      justifyContent: devices.isTablet ? 'center' : devices.isMobile ? 'center' : undefined,
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap",
+};
+    };
+  
 
 export default Content;

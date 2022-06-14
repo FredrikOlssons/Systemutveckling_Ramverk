@@ -27,7 +27,7 @@ export interface Product {
 
 
 export const products: Product[] = [
-    {
+   /*  {
         id: 1,
         title: "Sense of self",
         image: Self,
@@ -49,29 +49,9 @@ export const products: Product[] = [
         image: Valium,
         description: "Valium.",
         price: 346
-    },
-   /*  {
-        id: 1, 
-        title: "Sense of self", 
-        image: Self, 
-        description: "Sense of self.", 
-        price: 247
-    },
-    {
-        id: 2, 
-        title: "Potatis", 
-        image: Potatoes, 
-        description: "Potatis.", 
-        price: 16
-    },
-    {
-        id: 3, 
-        title: "Valium", 
-        image: Valium, 
-        description: "Valium.", 
-        price: 346
-    },
-   /*  {
+    }, */
+   
+     {
         id: 1, 
         title: "Bedroom Battle", 
         image: BedroomBattle, 
@@ -125,5 +105,5 @@ export const products: Product[] = [
         image: ToiletGolf, 
         description: "Även de bästa spelkvällar behöver sina pauser. Du som har tröttnat på att räkna kakelplattor i badrummet kan nu fortsätta spelkvällen utan att behöva knipa ihop", 
         price: 189
-    }, */
+    }, 
 ]

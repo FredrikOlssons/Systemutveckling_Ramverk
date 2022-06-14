@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Cards from "react-credit-cards";
@@ -21,7 +22,26 @@ const MyCards = () => {
 
   return (
     <>
-      {/* <div className="rccs__card backcolor"> */}
+      
+ /*     {/* <div className="rccs__card backcolor"> */}
+import React from 'react';
+import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs';
+
+export default function MyCards() {
+  const {
+    wrapperProps,
+    getCardNumberProps,
+    getExpiryDateProps,
+    getCVCProps
+  } = usePaymentInputs();
+
+  return (
+    <PaymentInputsWrapper {...wrapperProps}>
+      <input {...getCardNumberProps()} />
+      <input {...getExpiryDateProps()} />
+      <input {...getCVCProps()} />
+	 
+
 
       <div className="rccs__card rccs__card--unknown">
         <Cards
@@ -148,5 +168,5 @@ const MyCards = () => {
       </form>
     </>
   );
-};
+};/*
 export default MyCards;

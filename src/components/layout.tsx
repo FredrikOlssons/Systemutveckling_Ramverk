@@ -1,6 +1,6 @@
 import { CSSProperties, FC } from "react";
-import Footer from "./footer";
-import Header from "./header";
+import Footer from "./common/footer";
+import Header from "./common/header";
 import { bodyContent } from "../style/common";
 import RenderView from "./functions/renderView";
 import CartProvider from "./context/cartProvider";

@@ -34,9 +34,10 @@ import { Button } from "@mui/material";
    .max(50, 'Too Long!')
    .required('Required'),
    phoneNumber: Yup.number()
-   .min(9, 'Too Short!')
-   .max(12, 'Too Long!')
-   .required('Required'),
+   .min(2, 'Too Short!')
+   .max(50, 'Too Long!')
+   .required('Required')
+   .typeError("Must be a number"),
 
     }); 
  
@@ -59,6 +60,7 @@ import { Button } from "@mui/material";
         onSubmit={values => {
           // same shape as initial values
           // DO SOMETHING HERE FOR SUBMIT :)))))))))))
+          
           console.log(values);
         }}
       >
@@ -68,34 +70,41 @@ import { Button } from "@mui/material";
             <Grid style={gridContainer}>
                 <Grid style={grid} item xs={12} sm={6}>
                   Förnamn:
-                  <Field name="firstName" />
-                  {errors.firstName && touched.firstName ? (
-                    <div>{errors.firstName}</div>
-                    ) : null}
-                  
+                  <div style={inputForm}>
+                    <Field name="firstName" />
+                    {errors.firstName && touched.firstName ? (
+                      <div>{errors.firstName}</div>
+                      ) : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
-                Efternamn:
-                  <Field name="lastName" />
-                  {errors.lastName && touched.lastName ? (
-                    <div>{errors.lastName}</div>
-                  ) : null}
+                  Efternamn:
+                  <div style={inputForm}>
+                    <Field name="lastName" />
+                    {errors.lastName && touched.lastName ? (
+                      <div>{errors.lastName}</div>
+                    ) : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
                   E-post:
-                  <Field name="email" type="email" />
-                  {errors.email && touched.email ? <div>{errors.email}</div> 
-                  : null}
+                  <div style={inputForm}>
+                    <Field name="email" type="email" />
+                    {errors.email && touched.email ? <div>{errors.email}</div> 
+                    : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
-                Address:
-                <Field name="streetAdress" />
-                {errors.streetAdress && touched.streetAdress ? (
-                  <div>{errors.streetAdress}</div>
-                ) : null}
+                  Address:
+                  <div style={inputForm}>
+                    <Field name="streetAdress" />
+                    {errors.streetAdress && touched.streetAdress ? (
+                      <div>{errors.streetAdress}</div>
+                    ) : null}
+                  </div>
                 </Grid>
               </Grid>
             </Form>
@@ -103,35 +112,43 @@ import { Button } from "@mui/material";
             <Form>
                 <Grid style={gridContainer}>
                 <Grid style={grid} item xs={12} sm={6}>
-                Postnummer:
-                <Field name="postalCode" />
-                {errors.postalCode && touched.postalCode ? (
-                  <div>{errors.postalCode}</div>
-                ) : null}
+                  Postnummer:
+                  <div style={inputForm}>
+                    <Field name="postalCode" />
+                    {errors.postalCode && touched.postalCode ? (
+                      <div>{errors.postalCode}</div>
+                    ) : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
-                Stad:
-                <Field name="town" />
-                {errors.town && touched.town ? (
-                  <div>{errors.town}</div>
-                ) : null}
+                  Stad:
+                    <div style={inputForm}>
+                    <Field name="town" />
+                    {errors.town && touched.town ? (
+                      <div>{errors.town}</div>
+                    ) : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
                 Land:
-                <Field name="country" />
-                {errors.country && touched.country ? (
-                  <div>{errors.country}</div>
-                ) : null}
+                  <div style={inputForm}>
+                    <Field name="country" />
+                    {errors.country && touched.country ? (
+                      <div>{errors.country}</div>
+                    ) : null}
+                  </div>
                 </Grid>
 
                 <Grid style={grid} item xs={12} sm={6}>
-                Tel.nummer:
-                <Field name="phoneNumber" />
-                {errors.phoneNumber && touched.phoneNumber ? (
-                  <div></div>
-                ) : null}
+                  Tel.nummer:
+                  <div style={inputForm}>
+                    <Field name="phoneNumber" />
+                    {errors.phoneNumber && touched.phoneNumber ? (
+                      <div>{errors.phoneNumber}</div>
+                    ) : null}
+                  </div>
                 </Grid>
                 <Grid style={submitStyling} item xs={12} sm={6}>
                 <Button type="submit" variant="contained" color="primary">Vidare</Button>
@@ -151,7 +168,8 @@ import { Button } from "@mui/material";
 const formStyling: CSSProperties = {
 display: "flex",
 justifyContent: "space-between",
-flexWrap: "wrap"
+flexWrap: "wrap",
+color: 'darkgray',
 }
 
 const gridContainer: CSSProperties = {
@@ -175,7 +193,10 @@ display: "flex",
 justifyContent: "center"
 }
 
-
+const inputForm: CSSProperties = {
+  display: "flex",
+  flexDirection: "column"
+}
 
 
  export default validationInvoice;
