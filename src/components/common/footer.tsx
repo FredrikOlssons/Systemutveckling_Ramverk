@@ -18,19 +18,21 @@ const Footer: FC<Props> = (props) => {
 
     return (
         <div style={footerStyle(devices)}>
+                <div style={footerLayout}>
+                    <div style={footerLogo(devices)}>
+                        <h4>Wholehearted</h4>
+                        <h4>Family</h4>
+                        <h4>Adventure</h4>
+                    </div>
+                </div>
+
+
             <div style={socialMedia}>
                 <div style={footerLayout}>
                 <h4>Kontakta oss</h4>
                 <div style={footerRow}><LocationOnIcon style={footerTag}/><h5 style={footerTag}>Närgången 1 417 56 Göteborg</h5></div>
                 <div style={footerRow}><MailOutlineIcon style={footerTag}/><h5 style={footerTag}>info@...........se</h5></div>
                 <div style={footerRow}><LocalPhoneIcon style={footerTag}/><h5 style={footerTag}>+46 (0) 7 019 400 10</h5></div>
-                </div>
-                <div style={footerLayout}>
-                    <div style={footerLogo}>
-                        <h4>Wholehearted</h4>
-                        <h4>Family</h4>
-                        <h4>Adventure</h4>
-                    </div>
                 </div>
                 <div style={footerLayout}>
                 <h4>Sociala media</h4>
@@ -61,8 +63,7 @@ const footerStyle: (devices: Device) => CSSProperties = (devices) => {
     width: '100%',
     background: Colors.secondary,
     color: 'silver',
-    
-    
+       
     }
 }
 
@@ -84,15 +85,16 @@ const line: CSSProperties = {
 
 const socialMedia: CSSProperties = {
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     gap: '2%',
     marginBottom: '2%',
     height: '70%',
     color: "white",
     fontSize: "15px",
-    flexWrap: "wrap",
+    
     rowGap: "20px",
     paddingTop: "20px"
+
 }
 
 const footerLayout: CSSProperties = {
@@ -106,15 +108,22 @@ const footerLayout: CSSProperties = {
 
 }
 
-const footerLogo: CSSProperties = {
+const footerLogo: (devices: Device) => CSSProperties = (devices) => {
+    return {
     display: 'flex',
     flexDirection: 'column',
     /* rowGap: '10px', */
     minWidth: '200px',
     textAlign: 'center',
     alignItems: 'center',
-    fontFamily: 'Frijole'
-
+    fontFamily: 'Frijole',
+    justifyContent: 'center',
+    columnGap: '10px',
+    position: 'absolute',
+    left: '40%,',
+    top: '0%',
+    color: 'white'
+}
 }
 
 const footerRow: CSSProperties = {

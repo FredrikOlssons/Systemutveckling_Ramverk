@@ -8,10 +8,6 @@ import Monopoly from '../assets/Monopoly.jpg'
 import Puzzle from '../assets/Puzzle.jpg'
 import ToiletGolf from '../assets/ToiletGolf.jpg'
 
-import Potatoes from '../assets/potatis.jpg'
-import Valium from '../assets/619RlSBZL4L._SS500_.jpg'
-import Self from '../assets/man-with-question-mark.jpg'
-
 
 
 
@@ -27,32 +23,6 @@ export interface Product {
 
 
 export const products: Product[] = [
-     {
-        id: 1,
-        title: "Sense of self",
-        image: Self,
-        description: "Sense of self.jldshvoisdhvoihdsvhgjkpfghghohgjoghj",
-        price: 247
-    },
-
-    {
-        id: 2,
-        title: "Potatis",
-        image: Potatoes,
-        description: "Potatis.",
-        price: 16
-    },
-
-    {
-        id: 3,
-        title: "Valium",
-        image: Valium,
-        description: "Valium.",
-        price: 346
-    }, 
-
-]
-   /*
      {
         id: 1, 
         title: "Sovrumskampen", 
@@ -109,5 +79,3 @@ export const products: Product[] = [
         price: 189
     }, 
 ]
-
-*/
