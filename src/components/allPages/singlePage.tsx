@@ -12,12 +12,18 @@ import "../../style/hero.css";
 import { CartContext } from '../context/cartProvider';
 import { Alert, Snackbar, Stack } from '@mui/material';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import { Device, DeviceContext } from "../context/DeviceProvider";
 
+
+
+  
 interface Props {
     products: Product
 }
 
 const SinglePage: FC<Props> = (props) => {
+
+    const { devices } = useContext(DeviceContext)
 
     const { addToCart } = useContext(CartContext)
 
@@ -53,13 +59,13 @@ const SinglePage: FC<Props> = (props) => {
 
         </div>
         
-        <span style={singleProductContainer}>
+        <span style={singleProductContainer(devices)}>
             <span style={imgDiv}>
                 <div style={cover}>
             <img src={foundProduct.image} style={imageStyle}/>
                 </div>
             </span>
-            <div style={productInfo}>
+            <div style={productInfo(devices)}>
                 <h2 style={productHeader}>{foundProduct.title}</h2>
                 <h3 style={description}>{foundProduct.description}</h3>
                 
@@ -86,22 +92,23 @@ const SinglePage: FC<Props> = (props) => {
     )
 }
 
-
-const singleProductContainer: CSSProperties = {
+const singleProductContainer: (devices: Device) => CSSProperties = (devices) => {
+    return {
     height: 'auto',
-    width: "70%", 
+    width: devices.isSmallerMobile ? '90vw' : "70%", 
     display: "flex", 
     flexDirection: "row",
-    //justifyContent: "center",
     paddingBottom: "10vh",
     paddingTop: "2vh", 
-    margin: "auto",
+    margin: devices.isSmallerMobile ? '2%' : "auto",
     flexWrap: "wrap",
     alignItems: "center",
-    //gap: "40px",
-    minWidth: '300px'
-   
+    minWidth: '300px',
+    justifyContent: devices.isSmallerMobile ? 'center' : undefined,
+    }
 }
+
+
 
 const breadcrumbs: CSSProperties = {
     color: "silver",
@@ -155,7 +162,8 @@ const imageStyle: CSSProperties = {
 }
 
 
-const productInfo: CSSProperties = {
+const productInfo: (devices: Device) => CSSProperties = (devices) => {
+    return {
     display: "flex",
     flexDirection: "column",
     //borderRadius: "15px",
@@ -167,10 +175,12 @@ const productInfo: CSSProperties = {
     /* width: '80%', */
     fontStretch: 'expanded',
     //borderTopRightRadius: "30px",
-    borderBottomLeftRadius: "30px",
-    borderBottomRightRadius: "30px",
-    borderTopRightRadius: '30px',
+    minWidth: '300px',
     /* minWidth: '300px', */
+    borderBottomLeftRadius: devices.isSmallerMobile ? '0px' : '30px',
+    borderTopRightRadius: devices.isSmallerMobile ? '0px' : '30px',
+    borderBottomRightRadius: devices.isSmallerMobile ? '0px' : '30px',
+}
 }
 
 const productHeader: CSSProperties = {
@@ -189,9 +199,9 @@ const priceDiv: CSSProperties = {
 }
 
 const description: CSSProperties = {
-    width: '70%',
+    width: '100%',
     textAlign: 'justify',
-    minWidth: '300px',
+  
     fontFamily: 'Aclonica, sans-serif',
     fontSize: '14px',
 }

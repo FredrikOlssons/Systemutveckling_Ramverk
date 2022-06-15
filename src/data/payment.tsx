@@ -3,7 +3,6 @@ import Visakort from '../assets/payment/visa.png'
 import Faktura from '../assets/payment/faktura.png'
 
 
-
 export interface Payment {
     id: number
     title: string
@@ -16,7 +15,7 @@ export const paymentList: Payment[] = [
     {
         id: 1,
         title: "Swish",
-        image: Swish, 
+        image: Swish,
         description: "Betala direkt via Swish utan någon extra kostnad.",
         price: 0
 
@@ -29,7 +28,7 @@ export const paymentList: Payment[] = [
     }, {
         id: 3,
         title: "Faktura",
-        image: Faktura, 
+        image: Faktura,
         description: "Betala senare med faktura som skickas efter slutförd köp.",
         price: 29
     }
