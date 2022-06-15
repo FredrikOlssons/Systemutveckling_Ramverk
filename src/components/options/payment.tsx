@@ -63,7 +63,7 @@ export const Payment: FC<Props> = (props) => {
                             <div>
                                         
                                     {
-                                        payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Visakort" ? <CardPayment /> : undefined
+                                        payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Kort" ? <CardPayment /> : undefined
                                     }{
                                     payment && (payment.title && choosenPayment.title) == "Swish" ?< ValidationSwish />: undefined
                                         
