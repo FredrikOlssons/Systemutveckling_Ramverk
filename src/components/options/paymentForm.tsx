@@ -1,335 +1,175 @@
-
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
-import styles from "./styles.css";
-
-const MyCards = () => {
-  const [number, SetNumber] = useState("");
-  const [name, SetName] = useState("");
-  const [month, SetMonth] = useState("");
-  let [expiry, SetExpiry] = useState("");
-  const [cvc, SetCvc] = useState("");
-  const [focus, SetFocus] = useState("");
-  const handleDate = (e : any) => {
-    SetMonth(e.target.value);
-    SetExpiry(e.target.value);
-  };
-  const handleExpiry = (e: any) => {
-    SetExpiry(month.concat(e.target.value));
-  };
-
-}
-/*
-  return (
-    <>
-      
-     {/* <div className="rccs__card backcolor"> */
-	 /*
-import React from 'react';
-import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs';
-
-export default function MyCards() {
-  const {
-    wrapperProps,
-    getCardNumberProps,
-    getExpiryDateProps,
-    getCVCProps
-  } = usePaymentInputs();
-
-  return (
-    <PaymentInputsWrapper {...wrapperProps}>
-      <input {...getCardNumberProps()} />
-      <input {...getExpiryDateProps()} />
-      <input {...getCVCProps()} />
-	 
+import { FC, CSSProperties, useContext } from 'react'; 
+import { Formik, Form, Field } from 'formik'; 
+import * as Yup from 'yup';
+import { Grid } from '@mui/material';
+import { Button } from "@mui/material";
+import { CartContext } from '../context/cartProvider';
+import { Card } from '../../data/payment';
 
 
-      <div className="rccs__card rccs__card--unknown">
-        <Cards
-          number={number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-         
-        />
-      </div>
+const ValSchema = Yup.object().shape( {
+	cardNr: Yup.string()
+	  .label('Card number')
+	  .max(16)
+	  .required(),
+	  name: Yup.string()
+	  .label('Name on card')
+	  .required(),
+	dateYear: Yup.string()
+	  .label('Expiry year')
+	  .min(4)
+	  .max(4)
+	  .required(),
+    dateMonth: Yup.string()
+	  .label('Expiry month')
+	  .min(4)
+	  .max(4)
+	  .required(),
+	cvc: Yup.string()
+	  .label('CVC')
+	  .min(3)
+	  .max(4)
+	  .required(),
 
-      <br />
-      <form>
-        <div className="row">
-          <div className="col-sm-11">
-            <label>Card Number</label>
-            <input
-              type="tel"
-              className="form-control"
-              value={number}
-              name="number"
-              
-              pattern="[0-9]+"
-              onChange={(e) => {
-                SetNumber(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-sm-11">
-            <label>Card Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={name}
-              name="name"
-              onChange={(e) => {
-                SetName(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div
-            className="col=sm-8"
-           
-          >
-            <label>Expiration Date</label>
-          </div>
-          <div className="col=sm-4">
-            <label>CVV</label>
-          </div>
-        </div>
+	
+})
 
-        <div className="row">
-          <div className="col-sm-4">
-            <select
-              className="form-control"
-              name="expiry"
-              onChange={handleDate}
-            >
-              <option value=" ">Month</option>
-              <option value="01">Jan</option>
-              <option value="02">Feb</option>
-              <option value="03">Mar</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">Aug</option>
-              <option value="09">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
-            </select>
-          </div>
-          &nbsp;
-          <div className="col-sm-4">
-            <select
-              className="form-control"
-              name="expiry"
-              onChange={handleExpiry}
-            >
-              <option value=" ">Year</option>
-              <option value="21">2021</option>
-              <option value="22">2022</option>
-              <option value="23">2023</option>
-              <option value="24">2024</option>
-              <option value="25">2025</option>
-              <option value="26">2026</option>
-              <option value="27">2027</option>
-              <option value="28">2028</option>
-              <option value="29">2029</option>
-              <option value="30">2030</option>
-            </select>
-          </div>
-          <div className="col-sm-3">
-            <input
-              type="tel"
-              name="cvc"
+
+     
+    export const CardPayment = () => {
+      const { setCard } = useContext(CartContext)
+
+      return (
+        <div style={formStyling}>
             
-              className=" form-control card"
-              value={cvc}
-              pattern="\d*"
-              onChange={(e) => {
-                SetCvc(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <input
-          type="submit"
-          className="btn btn-secondary form-control"
-		  onClick={() => console.log(value)}
-          value="Submit"
-        />
-      </form>
-    </>
-  );
-
-}
+        <Formik
+          initialValues={{
+			    cardNr: '',
+			    name: '',
+			    dateYear: '',
+			    dateMonth: '',
+			    cvc: '',
+          
+  
+          }}
 
 
-/* import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Cards from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
-import styles from "./styles.css";
 
-const MyCards = () => {
-  const [number, SetNumber] = useState("");
-  const [name, SetName] = useState("");
-  const [month, SetMonth] = useState("");
-  let [expiry, SetExpiry] = useState("");
-  const [cvc, SetCvc] = useState("");
-  const [focus, SetFocus] = useState("");
-  const handleDate = (e : any) => {
-    SetMonth(e.target.value);
-    SetExpiry(e.target.value);
-  };
-  const handleExpiry = (e: any) => {
-    SetExpiry(month.concat(e.target.value));
-  };
-
-  return (
-    <>
-      {/* <div className="rccs__card backcolor"> }
-/*
-      <div className="rccs__card rccs__card--unknown">
-        <Cards
-          number={number}
-          name={name}
-          expiry={expiry}
-          cvc={cvc}
-         
-        />
-      </div>
-
-      <br />
-      <form>
-        <div className="row">
-          <div className="col-sm-11">
-            <label>Card Number</label>
-            <input
-              type="tel"
-              className="form-control"
-              value={number}
-              name="number"
-              
-              pattern="[0-9]+"
-              onChange={(e) => {
-                SetNumber(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div className="col-sm-11">
-            <label>Card Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={name}
-              name="name"
-              onChange={(e) => {
-                SetName(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <div className="row">
-          <div
-            className="col=sm-8"
-           
-          >
-            <label>Expiration Date</label>
-          </div>
-          <div className="col=sm-4">
-            <label>CVV</label>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-sm-4">
-            <select
-              className="form-control"
-              name="expiry"
-              onChange={handleDate}
-            >
-              <option value=" ">Month</option>
-              <option value="01">Jan</option>
-              <option value="02">Feb</option>
-              <option value="03">Mar</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">Aug</option>
-              <option value="09">Sep</option>
-              <option value="10">Oct</option>
-              <option value="11">Nov</option>
-              <option value="12">Dec</option>
-            </select>
-          </div>
-          &nbsp;
-          <div className="col-sm-4">
-            <select
-              className="form-control"
-              name="expiry"
-              onChange={handleExpiry}
-            >
-              <option value=" ">Year</option>
-              <option value="21">2021</option>
-              <option value="22">2022</option>
-              <option value="23">2023</option>
-              <option value="24">2024</option>
-              <option value="25">2025</option>
-              <option value="26">2026</option>
-              <option value="27">2027</option>
-              <option value="28">2028</option>
-              <option value="29">2029</option>
-              <option value="30">2030</option>
-            </select>
-          </div>
-          <div className="col-sm-3">
-            <input
-              type="tel"
-              name="cvc"
+          validationSchema={ValSchema}
+          onSubmit={values => {
+            setCard( values as Card)
             
-              className=" form-control card"
-              value={cvc}
-              pattern="\d*"
-              onChange={(e) => {
-                SetCvc(e.target.value);
-              }}
-              onFocus={(e) => SetFocus(e.target.name)}
-            ></input>
-          </div>
-        </div>
-        <br />
-        <input
-          type="submit"
-          className="btn btn-secondary form-control"
-		  onClick={() => console.log(value)}
-          value="Submit"
-        />
-      </form>
-    </>
-  );
-};
-export default MyCards;
- */
+            console.log(values);
+          }}
+        >
+          {({ errors, touched }) => (
+            <>
+            <Form>
+              <Grid style={gridContainer}>
+			  <Grid style={grid} item xs={12} sm={6}>
+            
+			Kortnummer:
+			<div style={inputForm}>
+			  <Field name="cardNr" />
+			  {errors.cardNr && touched.cardNr ? (
+				<div>{errors.cardNr}</div>
+			  ) : null}
+			</div>
+		  </Grid>
+		
+		  
+		  <Grid style={grid} item xs={12} sm={6}>
+            
+			Namn:
+			<div style={inputForm}>
+			  <Field name="name" />
+			  {errors.name && touched.name ? (
+				<div>{errors.name}</div>
+			  ) : null}
+			</div>
+		  </Grid>
+		 
+		  </Grid>
+		  <Grid style={grid} item xs={12} sm={6}>
+            
+			Utgångsår:
+			<div style={inputForm}>
+			  <Field name="dateYear" />
+			  {errors.dateYear && touched.dateYear ? (
+				<div>{errors.dateYear}</div>
+			  ) : null}
+			</div>
+		  </Grid>
+		  <Grid style={grid} item xs={12} sm={6}>
+            
+			Utgångsmånad:
+			<div style={inputForm}>
+			  <Field name="dateMonth" />
+			  {errors.dateMonth && touched.dateMonth ? (
+				<div>{errors.dateMonth}</div>
+			  ) : null}
+			</div>
+		  </Grid>
+		  
+		  
+                  <Grid style={grid} item xs={12} sm={6}>
+            
+                    Cvc:
+                    <div style={inputForm}>
+                      <Field name="cvc" />
+                      {errors.cvc && touched.cvc ? (
+                        <div>{errors.cvc}</div>
+                      ) : null}
+                    </div>
+                  </Grid>
+                  <Grid style={submitStyling} item xs={12} sm={6}>
+                  <Button type="submit" variant="contained" color="primary">Vidare</Button>
+                  
+                  </Grid>
+  
+             
+            </Form>
+            </>
+          )}
+        </Formik>
+      </div>
+                
+    );
+                      }
+  
+  const formStyling: CSSProperties = {
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    color: 'darkgray',
+  }
+  
+  const gridContainer: CSSProperties = {
+  display: "flex", 
+  flexDirection: "column",
+  flexWrap: "wrap",
+  gap: "20px",
+  marginLeft: "5%",
+  marginBottom: "20px", 
+  width: '300px'
+  }
+  
+  const grid: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  width: '90%',
+  }
+  
+  const submitStyling: CSSProperties = {
+  display: "flex",
+  justifyContent: "center"
+  }
+  
+  const inputForm: CSSProperties = {
+    display: "flex",
+    flexDirection: "column"
+  }
 
- 
-
-export default MyCards;
-
+  
+   export default CardPayment;
+  

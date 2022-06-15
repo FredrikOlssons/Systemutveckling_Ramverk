@@ -1,17 +1,19 @@
-import { FC, useState, CSSProperties } from "react"
+import { FC, useState, CSSProperties, useContext } from "react"
 import { deliveryList } from "../../data/delivery"; 
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { CartContext } from "../context/cartProvider";
 
 
 interface Props {}
 
 export const Delivery: FC<Props> = (props) => {
 
-    const [deliveryAlt, setDeliveryAlt] = useState<String | undefined>()
+    
+    const { deliveryAlt, setDeliveryAlt} = useContext(CartContext)
 
     
     
@@ -29,7 +31,7 @@ export const Delivery: FC<Props> = (props) => {
 
     return (
         <FormControl>
-            <h2>{deliveryAlt}</h2>
+       
             <FormLabel id="demo-radio-buttons-group-label">Våra fraktalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -44,7 +46,7 @@ export const Delivery: FC<Props> = (props) => {
                         <div>
 
                             <FormControlLabel value={choosenDelivery.price} control={<Radio />} label={choosenDelivery.title} 
-                            onChange={() => {setDeliveryAlt(choosenDelivery.title)}} />
+                            onChange={() => {setDeliveryAlt(choosenDelivery)}} />
 
                             <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>
                             <br />
@@ -56,7 +58,8 @@ export const Delivery: FC<Props> = (props) => {
                         
                         <pre>
                             {
-                                deliveryAlt == choosenDelivery.title ? <h4 style={deliveryBox}>Beräknad leveransdag: { getDeliveryDate(choosenDelivery.estimatedDelivery)}</h4> : undefined
+                                
+                                deliveryAlt && (deliveryAlt.title == choosenDelivery.title) ? <h4 style={deliveryBox}>Beräknad leveransdag: { getDeliveryDate(choosenDelivery.estimatedDelivery)}</h4> : undefined
                             }
 
                         </pre>

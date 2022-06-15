@@ -27,7 +27,7 @@ export interface Product {
 
 
 export const products: Product[] = [
-   /*  {
+     {
         id: 1,
         title: "Sense of self",
         image: Self,
@@ -49,8 +49,10 @@ export const products: Product[] = [
         image: Valium,
         description: "Valium.",
         price: 346
-    }, */
-   
+    }, 
+
+]
+   /*
      {
         id: 1, 
         title: "Sovrumskampen", 
@@ -71,7 +73,7 @@ export const products: Product[] = [
         price: 149
     }, {
         id: 4, 
-        title: "Richard's huvudsak", 
+        title: "Farbror Richard's huvudsak", 
         image: DickheadHoopla, 
         description: 'I detta spelet är avgörande att vara ett riktigt "Dickhead". Försök att penetrera ringarna som kommer flygande åt ditt håll. Exakt som en krogrunda men här har du faktiskt chansen att scora', 
         price: 149
@@ -107,3 +109,5 @@ export const products: Product[] = [
         price: 189
     }, 
 ]
+
+*/
