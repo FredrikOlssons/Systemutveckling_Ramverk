@@ -9,15 +9,23 @@ import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
 import { Device, DeviceContext } from "../context/DeviceProvider";
+import { paymentList } from "../../data/payment";
+
+
+
 
 interface Props {
     products: Product
 }
 
 const CheckOut: FC<Props> = (props) => {
+
     const { devices } = useContext(DeviceContext)
 
     const { totalPriceAllProduct, cartItems } = useContext(CartContext)
+    
+    const { totalPrice, cartItems, deliveryAlt, payment  } = useContext(CartContext)
+
 
     return (
         <>
@@ -71,6 +79,29 @@ const CheckOut: FC<Props> = (props) => {
                         </div>
                     </Box>
                 </div>
+
+                
+                <Box style={litleBox}>
+
+
+                    <h1 style={{textAlign: "center"}}>Översikt</h1>
+                    <hr style={{width: "80%", margin: "auto"}} />
+                    <br />
+
+                    <h4>Frakt: {deliveryAlt ? <h3> {deliveryAlt.price} kr </h3> : undefined}  </h4>
+                    
+                    <h4>Betalningssätt: {payment ? <h3>{payment.price} kr </h3> : undefined }  </h4>
+
+    
+                    <h4 style={{margin: "0"}}>Totalsumma: {totalPrice()} kr </h4>
+                    <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
+
+
+                    <div style={buttonStyle}>
+                        <Button variant="contained" color="primary">Slutför köp</Button>
+                    </div>
+                </Box>
+
             </div>
         </>
     )

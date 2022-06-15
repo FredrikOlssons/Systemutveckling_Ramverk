@@ -1,9 +1,10 @@
 import { CartItem } from '../interfaces/cartItem'
 import {Product} from "../../data/products"
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
-import { Payment } from '../../data/payment';
+import { Payment, Swish, Invoice, Card } from '../../data/payment';
 import { Delivery } from '../../data/delivery';
 import { Customer } from '../interfaces/customer';
+
 
 
 
@@ -17,14 +18,27 @@ export interface CartContextData {
     removeProductFromCart: (product: Product) => void
     cartItems: CartItem[],
     customer?: Customer,
-    shipper?: Delivery,
+   
     payment?: Payment,
-
+    swish?: Swish, 
+    invoice?: Invoice,
+    card?: Card,
+    deliveryAlt?: Delivery
+    setCustomer: React.Dispatch<React.SetStateAction<Customer | undefined>>
+  
+    setPayment: React.Dispatch<React.SetStateAction<Payment | undefined>>
+    setSwish: React.Dispatch<React.SetStateAction<Swish | undefined>>
+    setInvoice: React.Dispatch<React.SetStateAction<Invoice | undefined>>
+    setCard: React.Dispatch<React.SetStateAction<Card | undefined>>
+    setDeliveryAlt: React.Dispatch<React.SetStateAction<Delivery | undefined>>
+  
+    
     addToCart: (product: Product) => void
     totalPriceAllProduct: () => number
     calculateTotalQty: () => number
     totPricePerProduct: (product: Product) => number
     totalPrice: () => number
+    //totalSomething: (customer: Customer) => void
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -36,7 +50,17 @@ export const CartContext = React.createContext<CartContextData>({
     totalPriceAllProduct: () => 0,
     calculateTotalQty: () => 0,
     totPricePerProduct: (product) => 0,
-    totalPrice: () => 0
+    totalPrice: () => 0,
+    //totalSomething: (customer) => {},
+    setCustomer: () => {},
+   
+    setPayment: () => {},
+    setSwish: () => {},
+    setInvoice: () => {},
+    setCard: () => {},
+    setDeliveryAlt: () => {},
+    
+
    
 }
 
@@ -49,11 +73,17 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const [customer, setCustomer] = useState<Customer | undefined> ()
 
-    const [shipper, setShipper] = useState<Delivery | undefined> ()
+    //const [shipper, ] = useState<Delivery | undefined> ()
+    const [deliveryAlt, setDeliveryAlt] = useState<Delivery | undefined>()
 
     const [payment, setPayment] = useState<Payment | undefined> ()
+    // for radio button 
+
+    const [swish, setSwish ] = useState<Swish | undefined> () 
+    const [card, setCard ] = useState<Card | undefined> () 
+    const [invoice, setInvoice] = useState<Invoice | undefined> () 
      
-    
+    // swish value, ? + shippe + total amount + vat. 
    
 
   const addToCart = (product: Product) => {
@@ -74,6 +104,12 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     }
 
+/* 
+    const totalSomething = () => {
+        const help = setCustomer(customer)
+        console.log(help) 
+    }
+ */
 
     // removes one product at a time
     const removeFromCart = (product: Product) => {
@@ -141,19 +177,31 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     }
 
     // display total price inkl. payment/delivery
-
+    // all states
     const totalPrice: () => number = () => {
         
-        let totPrice: number = 0
+        let totPrice = totalPriceAllProduct();  
 
-        //const delivery = [shipper]
-        //const payments = [payment]
+        const customers = [customer]
+        const payments = [payment]
+        const swishes = [swish]
+        const cards = [card]
+        const invoices = [invoice]
+        const deliveryAlts = [deliveryAlt]
 
-        
-        if(shipper) {
-            totPrice += shipper.price
+
+        if(customer)
+            if(deliveryAlt) {
+            console.log(deliveryAlt.price)
+            totPrice += deliveryAlt.price
+           
+            console.log(totPrice)
+            if(payment && card || payment && swish || payment && invoice)
+            totPrice += payment.price
+           
+
     
-        }
+        }  
         
         console.log(totPrice)
         // Lägga till funktionen ovan och inkludera nya variabler som tar in pris för frakt/betalning
@@ -161,6 +209,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
         return totPrice
     } 
+    
 
 
     useEffect(()=>{
@@ -196,7 +245,9 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     return (
-        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPriceAllProduct, calculateTotalQty, totPricePerProduct, customer, shipper, payment, totalPrice}}>
+        <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPriceAllProduct, 
+        calculateTotalQty, totPricePerProduct, customer,  
+        payment, card, invoice, swish, totalPrice, setCustomer, setPayment, setSwish, setInvoice, setCard, setDeliveryAlt, deliveryAlt}}>
             {props.children}
         </CartContext.Provider>
     )   

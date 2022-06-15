@@ -48,8 +48,8 @@ import { Device, DeviceContext } from "./context/DeviceProvider";
   
   export const ValidationSchemaExample = () => {
     const { devices } = useContext(DeviceContext)
-
-    //const { setCustomer } = useContext(CartContext)
+    
+    const { setCustomer } = useContext(CartContext)
 
       return ( 
         <div style={formStyling(devices)}>
@@ -68,10 +68,9 @@ import { Device, DeviceContext } from "./context/DeviceProvider";
             }}
             validationSchema={SignupSchema}
             onSubmit={values => {
-
-              // same shape as initial values
-
-              //setCustomer(values as Customer)
+              
+                setCustomer(values as Customer)
+             
               console.log(values);
             }}
           >

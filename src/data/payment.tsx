@@ -1,6 +1,8 @@
 import Swish from '../assets/payment/swish.png'
 import Visakort from '../assets/payment/visa.png'
 import Faktura from '../assets/payment/faktura.png'
+import { Payments } from '../components/context/paymentProvider'
+import { Customer } from '../components/interfaces/customer'
 
 
 export interface Payment {
@@ -10,6 +12,33 @@ export interface Payment {
     description: string
     price: number
 }
+
+
+export interface Swish {
+ 
+    phoneNumber: string
+}
+
+export interface Card {
+    
+    cardNr: string,
+    name: string,
+    dateYear: string,
+    dateMonth: string,
+    cvc: string
+}
+
+
+
+export interface Invoice {
+    streetAdress: string, 
+    postalCode: string,
+    town: string,
+    country: string, 
+}
+
+
+
 
 export const paymentList: Payment[] = [
     {
@@ -25,6 +54,7 @@ export const paymentList: Payment[] = [
         image: Visakort,
         description: "Betala med Visa/Kreditkort direkt i samband med ditt köp.",
         price: 25
+
     }, {
         id: 3,
         title: "Faktura",

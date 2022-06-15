@@ -1,22 +1,13 @@
-import { FC, CSSProperties } from 'react'; 
+import { FC, CSSProperties, useContext } from 'react'; 
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
-
+import { CartContext } from '../context/cartProvider'
+import { Invoice } from '../../data/payment';
 
     const SignupSchema = Yup.object().shape({
-    firstName: Yup.string()
-     .min(2, 'Too Short!')
-     .max(50, 'Too Long!')
-     .required('Required'),
-   lastName: Yup.string()
-     .min(2, 'Too Short!')
-     .max(50, 'Too Long!')
-     .required('Required'),
-   email: Yup.string()
-   .email('Invalid email')
-   .required('Required'),
+    
    streetAdress: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
@@ -33,69 +24,41 @@ import { Button } from "@mui/material";
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
    .required('Required'),
-   phoneNumber: Yup.number()
-   .min(2, 'Too Short!')
-   .max(50, 'Too Long!')
-   .required('Required')
-   .typeError("Must be a number"),
+ 
 
     }); 
- 
-    export const validationInvoice = () => (
+
+    
+    export const validationInvoice = () => {
+      const { setInvoice } = useContext(CartContext)
+      return (
       <div style={formStyling}>
+
+        
           
       <Formik
         initialValues={{
-          firstName: '',
-          lastName: '',
-          email: '',
           streetAdress: '', 
           postalCode: '', 
           town: '', 
           country: '', 
-          phoneNumber: '',
+         
 
         }}
         validationSchema={SignupSchema}
         onSubmit={values => {
-          // same shape as initial values
-          // DO SOMETHING HERE FOR SUBMIT :)))))))))))
+          setInvoice( values as Invoice)
           
           console.log(values);
         }}
+      
+        
       >
         {({ errors, touched }) => (
           <>
           <Form>
             <Grid style={gridContainer}>
-                <Grid style={grid} item xs={12} sm={6}>
-                  Förnamn:
-                  <div style={inputForm}>
-                    <Field name="firstName" />
-                    {errors.firstName && touched.firstName ? (
-                      <div>{errors.firstName}</div>
-                      ) : null}
-                  </div>
-                </Grid>
-
-                <Grid style={grid} item xs={12} sm={6}>
-                  Efternamn:
-                  <div style={inputForm}>
-                    <Field name="lastName" />
-                    {errors.lastName && touched.lastName ? (
-                      <div>{errors.lastName}</div>
-                    ) : null}
-                  </div>
-                </Grid>
-
-                <Grid style={grid} item xs={12} sm={6}>
-                  E-post:
-                  <div style={inputForm}>
-                    <Field name="email" type="email" />
-                    {errors.email && touched.email ? <div>{errors.email}</div> 
-                    : null}
-                  </div>
-                </Grid>
+     
 
                 <Grid style={grid} item xs={12} sm={6}>
                   Address:
@@ -141,15 +104,7 @@ import { Button } from "@mui/material";
                   </div>
                 </Grid>
 
-                <Grid style={grid} item xs={12} sm={6}>
-                  Tel.nummer:
-                  <div style={inputForm}>
-                    <Field name="phoneNumber" />
-                    {errors.phoneNumber && touched.phoneNumber ? (
-                      <div>{errors.phoneNumber}</div>
-                    ) : null}
-                  </div>
-                </Grid>
+           
                 <Grid style={submitStyling} item xs={12} sm={6}>
                 <Button type="submit" variant="contained" color="primary">Vidare</Button>
                 
@@ -161,8 +116,10 @@ import { Button } from "@mui/material";
         )}
       </Formik>
     </div>
+    
+    )
               
-  );
+                    }
 
 
 const formStyling: CSSProperties = {

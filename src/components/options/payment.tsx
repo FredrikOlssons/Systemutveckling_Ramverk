@@ -5,10 +5,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import MyCards from './paymentForm'
+import { CardPayment } from './paymentForm'
 import PaymentProvider, { PaymentContext } from '../context/paymentProvider'
 import ValidationInvoice from './invoice'
 import ValidationSwish from './swish'
+import { CartContext } from '../context/cartProvider'
 
 
 interface Props {}
@@ -17,9 +18,10 @@ export const Payment: FC<Props> = (props) => {
 
     
 
-    const [isChoosenPayment, setIsChoosenPayment] = useState("")
+  
+    const { payment, setPayment} = useContext(CartContext)
 
-    const { payments } = useContext(PaymentContext)
+   
 
 
 
@@ -30,7 +32,7 @@ export const Payment: FC<Props> = (props) => {
 
     return (
         <FormControl>
-            <h3>{isChoosenPayment}</h3>
+          
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
@@ -45,8 +47,9 @@ export const Payment: FC<Props> = (props) => {
                     
                         <div key={choosenPayment.id} style={paymentBox}>
                             
-                            <FormControlLabel value={choosenPayment.title} control={<Radio />} onChange={() => {
-                                setIsChoosenPayment(choosenPayment.title)
+                            <FormControlLabel value={choosenPayment.price} control={<Radio />} onChange={() => {
+                                setPayment(choosenPayment)
+
                                 }} label={choosenPayment.title} />
                                 
                 
@@ -60,13 +63,13 @@ export const Payment: FC<Props> = (props) => {
                             <div>
                                         
                                     {
-                                        isChoosenPayment == choosenPayment.title && choosenPayment.title == "Visakort" ? <MyCards/> : undefined
+                                        payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Visakort" ? <CardPayment /> : undefined
                                     }{
-                                    isChoosenPayment == choosenPayment.title && choosenPayment.title == "Swish" ?< ValidationSwish />: undefined
+                                    payment && (payment.title && choosenPayment.title) == "Swish" ?< ValidationSwish />: undefined
                                         
                                     }
                                     {
-                                    isChoosenPayment == choosenPayment.title && choosenPayment.title == "Faktura" ? <ValidationInvoice/ >  : undefined
+                                    payment && (payment.title && choosenPayment.title && choosenPayment.title) == "Faktura" ? < ValidationInvoice />  : undefined
                                         
                                     }
                 
