@@ -89,15 +89,14 @@ const ValSchema = Yup.object().shape( {
 			</div>
 		  </Grid>
 		 
-		  </Grid>
 		  <Grid style={grid} item xs={12} sm={6}>
             
 			Utgångsår:
 			<div style={inputForm}>
 			  <Field name="dateYear" />
 			  {errors.dateYear && touched.dateYear ? (
-				<div>{errors.dateYear}</div>
-			  ) : null}
+          <div>{errors.dateYear}</div>
+          ) : null}
 			</div>
 		  </Grid>
 		  <Grid style={grid} item xs={12} sm={6}>
@@ -106,8 +105,8 @@ const ValSchema = Yup.object().shape( {
 			<div style={inputForm}>
 			  <Field name="dateMonth" />
 			  {errors.dateMonth && touched.dateMonth ? (
-				<div>{errors.dateMonth}</div>
-			  ) : null}
+          <div>{errors.dateMonth}</div>
+          ) : null}
 			</div>
 		  </Grid>
 		  
@@ -119,9 +118,10 @@ const ValSchema = Yup.object().shape( {
                       <Field name="cvc" />
                       {errors.cvc && touched.cvc ? (
                         <div>{errors.cvc}</div>
-                      ) : null}
+                        ) : null}
                     </div>
                   </Grid>
+                        </Grid>
                   <Grid style={submitStyling} item xs={12} sm={6}>
                   <Button type="submit" variant="contained" color="primary">Vidare</Button>
                   
@@ -139,9 +139,10 @@ const ValSchema = Yup.object().shape( {
   
   const formStyling: CSSProperties = {
     display: "flex",
-    justifyContent: "space-between",
+    justifyContent: "center",
     flexWrap: "wrap",
     color: 'darkgray',
+    
   }
   
   const gridContainer: CSSProperties = {
@@ -149,15 +150,16 @@ const ValSchema = Yup.object().shape( {
   flexDirection: "column",
   flexWrap: "wrap",
   gap: "20px",
-  marginLeft: "5%",
   marginBottom: "20px", 
-  width: '300px'
+  width: '300px', 
+  justifyContent: 'center',
   }
   
   const grid: CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
-  width: '90%',
+ 
+  columnGap: '15px'
   }
   
   const submitStyling: CSSProperties = {
