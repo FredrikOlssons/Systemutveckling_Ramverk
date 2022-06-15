@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
 import {Customer } from './interfaces/customer';
 import { CartContext } from './context/cartProvider';
+import { Device, DeviceContext } from "./context/DeviceProvider";
 
 
 
@@ -13,11 +14,13 @@ import { CartContext } from './context/cartProvider';
     const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
      .min(2, 'Too Short!')
-     .max(50, 'Too Long!')
+     
+     .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
      .required('Required'),
    lastName: Yup.string()
      .min(2, 'Too Short!')
      .max(50, 'Too Long!')
+     .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
      .required('Required'),
    email: Yup.string()
    .email('Invalid email')
@@ -28,29 +31,33 @@ import { CartContext } from './context/cartProvider';
    .required('Required'),
    postalCode: Yup.string()
    .min(4, 'Too Short!')
-   .max(6, 'Too Long!')
+   .length(5)
+   .typeError("Must be exactly 5 digits")
    .required('Required'),
    town: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
    country: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
    phoneNumber: Yup.number()
    .min(2, 'Too Short!')
-   .max(50, 'Too Long!')
    .required('Required')
    .typeError("Must be a number")
+   .test('len', 'Must be 10 numbers', phoneNumber => phoneNumber!.toString().length === 9),
   }); 
   
   export const ValidationSchemaExample = () => {
+    const { devices } = useContext(DeviceContext)
     
     const { setCustomer } = useContext(CartContext)
 
       return ( 
-        <div style={formStyling}>
+        <div style={formStyling(devices)}>
 
           <Formik
             initialValues={{
@@ -76,8 +83,8 @@ import { CartContext } from './context/cartProvider';
             {({ errors, touched }) => (
               <>
               <Form>
-                <Grid style={gridContainer}>
-                    <Grid style={grid} item xs={12} sm={6}>
+                <Grid style={gridContainer(devices)}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                       Förnamn:
 
                       <div style={inputForm}>
@@ -94,7 +101,7 @@ import { CartContext } from './context/cartProvider';
                       
                       
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Efternamn:
                     <div style={inputForm}>
                       <Field name="lastName" />
@@ -104,7 +111,7 @@ import { CartContext } from './context/cartProvider';
                     </div>
                     </Grid>
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                       E-post:
                     <div style={inputForm}>
                       <Field name="email" type="email" />
@@ -113,7 +120,7 @@ import { CartContext } from './context/cartProvider';
                     </div>
                     </Grid>
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Address:
                     <div style={inputForm}>
                     <Field name="streetAdress" />
@@ -126,8 +133,8 @@ import { CartContext } from './context/cartProvider';
                 </Form>
 
                 <Form>
-                    <Grid style={gridContainer}>
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={gridContainer(devices)}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Postnummer:
                     <div style={inputForm}>
                     <Field name="postalCode" />
@@ -137,7 +144,7 @@ import { CartContext } from './context/cartProvider';
                     </div>
                     </Grid>
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Stad:
                     <div style={inputForm}>
                     <Field name="town" />
@@ -147,7 +154,7 @@ import { CartContext } from './context/cartProvider';
                     </div>
                     </Grid>
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Land:
                     <div style={inputForm}>
                     <Field name="country" />
@@ -157,7 +164,7 @@ import { CartContext } from './context/cartProvider';
                     </div>
                     </Grid>
 
-                    <Grid style={grid} item xs={12} sm={6}>
+                    <Grid style={grid(devices)} item xs={12} sm={6}>
                     Tel.nummer:
                     <div style={inputForm}>
                     <Field name="phoneNumber" />
@@ -181,28 +188,36 @@ import { CartContext } from './context/cartProvider';
       )
   };
 
-
- const formStyling: CSSProperties = {
+  const formStyling: (devices: Device) => CSSProperties = (devices) => {
+    return {
    display: "flex",
-   justifyContent: "space-between",
+   justifyContent: 'center',
    flexWrap: "wrap"
  }
+}
 
- const gridContainer: CSSProperties = {
+ const gridContainer: (devices: Device) => CSSProperties = (devices) => {
+   return {
    display: "flex", 
    flexDirection: "column",
    flexWrap: "wrap",
    gap: "20px",
    marginLeft: "5%",
    marginBottom: "20px", 
-   width: '300px'
+   minWidth: devices.isSmallerMobile ? '200px' : '300px',
+   maxWidth: devices.isSmallerMobile ? '200px' : '300px',
+  // minWidth: '300px'
  }
-
-const grid: CSSProperties = {
-  display: "flex",
-  justifyContent: "space-between",
-  width: '90%',
 }
+
+ const grid: (devices: Device) => CSSProperties = (devices) => {
+  return {
+  display: "flex",
+  justifyContent: devices.isSmallerMobile ? 'center' : "space-between",
+  width: '90%',
+  flexWrap: devices.isSmallerMobile ? 'wrap' : undefined,
+}
+ }
 
 const submitStyling: CSSProperties = {
   display: "flex",

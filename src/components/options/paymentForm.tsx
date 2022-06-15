@@ -10,25 +10,31 @@ import { Card } from '../../data/payment';
 const ValSchema = Yup.object().shape( {
 	cardNr: Yup.string()
 	  .label('Card number')
-	  .max(16)
+	  .length(16)
+    .typeError("Must be a number")
+    .matches(/^\d+$/, 'The field should have numbers only')
 	  .required(),
 	  name: Yup.string()
 	  .label('Name on card')
+    .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
 	  .required(),
 	dateYear: Yup.string()
 	  .label('Expiry year')
-	  .min(4)
-	  .max(4)
+    .length(4)
+    .typeError("Must be a number")
+    .matches(/^\d+$/, 'The field should have numbers only')
 	  .required(),
     dateMonth: Yup.string()
 	  .label('Expiry month')
-	  .min(4)
-	  .max(4)
+    .length(2)
+    .typeError("Must be a number")
+    .matches(/^\d+$/, 'The field should have numbers only')
 	  .required(),
 	cvc: Yup.string()
 	  .label('CVC')
-	  .min(3)
-	  .max(4)
+	  .length(3)
+    .typeError("Must be a number")
+    .matches(/^\d+$/, 'The field should have numbers only')
 	  .required(),
 
 	

@@ -1,7 +1,5 @@
 import { CartItem } from '../interfaces/cartItem'
-
-import {products, Product} from "../../data/products"
-
+import {Product} from "../../data/products"
 import React, {PropsWithChildren, useState, useEffect, FC} from "react";
 import { Payment, Swish, Invoice, Card } from '../../data/payment';
 import { Delivery } from '../../data/delivery';

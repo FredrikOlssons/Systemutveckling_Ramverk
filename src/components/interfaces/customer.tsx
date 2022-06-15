@@ -1,5 +1,3 @@
-
-
 export interface Customer {
     firstName: string
     lastName: string
@@ -10,3 +8,4 @@ export interface Customer {
     country: string
     phoneNumber: string
 }
+
