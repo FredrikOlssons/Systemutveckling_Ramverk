@@ -43,7 +43,7 @@ export const Delivery: FC<Props> = (props) => {
                     <div key={choosenDelivery.id} style={deliveryBox}>
                         <div>
 
-                            <FormControlLabel value={choosenDelivery.estimatedDelivery} control={<Radio />} label={choosenDelivery.title} 
+                            <FormControlLabel value={choosenDelivery.price} control={<Radio />} label={choosenDelivery.title} 
                             onChange={() => {setDeliveryAlt(choosenDelivery.title)}} />
 
                             <span key={choosenDelivery.price}>Pris: {choosenDelivery.price} kr</span>

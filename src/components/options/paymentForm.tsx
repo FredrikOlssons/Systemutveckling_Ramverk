@@ -20,10 +20,13 @@ const MyCards = () => {
     SetExpiry(month.concat(e.target.value));
   };
 
+}
+/*
   return (
     <>
       
- /*     {/* <div className="rccs__card backcolor"> */}
+     {/* <div className="rccs__card backcolor"> */
+	 /*
 import React from 'react';
 import { PaymentInputsWrapper, usePaymentInputs } from 'react-payment-inputs';
 
@@ -168,5 +171,6 @@ export default function MyCards() {
       </form>
     </>
   );
-};/*
+}; */ 
+
 export default MyCards;
