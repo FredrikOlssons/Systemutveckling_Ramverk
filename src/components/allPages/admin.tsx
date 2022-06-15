@@ -1,7 +1,8 @@
 import { FC, CSSProperties, useContext } from "react";
-import { products, Product } from "../../data/products";
+import { Product } from "../../data/products";
 import { Device, DeviceContext } from "../context/DeviceProvider";
-import RenderProduct from "../productCard";
+import stopsign from '../../assets/116-1164737_clip-art-not-allowed-symbol-not-allowed-sign.png'
+import note from '../../assets/You-re-not-allowed-You-re-not-even-allowed-to-be-a.jpg'
 
 
 interface Props {
@@ -18,67 +19,39 @@ const Admin: FC<Props> = (props) => {
             <h1 style={title}> Admin sida </h1>
                 
             <div style={bigDiv(devices)}>
-                <div style={productContain(devices)}>
-                    <div style={productContainer}>
-                        {products.map((product) => (
-                        <RenderProduct key={product.id} products={product} />
-                        ))}
-                    </div>
-                </div>       
+                <img style={title} src={stopsign} alt="" />
+                <img style={productContainer} src={note} alt="" />
             </div>   
-                
-            
         </div>
-        
     )
 }
 
 
 const title: CSSProperties = {
-    display: "flex", 
-    justifyContent: "center",
-    margin: "40px",
-    color: "silver",
-    fontFamily: "Frijole, cursive",
-
+    width: "30%",
+    justifyContent: 'center',
+    display: "flex",
+    marginLeft: '35%',
+    marginRight: '35%'
 }
 
 
 const productContainer: CSSProperties = {
-    paddingTop: "10px",
-    borderRadius: "15px",
-    paddingBottom: '10px',
-    minWidth: '250px',
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: "20px"
-    
-
+    width: "70%",
+    marginLeft: '15%',
+    marginRight: '15%'
 }
 
 const bigDiv: (devices: Device) => CSSProperties = (devices) => {
     return {
+    width: '100vw',
     display: "flex",
-    flexDirection: "row",
-    flexWrap: 'wrap',
+    flexDirection: "column",
     marginBottom: "100px",
-    gap: "2%",
-    jusifyContent: devices.isTablet ? 'center' : devices.isMobile ? 'center' : 'center',
+    gap: "15px",
     justifyContent: 'center',
+    alignContent: 'center'
   };
   }
-
-  const productContain: (devices: Device) => CSSProperties = (devices) => {
-    return {
-    width: devices.isTablet ? '80vw' : devices.isMobile ? '90vw' : '78%',
-    justifyContent: devices.isTablet ? 'center' : devices.isMobile ? 'center' : undefined,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    
-    };
-};
 
 export default Admin 

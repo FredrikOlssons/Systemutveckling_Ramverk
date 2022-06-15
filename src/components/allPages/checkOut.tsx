@@ -5,73 +5,81 @@ import Delivery from "../options/delivery";
 import "../../style/hero.css"
 import { Payment } from '../options/payment'
 import Cartlist from '../functions/cartList'
-import { Product, products } from '../../data/products'
+import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
+import { Device, DeviceContext } from "../context/DeviceProvider";
 import { paymentList } from "../../data/payment";
+
 
 
 
 interface Props {
     products: Product
-    
 }
 
 const CheckOut: FC<Props> = (props) => {
+
+    const { devices } = useContext(DeviceContext)
+
+    const { totalPriceAllProduct, cartItems } = useContext(CartContext)
     
     const { totalPrice, cartItems, deliveryAlt, payment  } = useContext(CartContext)
 
+
     return (
         <>
-        <div>
-            <h1 style={title}> Checka-ut sidan </h1>
-            
-            <div style={Container}>
-                <div>
-                    <Box style={firstBox}>
-                        <h2 style={{textAlign: "center"}}>Varukorg</h2>
-                        <hr style={{width: "85%", margin: "auto"}} />
-                        <br />
-                        {
-                        cartItems.length == 0 ? <h4>Kundvagnen är tom 🤷 </h4> : undefined
-                        }
-                        <Cartlist/>
+            <div>
+                <h1 style={title}> Checka-ut sidan </h1>
 
-                    </Box>
-                            
-                    <Box style={secondBox}>
-                    <h3 style={{textAlign: "center"}}>Fyll i dina kontaktuppgifter</h3>
-                    <hr style={{width: "85%", margin: "auto"}} />
-                    <br />
-                    <div style={contactForm}>
-                        <ValidationSchemaExample/>
+                <div style={Container}>
+                    <div>
+                        <Box style={firstBox(devices)}>
+                            <h2 style={{ textAlign: "center" }}>Varukorg</h2>
+                            <hr style={{ width: "85%", margin: "auto" }} />
+                            <br />
+                            {cartItems.length == 0 ? <h4>Kundvagnen är tom 🤷 </h4> : undefined}
+                            <Cartlist />
+                        </Box>
 
+                        <Box style={secondBox(devices)}>
+                            <h3 style={{ textAlign: "center" }}>Fyll i dina kontaktuppgifter</h3>
+                            <hr style={{ width: "85%", margin: "auto" }} />
+                            <br />
+                            <div style={contactForm}>
+                                <ValidationSchemaExample />
+                            </div>
+                        </Box>
+
+                        <Box style={secondBox(devices)}>
+                            <h3 style={{ textAlign: "center" }}>Fraktalternativ 📦 💨</h3>
+                            <hr style={{ width: "85%", margin: "auto" }} />
+                            <br />
+                            <Delivery />
+                        </Box>
+
+                        <Box style={secondBox(devices)}>
+                            <h3 style={{ textAlign: "center" }}>Betalningsalternativ</h3>
+                            <hr style={{ width: "85%", margin: "auto" }} />
+                            <br />
+                            <Payment />
+                        </Box>
                     </div>
-                    </Box>
 
-                    <Box style={secondBox}>
-                        <h3 style={{textAlign: "center"}}>Fraktalternativ 📦 💨</h3>
-                        <hr style={{width: "85%", margin: "auto"}} />
+                    <Box style={litleBox(devices)}>
+                        <h1 style={{ textAlign: "center" }}>Översikt</h1>
+                        <hr style={{ width: "80%", margin: "auto" }} />
                         <br />
-                        <Delivery />
-
-
+                        <h4>Frakt: </h4>
+                        <h4>Betalningssätt: </h4>
+                        <h4 style={{ margin: "0" }}>Totalsumma: {totalPriceAllProduct()} kr </h4>
+                        <h6 style={{ margin: "0" }}>(inkl. moms, frakt, betalning)</h6>
+                        <div style={buttonStyle}>
+                            <Button variant="contained" color="primary">Slutför köp</Button>
+                        </div>
                     </Box>
-                    
-                    
-                    <Box style={secondBox}>
-
-                        <h3 style={{textAlign: "center"}}>Betalningsalternativ</h3>
-                        <hr style={{width: "85%", margin: "auto"}} />
-                        <br />
-                        <Payment /> 
-                    
-                    </Box>
-
-
-                
-
                 </div>
+
                 
                 <Box style={litleBox}>
 
@@ -80,7 +88,7 @@ const CheckOut: FC<Props> = (props) => {
                     <hr style={{width: "80%", margin: "auto"}} />
                     <br />
 
-                    <h4>Frakt: {deliveryAlt ? <h3> {deliveryAlt.price} kr </h3> : undefined} kr </h4>
+                    <h4>Frakt: {deliveryAlt ? <h3> {deliveryAlt.price} kr </h3> : undefined}  </h4>
                     
                     <h4>Betalningssätt: {payment ? <h3>{payment.price} kr </h3> : undefined }  </h4>
 
@@ -93,45 +101,47 @@ const CheckOut: FC<Props> = (props) => {
                         <Button variant="contained" color="primary">Slutför köp</Button>
                     </div>
                 </Box>
+
             </div>
-        </div>
         </>
     )
 }
 
 
 
-const firstBox: CSSProperties = {
-    height: 'fit-content',
-    border: "1px solid black",
-    boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-    borderRadius: "15px",
-    marginBottom: "20px",
-    marginLeft: "10px",
-    marginRight: "10px",
-    padding: "30px",
-    backgroundColor: "white",
-    minWidth: '300px',
+const firstBox: (devices: Device) => CSSProperties = (devices) => {
+    return {
+        height: 'fit-content',
+        border: "1px solid black",
+        boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+        borderRadius: "15px",
+        marginBottom: "20px",
+        marginLeft: "10px",
+        marginRight: "10px",
+        padding: devices.isSmallerMobile ? '0px' : "30px",
+        backgroundColor: "white",
+        minWidth: devices.isSmallerMobile ? '0px' : '300px',
+    }
 }
 
-
-const secondBox: CSSProperties = {
-    border: "1px solid black",
-    boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-    borderRadius: "15px",
-    marginBottom: "20px",
-    marginLeft: "10px",
-    marginRight: "10px",
-    padding: "20px",
-    backgroundColor: "white",
-    display: "flex",
-    flexDirection: "column",
-    minWidth: '300px',
-    flexWrap: 'wrap',
+const secondBox: (devices: Device) => CSSProperties = (devices) => {
+    return {
+        border: "1px solid black",
+        boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+        borderRadius: "15px",
+        marginBottom: "20px",
+        marginLeft: "10px",
+        marginRight: "10px",
+        padding: devices.isSmallerMobile ? '0px' : "20px",
+        backgroundColor: "white",
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: 'wrap',
+    }
 }
 
 const title: CSSProperties = {
-    display: "flex", 
+    display: "flex",
     justifyContent: "center",
     margin: "40px",
     color: "silver",
@@ -139,16 +149,17 @@ const title: CSSProperties = {
     textAlign: "center"
 }
 
-const litleBox: CSSProperties = {
-    width: "40%",
-    border: "1px solid black",
-    boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
-    borderRadius: "15px",
-    padding: "40px",
-    backgroundColor: "white",
-    minWidth: '300px',
-    height: 'fit-content',
-    marginBottom: '60px',
+const litleBox: (devices: Device) => CSSProperties = (devices) => {
+    return {
+        width: devices.isSmallerMobile ? "90%" : devices.isMobile ? '70%' : '40%',
+        border: "1px solid black",
+        boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
+        borderRadius: "15px",
+        backgroundColor: "white",
+        height: 'fit-content',
+        marginBottom: '60px',
+        padding: devices.isSmallerMobile ? '0px' : "40px",
+    }
 }
 
 const Container: CSSProperties = {
@@ -160,10 +171,10 @@ const Container: CSSProperties = {
 }
 
 const buttonStyle: CSSProperties = {
-    display: "flex", 
+    display: "flex",
     justifyContent: "end",
     marginTop: "40px",
-    
+
 }
 
 const contactForm: CSSProperties = {
