@@ -45,7 +45,7 @@ export const Payment: FC<Props> = (props) => {
                     
                         <div key={choosenPayment.id} style={paymentBox}>
                             
-                            <FormControlLabel value={choosenPayment.title} control={<Radio />} onChange={() => {
+                            <FormControlLabel value={choosenPayment.price} control={<Radio />} onChange={() => {
                                 setIsChoosenPayment(choosenPayment.title)
                                 }} label={choosenPayment.title} />
                                 
