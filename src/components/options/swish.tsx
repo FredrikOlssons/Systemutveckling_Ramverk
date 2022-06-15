@@ -1,8 +1,10 @@
-import { FC, CSSProperties } from 'react'; 
+import { FC, CSSProperties, useContext } from 'react'; 
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
 import { Grid } from '@mui/material';
 import { Button } from "@mui/material";
+import { CartContext } from '../context/cartProvider';
+import { Swish } from '../../data/payment';
 
 
     const SignupSchema = Yup.object().shape({
@@ -16,7 +18,10 @@ import { Button } from "@mui/material";
 
 
      
-    export const validationSwish = () => (
+    export const validationSwish = () => {
+      const { setSwish } = useContext(CartContext)
+
+      return (
         <div style={formStyling}>
             
         <Formik
@@ -27,8 +32,8 @@ import { Button } from "@mui/material";
           }}
           validationSchema={SignupSchema}
           onSubmit={values => {
-            // same shape as initial values
-            // DO SOMETHING HERE FOR SUBMIT :)))))))))))
+            setSwish( values as Swish)
+            
             console.log(values);
           }}
         >
@@ -59,7 +64,7 @@ import { Button } from "@mui/material";
       </div>
                 
     );
-  
+                      }
   
   const formStyling: CSSProperties = {
     display: "flex",
@@ -93,7 +98,7 @@ import { Button } from "@mui/material";
     display: "flex",
     flexDirection: "column"
   }
-  
+
   
    export default validationSwish;
   
