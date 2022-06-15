@@ -1,4 +1,5 @@
 
+import React, { Component } from 'react'
 import { Box, Button } from "@mui/material";
 import { FC, CSSProperties, useContext } from "react";
 import Delivery from "../options/delivery";
@@ -8,18 +9,29 @@ import Cartlist from '../functions/cartList'
 import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
+
+import { paymentList } from "../../data/payment";
+import  AlertDialog  from '../dialog'
+
+
 import { Device, DeviceContext } from "../context/DeviceProvider";
+
 
 
 interface Props {
     products: Product
 }
 
+/* const openDialog: () => {
+   
+} */
+
+
 const CheckOut: FC<Props> = (props) => {
 
     const { devices } = useContext(DeviceContext)
     
-    const { totalPrice, cartItems, deliveryAlt, payment  } = useContext(CartContext)
+    const { totalPrice, cartItems, deliveryAlt, payment, calcVat, confirmPurchase } = useContext(CartContext)
 
 
     return (
@@ -72,15 +84,18 @@ const CheckOut: FC<Props> = (props) => {
 
                     <h4>Frakt: {deliveryAlt ? <h3> {deliveryAlt.price} kr </h3> : undefined}  </h4>
                     
-                    <h4>Betalningssätt: {payment ? <h3>{payment.price} kr </h3> : undefined }  </h4>
+                    <h4>Kostnad för betalning: {payment ? <h3>{payment.price} kr </h3> : undefined }  </h4>
 
     
+                    <h4 style={{margin: "0"}}>Varav Moms: {calcVat()} kr </h4>
                     <h4 style={{margin: "0"}}>Totalsumma: {totalPrice()} kr </h4>
+                
                     <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
 
 
                     <div style={buttonStyle}>
-                        <Button variant="contained" color="primary">Slutför köp</Button>
+                        <AlertDialog/>
+                        
                     </div>
                 </Box>
 

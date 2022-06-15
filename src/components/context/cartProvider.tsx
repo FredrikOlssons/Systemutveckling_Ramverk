@@ -38,6 +38,8 @@ export interface CartContextData {
     calculateTotalQty: () => number
     totPricePerProduct: (product: Product) => number
     totalPrice: () => number
+    calcVat: () => number
+    confirmPurchase: () => void
     //totalSomething: (customer: Customer) => void
 }
 
@@ -59,6 +61,8 @@ export const CartContext = React.createContext<CartContextData>({
     setInvoice: () => {},
     setCard: () => {},
     setDeliveryAlt: () => {},
+    calcVat: () => 0,
+    confirmPurchase: () => {}
     
 
    
@@ -73,8 +77,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const [customer, setCustomer] = useState<Customer | undefined> ()
 
-    //const [shipper, ] = useState<Delivery | undefined> ()
-    const [deliveryAlt, setDeliveryAlt] = useState<Delivery | undefined>()
+    
+    let [deliveryAlt, setDeliveryAlt] = useState<Delivery | undefined>()
 
     const [payment, setPayment] = useState<Payment | undefined> ()
     // for radio button 
@@ -83,8 +87,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const [card, setCard ] = useState<Card | undefined> () 
     const [invoice, setInvoice] = useState<Invoice | undefined> () 
      
-    // swish value, ? + shippe + total amount + vat. 
-   
+ 
 
   const addToCart = (product: Product) => {
     const updatedCart = [...cartItems]
@@ -104,12 +107,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     }
 
-/* 
-    const totalSomething = () => {
-        const help = setCustomer(customer)
-        console.log(help) 
-    }
- */
+
 
     // removes one product at a time
     const removeFromCart = (product: Product) => {
@@ -167,14 +165,55 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
     }
 
+    const calcVat : () => number = () => {
+        let price = totalPriceAllProduct();
+
+        var result = price * 1.25;
+        let vat = result - price; 
+        console.log(vat)
+        return vat
+       
+    }
+
 
     // displays total price for all items in cart
     const totalPriceAllProduct: () => number  = () => {
         const listOfProducts = [...cartItems]
         let amount = listOfProducts.reduce((sum,product) => sum + product.product.price * product.quantity, 0);
         
+      
         return amount
     }
+
+
+      
+
+        const confirmPurchase: () => void = () => {
+            //const cart = localStorage.getItem('cart')
+        
+            if(customer && deliveryAlt && payment){
+             
+                localStorage.removeItem('cart')
+                let clearedCart = [...cartItems]
+                clearedCart = [];
+                
+               
+
+
+                
+                
+    
+
+            setCart(clearedCart)
+            console.log(clearedCart)
+            
+            
+        }else{
+            console.log('nuhu')
+        }
+
+ }  
+
 
     // display total price inkl. payment/delivery
     // all states
@@ -182,12 +221,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
         let totPrice = totalPriceAllProduct();  
 
-        const customers = [customer]
-        const payments = [payment]
-        const swishes = [swish]
-        const cards = [card]
-        const invoices = [invoice]
-        const deliveryAlts = [deliveryAlt]
+      
 
 
         if(customer)
@@ -198,16 +232,15 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             console.log(totPrice)
             if(payment && card || payment && swish || payment && invoice)
             totPrice += payment.price
-           
-
-    
-        }  
+       }  
         
-        console.log(totPrice)
-        // Lägga till funktionen ovan och inkludera nya variabler som tar in pris för frakt/betalning
+       // calculates VAT
+       var totalPrice = totPrice * 1.25;
+       
 
+      
 
-        return totPrice
+        return totalPrice
     } 
     
 
@@ -215,11 +248,22 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     useEffect(()=>{
         calculateTotalQty();   
     }, [cartItems])
+
+
+ useEffect(() => {
+     
+     confirmPurchase(); 
+
+},[])
         
 
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cartItems))
     }, [cartItems])
+
+
+    
+ 
 
 
 
@@ -247,7 +291,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     return (
         <CartContext.Provider value={{cartItems, removeFromCart, addToCart, removeProductFromCart, totalPriceAllProduct, 
         calculateTotalQty, totPricePerProduct, customer,  
-        payment, card, invoice, swish, totalPrice, setCustomer, setPayment, setSwish, setInvoice, setCard, setDeliveryAlt, deliveryAlt}}>
+        payment, card, invoice, swish, totalPrice, setCustomer, setPayment, setSwish, setInvoice, setCard, 
+        setDeliveryAlt, deliveryAlt, calcVat, confirmPurchase}}>
             {props.children}
         </CartContext.Provider>
     )   
