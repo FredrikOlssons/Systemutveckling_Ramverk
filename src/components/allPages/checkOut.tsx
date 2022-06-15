@@ -9,9 +9,6 @@ import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
 import { Device, DeviceContext } from "../context/DeviceProvider";
-import { paymentList } from "../../data/payment";
-
-
 
 
 interface Props {
@@ -21,8 +18,6 @@ interface Props {
 const CheckOut: FC<Props> = (props) => {
 
     const { devices } = useContext(DeviceContext)
-
-    const { totalPriceAllProduct, cartItems } = useContext(CartContext)
     
     const { totalPrice, cartItems, deliveryAlt, payment  } = useContext(CartContext)
 
@@ -65,23 +60,10 @@ const CheckOut: FC<Props> = (props) => {
                             <Payment />
                         </Box>
                     </div>
-
-                    <Box style={litleBox(devices)}>
-                        <h1 style={{ textAlign: "center" }}>Översikt</h1>
-                        <hr style={{ width: "80%", margin: "auto" }} />
-                        <br />
-                        <h4>Frakt: </h4>
-                        <h4>Betalningssätt: </h4>
-                        <h4 style={{ margin: "0" }}>Totalsumma: {totalPriceAllProduct()} kr </h4>
-                        <h6 style={{ margin: "0" }}>(inkl. moms, frakt, betalning)</h6>
-                        <div style={buttonStyle}>
-                            <Button variant="contained" color="primary">Slutför köp</Button>
-                        </div>
-                    </Box>
                 </div>
 
                 
-                <Box style={litleBox}>
+                <Box style={litleBox(devices)}>
 
 
                     <h1 style={{textAlign: "center"}}>Översikt</h1>
