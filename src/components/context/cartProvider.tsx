@@ -27,6 +27,7 @@ export interface CartContextData {
     calculateTotalQty: () => number
     totPricePerProduct: (product: Product) => number
     totalPrice: () => number
+    //totalSomething: (customer: Customer) => void
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -38,7 +39,8 @@ export const CartContext = React.createContext<CartContextData>({
     totalPriceAllProduct: () => 0,
     calculateTotalQty: () => 0,
     totPricePerProduct: (product) => 0,
-    totalPrice: () => 0
+    totalPrice: () => 0,
+    //totalSomething: (customer) => {}
    
 }
 
@@ -76,6 +78,12 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     }
 
+/* 
+    const totalSomething = () => {
+        const help = setCustomer(customer)
+        console.log(help) 
+    }
+ */
 
     // removes one product at a time
     const removeFromCart = (product: Product) => {
@@ -146,7 +154,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const totalPrice: () => number = () => {
         
-        let totPrice: number = 0
+        let totPrice: number = 0 
 
         //const delivery = [shipper]
         //const payments = [payment]
@@ -163,6 +171,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
         return totPrice
     } 
+    
 
 
     useEffect(()=>{

@@ -47,7 +47,7 @@ import { CartContext } from './context/cartProvider';
   
   export const ValidationSchemaExample = () => {
     
-    //const { setCustomer } = useContext(CartContext)
+    const { totalSomething } = useContext(CartContext)
 
       return ( 
         <div style={formStyling}>
@@ -66,11 +66,10 @@ import { CartContext } from './context/cartProvider';
             }}
             validationSchema={SignupSchema}
             onSubmit={values => {
-
-              // same shape as initial values
-
-              //setCustomer(values as Customer)
-              console.log(values);
+              console.log(values)
+                const person = totalSomething(values)
+             
+              console.log(person);
             }}
           >
          
