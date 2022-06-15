@@ -10,9 +10,9 @@ import { Swish } from '../../data/payment';
     const SignupSchema = Yup.object().shape({
    phoneNumber: Yup.number()
    .min(2, 'Too Short!')
-   .max(50, 'Too Long!')
    .required('Required')
-   .typeError("Must be a number"),
+   .typeError("Must be a number")
+   .test('len', 'Must be 10 numbers', phoneNumber => phoneNumber!.toString().length === 9),
 
   }); 
 
