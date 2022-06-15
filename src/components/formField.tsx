@@ -14,11 +14,13 @@ import { Device, DeviceContext } from "./context/DeviceProvider";
     const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
      .min(2, 'Too Short!')
-     .max(50, 'Too Long!')
+     
+     .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
      .required('Required'),
    lastName: Yup.string()
      .min(2, 'Too Short!')
      .max(50, 'Too Long!')
+     .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
      .required('Required'),
    email: Yup.string()
    .email('Invalid email')
@@ -29,21 +31,24 @@ import { Device, DeviceContext } from "./context/DeviceProvider";
    .required('Required'),
    postalCode: Yup.string()
    .min(4, 'Too Short!')
-   .max(6, 'Too Long!')
+   .length(5)
+   .typeError("Must be exactly 5 digits")
    .required('Required'),
    town: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
    country: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
    phoneNumber: Yup.number()
    .min(2, 'Too Short!')
-   .max(50, 'Too Long!')
    .required('Required')
    .typeError("Must be a number")
+   .test('len', 'Must be 10 numbers', phoneNumber => phoneNumber!.toString().length === 9),
   }); 
   
   export const ValidationSchemaExample = () => {

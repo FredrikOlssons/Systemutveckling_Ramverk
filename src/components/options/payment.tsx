@@ -65,11 +65,11 @@ export const Payment: FC<Props> = (props) => {
                                     {
                                         payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Visakort" ? <CardPayment /> : undefined
                                     }{
-                                    payment && (payment.title && choosenPayment.title) == "Swish" ?< ValidationSwish />: undefined
+                                    payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Swish" ?< ValidationSwish />: undefined
                                         
                                     }
                                     {
-                                    payment && (payment.title && choosenPayment.title && choosenPayment.title) == "Faktura" ? < ValidationInvoice />  : undefined
+                                    payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Faktura" ? < ValidationInvoice />  : undefined
                                         
                                     }
                 

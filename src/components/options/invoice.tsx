@@ -14,15 +14,18 @@ import { Invoice } from '../../data/payment';
    .required('Required'),
    postalCode: Yup.string()
    .min(4, 'Too Short!')
-   .max(6, 'Too Long!')
+   .length(5)
+   .typeError("Must be exactly 5 digits")
    .required('Required'),
    town: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
    country: Yup.string()
    .min(2, 'Too Short!')
    .max(50, 'Too Long!')
+   .matches(/^[aA-zZ\s]+$/, "Only letters are allowed! ")
    .required('Required'),
  
 
