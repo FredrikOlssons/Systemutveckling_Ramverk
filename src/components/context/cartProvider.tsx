@@ -20,7 +20,7 @@ export interface CartContextData {
     invoice?: Invoice,
     card?: Card,
     deliveryAlt?: Delivery
-    
+
     setCustomer: React.Dispatch<React.SetStateAction<Customer | undefined>>
     setPayment: React.Dispatch<React.SetStateAction<Payment | undefined>>
     setSwish: React.Dispatch<React.SetStateAction<Swish | undefined>>
@@ -48,12 +48,14 @@ export const CartContext = React.createContext<CartContextData>({
     calculateTotalQty: () => 0,
     totPricePerProduct: (product) => 0,
     totalPrice: () => 0,
+      
     setCustomer: () => { },
     setPayment: () => { },
     setSwish: () => { },
     setInvoice: () => { },
     setCard: () => { },
     setDeliveryAlt: () => { },
+
     calcVat: () => 0,
     confirmPurchase: () => { }
 }
@@ -61,8 +63,11 @@ export const CartContext = React.createContext<CartContextData>({
 
 const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
+
     const [cartItems, setCart] = useState<CartItem[]>([])
     const [customer, setCustomer] = useState<Customer | undefined>()
+ 
+
     let [deliveryAlt, setDeliveryAlt] = useState<Delivery | undefined>()
     const [payment, setPayment] = useState<Payment | undefined>()
     const [swish, setSwish] = useState<Swish | undefined>()
@@ -81,7 +86,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             updatedCart[found].quantity++
         }
         setCart(updatedCart)
-        console.log(updatedCart)
+
     }
 
 
@@ -96,8 +101,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         updatedItem.quantity--;
         if (updatedItem.quantity <= 0) {
             updatedCart.splice(updatedCartIndex, 1)
-            console.log(updatedCart)
-        } else {
+
+        }else{
             updatedCart[updatedCartIndex] = updatedItem
         }
         setCart(updatedCart)
@@ -108,8 +113,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         const listOfProducts = [...cartItems]
         let updatedList = listOfProducts.filter((item) => item.product.id !== product.id);
         setCart(updatedList)
-    }
-
 
     const calculateTotalQty: () => number = () => {
         let total: number = 0
@@ -119,7 +122,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         })
         return total
     }
-
 
     // display total price for single product 
     const totPricePerProduct = (product: Product) => {
@@ -132,9 +134,9 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const calcVat: () => number = () => {
         let price = totalPriceAllProduct();
-        var result = price * 0.25;
-        let vat = result
-        console.log(vat)
+        var result = price * 1.25;
+        let vat = result - price; 
+      
         return vat
     }
 
@@ -149,10 +151,21 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const confirmPurchase: () => void = () => {
         if (customer && deliveryAlt && payment) {
 
+
             localStorage.removeItem('cart')
             let clearedCart = [...cartItems]
             clearedCart = [];
+      
 
+        const confirmPurchase: () => void = () => {
+        
+            if(customer && deliveryAlt && payment){
+             
+                localStorage.removeItem('cart')
+                let clearedCart = [...cartItems]
+                clearedCart = [];
+                
+        
             setCart(clearedCart)
             console.log(clearedCart)
 
@@ -164,29 +177,28 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
     const totalPrice: () => number = () => {
 
-        let totPrice = totalPriceAllProduct();
-
-        if (customer)
-            if (deliveryAlt) {
-                totPrice += deliveryAlt.price
-                if (payment && card || payment && swish || payment && invoice)
-                    totPrice += payment.price
-            }
-
-        // calculates VAT
-        var totalPrice = totPrice * 0.85;
-        return totalPrice
-    }
-
+        //console.log('hej')
+        
+        let totPrice = totalPriceAllProduct();  
+        if(customer)
+            if(deliveryAlt) {
+            
+            totPrice += deliveryAlt.price
+           
+            console.log(totPrice)
+            if(payment && card || payment && swish || payment && invoice)
+            totPrice += payment.price
+       }  
+        
+      
+    
+        return totPrice
+    } 
+    
 
     useEffect(() => {
         calculateTotalQty();
     }, [cartItems])
-
-
-    useEffect(() => {
-        confirmPurchase();
-    }, [])
 
 
     useEffect(() => {
