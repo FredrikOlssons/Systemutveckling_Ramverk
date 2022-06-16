@@ -1,6 +1,4 @@
-
-import React, { Component } from 'react'
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 import { FC, CSSProperties, useContext } from "react";
 import Delivery from "../options/delivery";
 import "../../style/hero.css"
@@ -9,8 +7,6 @@ import Cartlist from '../functions/cartList'
 import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
-
-import { paymentList } from "../../data/payment";
 import  AlertDialog  from '../dialog'
 
 
@@ -71,7 +67,6 @@ const CheckOut: FC<Props> = (props) => {
                 
                 <Box style={litleBox(devices)}>
 
-
                     <h1 style={{textAlign: "center"}}>Översikt</h1>
                     <hr style={{width: "80%", margin: "auto"}} />
                     <br />
@@ -80,26 +75,23 @@ const CheckOut: FC<Props> = (props) => {
                     <div >
                     <h4>Frakt:</h4>
                     <h4>Kostnad för betalning:</h4>
-
                     <h4 style={{margin: "0"}}>Totalsumma:</h4>
                     <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
                     <h4 style={{marginTop: "10px"}}>Varav Moms:</h4>
                     </div>
                     <div >
-                    <h4>{deliveryAlt ? <h4> {deliveryAlt.price} kr </h4> : <h4>0 kr</h4>}</h4>
-                    <h4>{payment ? <h4>{payment.price} kr </h4> : <h4>0 kr</h4> }</h4>
+                    {deliveryAlt ? <h4> {deliveryAlt.price} kr </h4> : <h4>0 kr</h4>}
+                    {payment ? <h4>{payment.price} kr </h4> : <h4>0 kr</h4> }
                     <h4>{totalPrice()} kr</h4>
-                    <h4>{calcVat() > 0 ? <h4>{calcVat()} kr </h4> : <h4>0 kr</h4>}</h4>
+                    {calcVat() > 0 ? <h4>{calcVat()} kr </h4> : <h4>0 kr</h4>}
                     </div>
                     </div>
 
                     <div style={buttonStyle}>
                         <AlertDialog/>
-                        
                     </div>
                 </Box>
                 </div>
-
             </div>
         </>
     )
@@ -165,7 +157,6 @@ const litleBoxDivided: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
     columnGap: '5%',
-
 }
 
 const Container: CSSProperties = {
