@@ -22,16 +22,11 @@ interface Props {
     products: Product
 }
 
-/* const openDialog: () => {
-   
-} */
-
-
 const CheckOut: FC<Props> = (props) => {
 
     const { devices } = useContext(DeviceContext)
     
-    const { totalPrice, cartItems, deliveryAlt, payment, calcVat, confirmPurchase } = useContext(CartContext)
+    const { totalPrice, cartItems, deliveryAlt, payment, calcVat } = useContext(CartContext)
 
 
     return (
@@ -72,7 +67,6 @@ const CheckOut: FC<Props> = (props) => {
                             <Payment />
                         </Box>
                     </div>
-                </div>
 
                 
                 <Box style={litleBox(devices)}>
@@ -82,22 +76,29 @@ const CheckOut: FC<Props> = (props) => {
                     <hr style={{width: "80%", margin: "auto"}} />
                     <br />
 
-                    <h4>Frakt: {deliveryAlt ? <h3> {deliveryAlt.price} kr </h3> : undefined}  </h4>
-                    
-                    <h4>Kostnad för betalning: {payment ? <h3>{payment.price} kr </h3> : undefined }  </h4>
+                    <div style={litleBoxDivided}>
+                    <div >
+                    <h4>Frakt:</h4>
+                    <h4>Kostnad för betalning:</h4>
 
-    
-                    <h4 style={{margin: "0"}}>Varav Moms: {calcVat()} kr </h4>
-                    <h4 style={{margin: "0"}}>Totalsumma: {totalPrice()} kr </h4>
-                
+                    <h4 style={{margin: "0"}}>Totalsumma:</h4>
                     <h6 style={{margin: "0"}}>(inkl. moms, frakt, betalning)</h6>
-
+                    <h4 style={{marginTop: "10px"}}>Varav Moms:</h4>
+                    </div>
+                    <div >
+                    <h4>{deliveryAlt ? <h4> {deliveryAlt.price} kr </h4> : <h4>0 kr</h4>}</h4>
+                    <h4>{payment ? <h4>{payment.price} kr </h4> : <h4>0 kr</h4> }</h4>
+                    <h4>{totalPrice()} kr</h4>
+                    <h4>{calcVat() > 0 ? <h4>{calcVat()} kr </h4> : <h4>0 kr</h4>}</h4>
+                    </div>
+                    </div>
 
                     <div style={buttonStyle}>
                         <AlertDialog/>
                         
                     </div>
                 </Box>
+                </div>
 
             </div>
         </>
@@ -148,15 +149,23 @@ const title: CSSProperties = {
 
 const litleBox: (devices: Device) => CSSProperties = (devices) => {
     return {
-        width: devices.isSmallerMobile ? "90%" : devices.isMobile ? '70%' : '40%',
+        width: devices.isSmallerMobile ? "90%" : devices.isMobile ? '70%' : devices.isTablet ? '30%' : '40%',
         border: "1px solid black",
         boxShadow: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
         borderRadius: "15px",
         backgroundColor: "white",
         height: 'fit-content',
         marginBottom: '60px',
-        padding: devices.isSmallerMobile ? '0px' : "40px",
+        padding: devices.isSmallerMobile ? '0px' : devices.isDesktop ? "40px" : devices.isTablet ? "20px" : '40px',
+        minWidth: '300px',
     }
+}
+
+const litleBoxDivided: CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    columnGap: '5%',
+
 }
 
 const Container: CSSProperties = {

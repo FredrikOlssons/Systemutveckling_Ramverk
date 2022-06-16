@@ -42,7 +42,7 @@ export default function AlertDialog() {
         <DialogActions>
          
           <Button onClick={() => {handleClose(), confirmPurchase()}} autoFocus>
-            Agree
+            Tack för att jag fick handla av er
           </Button>
         </DialogActions>
       </Dialog>
