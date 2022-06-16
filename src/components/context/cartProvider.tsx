@@ -40,7 +40,7 @@ export interface CartContextData {
     totalPrice: () => number
     calcVat: () => number
     confirmPurchase: () => void
-    //totalSomething: (customer: Customer) => void
+
 }
 
 export const CartContext = React.createContext<CartContextData>({
@@ -53,7 +53,7 @@ export const CartContext = React.createContext<CartContextData>({
     calculateTotalQty: () => 0,
     totPricePerProduct: (product) => 0,
     totalPrice: () => 0,
-    //totalSomething: (customer) => {},
+   
     setCustomer: () => {},
    
     setPayment: () => {},
@@ -103,7 +103,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         }   
 
         setCart(updatedCart)
-        console.log(updatedCart)
+       
 
     }
 
@@ -121,7 +121,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         updatedItem.quantity--; 
         if(updatedItem.quantity <= 0) {
             updatedCart.splice(updatedCartIndex, 1)
-            console.log(updatedCart)
+        
         }else{
             updatedCart[updatedCartIndex] = updatedItem
         }
@@ -136,7 +136,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         const listOfProducts = [...cartItems]
         let updatedList = listOfProducts.filter((item) => item.product.id !== product.id); 
         setCart(updatedList)
-        console.log(updatedList)
+        
       
     
     }
@@ -170,7 +170,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
         var result = price * 1.25;
         let vat = result - price; 
-        console.log(vat)
         return vat
        
     }
@@ -189,7 +188,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
       
 
         const confirmPurchase: () => void = () => {
-            //const cart = localStorage.getItem('cart')
         
             if(customer && deliveryAlt && payment){
              
