@@ -52,7 +52,6 @@ import { Invoice } from '../../data/payment';
         onSubmit={values => {
           setInvoice( values as Invoice)
           
-          console.log(values);
         }}
       
         
