@@ -24,6 +24,7 @@ export interface CartContextData {
     invoice?: Invoice,
     card?: Card,
     deliveryAlt?: Delivery
+   
     setCustomer: React.Dispatch<React.SetStateAction<Customer | undefined>>
   
     setPayment: React.Dispatch<React.SetStateAction<Payment | undefined>>
@@ -76,6 +77,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     
 
     const [customer, setCustomer] = useState<Customer | undefined> ()
+
+    
 
     
     let [deliveryAlt, setDeliveryAlt] = useState<Delivery | undefined>()
@@ -195,11 +198,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
                 let clearedCart = [...cartItems]
                 clearedCart = [];
                 
-               
-
-
-                
-                
+        
     
 
             setCart(clearedCart)
@@ -216,15 +215,12 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     // display total price inkl. payment/delivery
     // all states
     const totalPrice: () => number = () => {
+        //console.log('hej')
         
         let totPrice = totalPriceAllProduct();  
-
-      
-
-
         if(customer)
             if(deliveryAlt) {
-            console.log(deliveryAlt.price)
+            
             totPrice += deliveryAlt.price
            
             console.log(totPrice)
@@ -232,13 +228,9 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             totPrice += payment.price
        }  
         
-       // calculates VAT
-       var totalPrice = totPrice * 1.25;
-       
-
       
-
-        return totalPrice
+    
+        return totPrice
     } 
     
 
@@ -247,12 +239,12 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         calculateTotalQty();   
     }, [cartItems])
 
-
+/* 
  useEffect(() => {
      
      confirmPurchase(); 
 
-},[])
+},[]) */
         
 
     useEffect(() => {
