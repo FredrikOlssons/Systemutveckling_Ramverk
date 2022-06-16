@@ -114,6 +114,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         let updatedList = listOfProducts.filter((item) => item.product.id !== product.id);
         setCart(updatedList)
 
+    }
+
     const calculateTotalQty: () => number = () => {
         let total: number = 0
         const listOfProducts = [...cartItems]
@@ -122,6 +124,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         })
         return total
     }
+
+    
 
     // display total price for single product 
     const totPricePerProduct = (product: Product) => {
@@ -148,19 +152,12 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         return amount
     }
 
-    const confirmPurchase: () => void = () => {
-        if (customer && deliveryAlt && payment) {
-
-
-            localStorage.removeItem('cart')
-            let clearedCart = [...cartItems]
-            clearedCart = [];
-      
+    
 
         const confirmPurchase: () => void = () => {
         
             if(customer && deliveryAlt && payment){
-             
+                
                 localStorage.removeItem('cart')
                 let clearedCart = [...cartItems]
                 clearedCart = [];
@@ -171,12 +168,11 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             setPayment(undefined)
             setCustomer(undefined)
             
-            console.log(clearedCart)
+            
 
-        } else {
-            console.log('nuhu')
+            } 
+        
         }
-    }
 
     const totalPrice: () => number = () => {
 
@@ -187,7 +183,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
             
             totPrice += deliveryAlt.price
            
-            console.log(totPrice)
+            
             if(payment && card || payment && swish || payment && invoice)
             totPrice += payment.price
        }  
@@ -232,6 +228,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         </CartContext.Provider>
     )
 }
+
+
 
 export default CartProvider
 

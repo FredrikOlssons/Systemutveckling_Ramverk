@@ -72,7 +72,7 @@ export const ValidationSchemaExample = () => {
         onSubmit={values => {
 
           setCustomer(values as Customer)
-          console.log(values);
+          
         }}
       >
 

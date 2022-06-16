@@ -34,7 +34,6 @@ import { Swish } from '../../data/payment';
           onSubmit={values => {
             setSwish( values as Swish)
             
-            console.log(values);
           }}
         >
           {({ errors, touched }) => (
