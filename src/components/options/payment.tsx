@@ -1,4 +1,4 @@
-import { FC, useState, CSSProperties, useContext} from "react"
+import { FC, CSSProperties, useContext} from "react"
 import { paymentList } from '../../data/payment'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -6,7 +6,6 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { CardPayment } from './paymentForm'
-import PaymentProvider, { PaymentContext } from '../context/paymentProvider'
 import ValidationInvoice from './invoice'
 import ValidationSwish from './swish'
 import { CartContext } from '../context/cartProvider'
@@ -15,36 +14,20 @@ import { CartContext } from '../context/cartProvider'
 interface Props {}
 
 export const Payment: FC<Props> = (props) => {
-
-    
-
-  
     const { payment, setPayment} = useContext(CartContext)
 
-   
-
-
-
-
-
-  
-  
-
-    return (
+   return (
         <FormControl>
           
             <FormLabel id="demo-radio-buttons-group-label">Våra betalningsalternativ:</FormLabel>
             <RadioGroup
                 aria-labelledby="demo-radio-buttons-group-label"
                 name="radio-buttons-group">
-
+                
                 {
                 paymentList.map((choosenPayment) => {
-                    
-
                     return (
 
-                    
                         <div key={choosenPayment.id} style={paymentBox}>
                             
                             <FormControlLabel value={choosenPayment.price} control={<Radio />} onChange={() => {
@@ -59,43 +42,24 @@ export const Payment: FC<Props> = (props) => {
                                 <br />
                                 <span key={choosenPayment.description}>{choosenPayment.description}</span>
                                 <pre />
-
+                            
                             <div>
-                                        
                                     {
                                         payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Visakort" ? <CardPayment /> : undefined
                                     }{
-                                    payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Swish" ?< ValidationSwish />: undefined
-                                        
-                                    }
-                                    {
-                                    payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Faktura" ? < ValidationInvoice />  : undefined
-                                        
-                                    }
-                
+                                        payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Swish" ?< ValidationSwish /> : undefined
+                                    }{
+                                        payment && (payment.title == choosenPayment.title && choosenPayment.title) == "Faktura" ? < ValidationInvoice /> : undefined                                       
+                                    }                
                             </div>
-
-                             
-                          
                         </div>
-
-                
                     )
-                    
-            
-
                 })
-            
-                }
-               
-    
-                
+            }            
             </RadioGroup>
             </FormControl>
     )
 }
-
-
 
 const paymentImg: CSSProperties = {
     width: "80px",

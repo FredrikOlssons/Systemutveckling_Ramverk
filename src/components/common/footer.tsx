@@ -26,7 +26,6 @@ const Footer: FC<Props> = (props) => {
                     </div>
                 </div>
 
-
             <div style={socialMedia}>
                 <div style={footerLayout}>
                 <h4>Kontakta oss</h4>
@@ -39,20 +38,13 @@ const Footer: FC<Props> = (props) => {
                 <div style={footerRow2}><FacebookOutlinedIcon style={footerTag(devices)}/><h5 style={footerTag(devices)}>Facebook</h5></div>
                 <div style={footerRow2}><TwitterIcon style={footerTag(devices)}/><h5 style={footerTag(devices)}>Twitter</h5></div>
                 <div style={footerRow2}><InstagramIcon style={footerTag(devices)}/><h5 style={footerTag(devices)}>Instagram</h5></div>
-
-                </div>
-                    
-            </div>
-          
+            </div>                    
+        </div>          
             <div>
-            
-            <div style={line}>All images and site content &copy; Company name, 2022</div>
-            
+                <div style={line}>All images and site content &copy; Company name, 2022</div>
             </div>
         </div>
-
     )
-
 }
 
 const footerStyle: (devices: Device) => CSSProperties = (devices) => {
@@ -62,8 +54,7 @@ const footerStyle: (devices: Device) => CSSProperties = (devices) => {
     bottom: '0',
     width: '100%',
     background: Colors.secondary,
-    color: 'silver',
-       
+    color: 'silver',       
     }
 }
 
@@ -77,11 +68,7 @@ const line: CSSProperties = {
     textAlign: 'center',
     fontSize: '10px',
     color: "white"
-    
-    
 }
-
-
 
 const socialMedia: CSSProperties = {
     display: 'flex',
@@ -92,7 +79,6 @@ const socialMedia: CSSProperties = {
     color: "white",
     fontSize: "15px",
     rowGap: "20px",
-
 }
 
 const footerLayout: CSSProperties = {
@@ -103,7 +89,6 @@ const footerLayout: CSSProperties = {
     textAlign: 'center',
     height: '100%',
     justifyContent: 'center'
-
 }
 
 const footerLogo: (devices: Device) => CSSProperties = (devices) => {
@@ -134,11 +119,8 @@ const footerRow2: CSSProperties = {
     alignItems: "center",
 }
 
-
-
 const footerTag: (devices: Device) => CSSProperties = (devices) => {
-    return {
-        
+    return {        
     fontSize: devices.isSmallerMobile ? '10px' : '15px',
     margin: '0',
     marginBlock: '0px'

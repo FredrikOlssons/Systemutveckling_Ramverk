@@ -9,9 +9,6 @@ import Puzzle from '../assets/Puzzle.jpg'
 import ToiletGolf from '../assets/ToiletGolf.jpg'
 
 
-
-
-
 export interface Product {
     id: number
     title: string
@@ -19,8 +16,6 @@ export interface Product {
     description: string
     price: number
 }
-
-
 
 export const products: Product[] = [
      {
