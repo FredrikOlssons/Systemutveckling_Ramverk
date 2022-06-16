@@ -167,6 +167,10 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
                 
         
             setCart(clearedCart)
+            setDeliveryAlt(undefined)
+            setPayment(undefined)
+            setCustomer(undefined)
+            
             console.log(clearedCart)
 
         } else {
@@ -174,10 +178,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         }
     }
 
-
     const totalPrice: () => number = () => {
 
-        //console.log('hej')
         
         let totPrice = totalPriceAllProduct();  
         if(customer)
