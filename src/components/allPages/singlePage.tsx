@@ -1,19 +1,14 @@
-
 import React from 'react'; 
-
 import {products, Product} from '../../data/products'
 import {useParams, Navigate } from 'react-router-dom';
 import { CSSProperties, FC, useContext } from "react";
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button'; 
-
 import "../../style/hero.css";
-
 import { CartContext } from '../context/cartProvider';
 import { Alert, Snackbar, Stack } from '@mui/material';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import { Device, DeviceContext } from "../context/DeviceProvider";
-
 
 
   
@@ -45,7 +40,6 @@ const SinglePage: FC<Props> = (props) => {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
     };
 
@@ -56,7 +50,6 @@ const SinglePage: FC<Props> = (props) => {
             <Link to={"/"} style={{color: "silver", textDecoration: "none"}}>
             Fortsätt handla
             </Link>
-
         </div>
         
         <span style={singleProductContainer(devices)}>
@@ -82,13 +75,11 @@ const SinglePage: FC<Props> = (props) => {
                                 Produkten har lagts i kundkorgen!
                             </Alert>
                         </Snackbar>
-                        </Stack>
-
-                
+                    </Stack>
                 </div>
             </div>
         </span>
-        </>
+    </>
     )
 }
 
@@ -107,8 +98,6 @@ const singleProductContainer: (devices: Device) => CSSProperties = (devices) => 
     justifyContent: devices.isSmallerMobile ? 'center' : undefined,
     }
 }
-
-
 
 const breadcrumbs: CSSProperties = {
     color: "silver",
@@ -152,13 +141,10 @@ const imageStyle: CSSProperties = {
     minHeight: '276px',
     minWidth: '276px',
     width: '90%',
-    //borderRadius: "30px",
     borderColor: 'silver',
     border: 'solid',
     borderTopLeftRadius: '30px',
-    borderTopRightRadius: '30px',
-   // boxShadow: '5px 10px white',
-   
+    borderTopRightRadius: '30px',   
 }
 
 
@@ -166,17 +152,13 @@ const productInfo: (devices: Device) => CSSProperties = (devices) => {
     return {
     display: "flex",
     flexDirection: "column",
-    //borderRadius: "15px",
     padding: "4%",
     boxShadow: "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
     border: 'solid',
     borderColor: 'silver',
     color: 'silver',
-    /* width: '80%', */
     fontStretch: 'expanded',
-    //borderTopRightRadius: "30px",
     minWidth: '300px',
-    /* minWidth: '300px', */
     borderBottomLeftRadius: devices.isSmallerMobile ? '0px' : '30px',
     borderTopRightRadius: devices.isSmallerMobile ? '0px' : '30px',
     borderBottomRightRadius: devices.isSmallerMobile ? '0px' : '30px',
@@ -194,14 +176,12 @@ const priceDiv: CSSProperties = {
     gap: "30px",
     marginTop: "25px",
     flexWrap: "wrap",
-    color: 'silver',
-    
+    color: 'silver',    
 }
 
 const description: CSSProperties = {
     width: '100%',
-    textAlign: 'justify',
-  
+    textAlign: 'justify',  
     fontFamily: 'Aclonica, sans-serif',
     fontSize: '14px',
 }
@@ -210,8 +190,7 @@ const priceBox: CSSProperties = {
     display: "flex",
     flexDirection: "row",
     gap: "inherit",
-    justifyContent: "end",
-    
+    justifyContent: "end",    
 }
 
 
