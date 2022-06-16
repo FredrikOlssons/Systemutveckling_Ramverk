@@ -217,9 +217,8 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
 
 
     // display total price inkl. payment/delivery
-    // all states
+
     const totalPrice: () => number = () => {
-        //console.log('hej')
         
         let totPrice = totalPriceAllProduct();  
         if(customer)
@@ -243,12 +242,6 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         calculateTotalQty();   
     }, [cartItems])
 
-/* 
- useEffect(() => {
-     
-     confirmPurchase(); 
-
-},[]) */
         
 
     useEffect(() => {
