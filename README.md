@@ -47,11 +47,11 @@ Installation & köra igång projektet:
 
 - Varje betalsätt ska innehålla ett formulär för nödvändig information. Fälten i formuläret ska gå att automatisk fyllas i.  ✅ 
 
-- När alla delarna i utcheckningsflödet har fyllts i ska det finns en ”Slutför köp” knapp tillsammans med totalpriset (inklusive frakt och moms).  ✅ ❌ 
+- När alla delarna i utcheckningsflödet har fyllts i ska det finns en ”Slutför köp” knapp tillsammans med totalpriset (inklusive frakt och moms).  ✅ 
 
-- När man väljer att slutföra sitt köp skall detta endast gå om samtlig information är rätt ifylld.  ✅ ❌ 
+- När man väljer att slutföra sitt köp skall detta endast gå om samtlig information är rätt ifylld.  ✅  
 
-- Vid genomfört köp skall en bekräftelse visas på köpet. Tänk på att det inte ska gå att placera ordern två gånger, även om man navigerar tillbaka på sidan!  ✅ ❌
+- Vid genomfört köp skall en bekräftelse visas på köpet. Tänk på att det inte ska gå att placera ordern två gånger, även om man navigerar tillbaka på sidan!  ✅ 
 
 
 * Krav för godkänt:
