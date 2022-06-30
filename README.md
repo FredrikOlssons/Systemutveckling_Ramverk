@@ -47,6 +47,7 @@ Installation & köra igång projektet:
 
 - Varje betalsätt ska innehålla ett formulär för nödvändig information. Fälten i formuläret ska gå att automatisk fyllas i.  ✅ 
 
+
 - När alla delarna i utcheckningsflödet har fyllts i ska det finns en ”Slutför köp” knapp tillsammans med totalpriset (inklusive frakt och moms).  ✅
 
 - När man väljer att slutföra sitt köp skall detta endast gå om samtlig information är rätt ifylld.  ✅ 
@@ -75,3 +76,4 @@ Installation & köra igång projektet:
 9.Mockade produkter ska ligga i en egen fil och vara typade med ett TS interface  ✅ 
 
 
+Länk till repositorie: https://github.com/FredrikOlssons/Systemutveckling_Ramverk
