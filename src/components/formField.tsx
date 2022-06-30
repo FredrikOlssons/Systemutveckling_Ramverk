@@ -1,11 +1,12 @@
 import { FC, CSSProperties, useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Grid } from '@mui/material';
+import { Alert, Grid, Snackbar } from '@mui/material';
 import { Button } from "@mui/material";
 import { Customer } from './interfaces/customer';
 import { CartContext } from './context/cartProvider';
 import { Device, DeviceContext } from "./context/DeviceProvider";
+import React from 'react';
 
 
 const SignupSchema = Yup.object().shape({
@@ -51,7 +52,20 @@ const SignupSchema = Yup.object().shape({
 export const ValidationSchemaExample = () => {
   const { devices } = useContext(DeviceContext)
 
-  const { setCustomer } = useContext(CartContext)
+  const { setCustomer, customer } = useContext(CartContext)
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+      setOpen(true);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+      if (reason === 'clickaway') {
+          return;
+      }
+      setOpen(false);
+  };
 
   return (
     <div style={formStyling(devices)}>
@@ -163,7 +177,22 @@ export const ValidationSchemaExample = () => {
                   </div>
                 </Grid>
                 <Grid style={submitStyling} item xs={12} sm={6}>
+
+                {
+                  customer ? <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                      informationen har sparats!
+                  </Alert>
+                </Snackbar> : <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+                        Var vänlig och fyll i samtliga information!
+                    </Alert>
+                </Snackbar>
+                }
+                <div onClick={handleClick} >
                   <Button type="submit" variant="contained" color="primary">Vidare</Button>
+                  </div>
+                
                 </Grid>
               </Grid>
             </Form>

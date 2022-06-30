@@ -39,7 +39,7 @@ interface Props {
                 <ListItem key={cartItem.product.id} style={{ ...cartItemStyle }}> 
 
                 
-                      <div style={{ ...cartTitleStyle }}>{cartItem.product.title}</div>
+                    <div style={{ ...cartTitleStyle }}>{cartItem.product.title}</div>
                   <ListItemAvatar style={cartImgDiv}><img src={cartItem.product.image} style={cartImageStyle} /></ListItemAvatar>
                   <>
                     <div style={textbox}>

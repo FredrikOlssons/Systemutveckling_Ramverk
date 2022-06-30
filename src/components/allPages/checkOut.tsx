@@ -7,7 +7,7 @@ import Cartlist from '../functions/cartList'
 import { Product } from '../../data/products'
 import { CartContext } from "../context/cartProvider";
 import ValidationSchemaExample from "../formField";
-import  AlertDialog  from '../dialog'
+import  AlertDialog  from '../functions/dialog'
 
 
 import { Device, DeviceContext } from "../context/DeviceProvider";
@@ -156,7 +156,7 @@ const litleBox: (devices: Device) => CSSProperties = (devices) => {
 const litleBoxDivided: CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
-    columnGap: '5%',
+    columnGap: '15%',
 }
 
 const Container: CSSProperties = {
