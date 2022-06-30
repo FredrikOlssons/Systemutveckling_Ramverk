@@ -74,6 +74,7 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
     const [card, setCard] = useState<Card | undefined>()
     const [invoice, setInvoice] = useState<Invoice | undefined>()
 
+    
 
 
     const addToCart = (product: Product) => {
@@ -179,13 +180,16 @@ const CartProvider: FC<PropsWithChildren<Props>> = (props) => {
         
         let totPrice = totalPriceAllProduct();  
         if(customer)
-            if(deliveryAlt) {
+        
+        if(deliveryAlt) {
             
             totPrice += deliveryAlt.price
            
             
             if(payment && card || payment && swish || payment && invoice)
+
             totPrice += payment.price
+
        }  
         
       

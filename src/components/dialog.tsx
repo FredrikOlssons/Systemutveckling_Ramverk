@@ -10,7 +10,7 @@ import { CartContext } from './context/cartProvider';
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
 
-  const { confirmPurchase } = useContext(CartContext)
+  const { confirmPurchase, customer, deliveryAlt, payment } = useContext(CartContext)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -22,9 +22,13 @@ export default function AlertDialog() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={() => handleClickOpen()}>
-       Slutför köp
-      </Button>
+
+      {
+        customer && deliveryAlt && payment ? <Button variant="outlined" onClick={() => {handleClickOpen(), confirmPurchase() }}>
+        Slutför köp
+       </Button> : undefined
+      }
+      
       <Dialog
         open={open}
         onClose={handleClose}
