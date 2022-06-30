@@ -1,10 +1,11 @@
 import { FC, CSSProperties, useContext } from 'react'; 
 import { Formik, Form, Field } from 'formik'; 
 import * as Yup from 'yup';
-import { Grid } from '@mui/material';
+import { Alert, Grid, Snackbar, Stack } from '@mui/material';
 import { Button } from "@mui/material";
 import { CartContext } from '../context/cartProvider'
 import { Invoice } from '../../data/payment';
+import React from 'react';
 
     const SignupSchema = Yup.object().shape({
     
@@ -33,7 +34,23 @@ import { Invoice } from '../../data/payment';
 
     
     export const validationInvoice = () => {
-      const { setInvoice } = useContext(CartContext)
+      const { setInvoice, invoice } = useContext(CartContext)
+
+      const [open, setOpen] = React.useState(false);
+
+      const handleClick = () => {
+          setOpen(true);
+      };
+  
+      const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+          if (reason === 'clickaway') {
+              return;
+          }
+          setOpen(false);
+      };
+
+
+      
       return (
       <div style={formStyling}>
 
@@ -106,12 +123,26 @@ import { Invoice } from '../../data/payment';
                   </div>
                 </Grid>
 
-           
+                
                 <Grid style={submitStyling} item xs={12} sm={6}>
-                <Button type="submit" variant="contained" color="primary">Vidare</Button>
+                {
+                  invoice ? <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                      informationen har sparats!
+                  </Alert>
+                </Snackbar> : <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+                        Var vänlig och fyll i samtliga information!
+                    </Alert>
+                </Snackbar>
+                }
+                  <div onClick={handleClick} >
+                  <Button type="submit" variant="contained" color="primary">Vidare</Button>
+                  </div>
+                
                 
                 </Grid>
-
+                
             </Grid>
           </Form>
           </>
@@ -157,6 +188,12 @@ const inputForm: CSSProperties = {
   flexDirection: "column"
 }
 
+const priceBox: CSSProperties = {
+  display: "flex",
+  flexDirection: "row",
+  gap: "inherit",
+  justifyContent: "end",    
+}
 
  export default validationInvoice;
 

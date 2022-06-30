@@ -41,13 +41,13 @@ const RenderProduct: FC<Props> = (props) => {
             
 
             <Link style={{textDecoration:'none'}} to={`/${props.products.id}`}>
-            <img src={props.products.image} style={imageStyle}/>
-           
-            <div style={productInfo}>
-                <h2 style={{...title}}>{props.products.title}</h2>
-                <h3>{props.products.price} kr</h3>
-            </div>
-                </Link>
+                <img src={props.products.image} style={imageStyle}/>
+            
+                <div style={productInfo}>
+                    <h2 style={{...title}}>{props.products.title}</h2>
+                    <h3>{props.products.price} kr</h3>
+                </div>
+            </Link>
                 <Stack spacing={2} sx={{ width: '100%' }}>
                 <div onClick={handleClick} >
 

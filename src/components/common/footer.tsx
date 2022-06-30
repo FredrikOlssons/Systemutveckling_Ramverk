@@ -41,7 +41,7 @@ const Footer: FC<Props> = (props) => {
             </div>                    
         </div>          
             <div>
-                <div style={line}>All images and site content &copy; Company name, 2022</div>
+                <div style={line}>All images and site content &copy; Wholehearted Family Adventure, 2022</div>
             </div>
         </div>
     )
@@ -64,6 +64,7 @@ const line: CSSProperties = {
     borderTop: '0.5px solid black',
     marginTop: '30px',
     paddingTop: '10px',
+    paddingBottom: '10px',
     borderColor: 'silver',
     textAlign: 'center',
     fontSize: '10px',
