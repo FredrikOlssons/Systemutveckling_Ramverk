@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
 
-  const { confirmPurchase, customer, deliveryAlt, payment } = useContext(CartContext)
+  const { confirmPurchase, cartItems, customer, deliveryAlt, payment } = useContext(CartContext)
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -25,7 +25,7 @@ export default function AlertDialog() {
     <div>
 
       {
-        customer && deliveryAlt && payment ? <Button variant="outlined" onClick={() => {handleClickOpen(), confirmPurchase() }}>
+        (cartItems.length > 0) && customer && deliveryAlt && payment ? <Button variant="outlined" onClick={() => {handleClickOpen(), confirmPurchase() }}>
         Slutför köp
        </Button> : undefined
       }
