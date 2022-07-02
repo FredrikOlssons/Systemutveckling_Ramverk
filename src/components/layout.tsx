@@ -5,6 +5,7 @@ import { bodyContent } from "../style/common";
 import RenderView from "./functions/renderView";
 import CartProvider from "./context/cartProvider";
 import DeviceProvider from "./context/DeviceProvider";
+import AlertDialog from "./functions/dialog";
 
 
 
