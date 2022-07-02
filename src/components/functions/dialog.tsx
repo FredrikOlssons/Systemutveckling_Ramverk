@@ -6,6 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { CartContext } from '../context/cartProvider';
+import { Link } from 'react-router-dom';
 
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
@@ -36,18 +37,20 @@ export default function AlertDialog() {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Tack!"}
+          {"Tack för din beställning!"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Din order är bekräftad
+            Din order är bekräftad & kommer att packas och skickas inom kort! 
           </DialogContentText>
         </DialogContent>
         <DialogActions>
          
-          <Button onClick={() => {handleClose(), confirmPurchase()}} autoFocus>
-            Tack för att jag fick handla av er
+          <Link to={"/"} >
+          <Button onClick={() => handleClose()} autoFocus>
+            Till startsidan ☞
           </Button>
+          </Link>
         </DialogActions>
       </Dialog>
     </div>
